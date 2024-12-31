@@ -1,0 +1,61 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit">Add CashBack </mat-card-title>
+                <div *checkRole="'manage-reward-bulk-file-upload'">
+                    <div style="text-align:right;width:100%">
+                        <a (click)="bulkUpload()" class="hyperlink" class="form-btn" mat-raised-button>Bulk Upload</a>
+                    </div>
+                </div>
+            </span>
+        </mat-card-header>
+        <div class="gridBox">
+            <form [formGroup]="firstFormGroup">
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Mobile</mat-label>
+                        <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
+                            pattern="^[6|7|8|9][0-9]{9}$" maxlength="10">
+                        <mat-error *ngIf="firstFormGroup?.get('mobile')?.hasError('pattern')">
+                            Please enter valid Mobile Number
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Transaction Type </mat-label>
+                        <mat-select formControlName="txnType" required>
+                            <mat-option value="CashBack">CashBack</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <input matInput formControlName="remarks" autocomplete="off" name="remarks" minlength="2"
+                            maxlength="50">
+                        <mat-error *ngIf="firstFormGroup?.get('remarks')?.hasError('minlength')" style="position:fixed">
+                            Min 5 words allowed.
+                        </mat-error>
+                        <mat-error *ngIf="firstFormGroup?.get('remarks')?.hasError('maxlength')" style="position:fixed">
+                            Max 50 words allowed.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Amount</mat-label>
+                        <input matInput type="number" autocomplete="off" pattern="^\d+(?:\.((?:5|50)))?$" required
+                            min="0.5" formControlName="amount" minlength="1" maxlength="12" />
+                        <span matPrefix>e₹&nbsp;&nbsp;</span>
+                        <mat-error *ngIf="firstFormGroup?.get('amount')?.hasError('pattern')">
+                            Please enter valid Amount
+                        </mat-error>
+                        <mat-error *ngIf="firstFormGroup.get('amount')?.hasError('length')">
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                    <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+                </div>
+            </form>
+        </div>
+
+    </mat-card>
+</div>

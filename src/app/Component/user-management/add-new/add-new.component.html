@@ -1,0 +1,88 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-panel-title class="font-style">
+      <h2>User Information</h2>
+    </mat-panel-title>
+    <form [formGroup]='addForm'>
+      <mat-form-field appearance="outline" *ngIf="userData.id">
+        <mat-label>User ID</mat-label>
+        <input matInput autocomplete="off" formControlName="userId">
+      </mat-form-field>
+      <mat-form-field class="select-input-field" appearance="outline" *ngIf="userData.id">
+        <mat-label>Auth Type</mat-label>
+        <input matInput autocomplete="off" value="{{userData.authType === 0 ? 'Non-LDAP user' : 'LDAP user'}}"
+          disabled="disabled">
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Name</mat-label>
+        <input matInput autocomplete="off" formControlName="name" required maxlength="50"
+          pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+        <mat-error *ngIf="addForm?.get('name')?.hasError('pattern')">
+          Please enter valid Name
+        </mat-error>
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>User Name</mat-label>
+        <input matInput required autocomplete="off" formControlName="nick" minlength="3" maxlength="50"
+          pattern="^[a-zA-Z0-9]+$">
+        <mat-error *ngIf="addForm?.get('nick')?.hasError('pattern')">
+          Please enter valid User Name
+        </mat-error>
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Email</mat-label>
+        <input matInput required autocomplete="off" formControlName="email"
+          pattern="^(?!.*\.\.)[a-zA-Z0-9._$-]+@[a-zA-Z0-9.-]+\.(com|in|co|org)$" formControlName="email" required>
+        <mat-error *ngIf="addForm?.get('email')?.hasError('pattern')">
+          Please enter a valid email address
+        </mat-error>
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Mobile Number</mat-label>
+        <input type="text" pattern="^[6|7|8|9][0-9]{9}$" matInput required  OnlyNumber autocomplete="off" name="mobileNo"
+          minlength="10" maxlength="10" formControlName="mobileNo">
+        <mat-error *ngIf="addForm?.get('mobileNo')?.hasError('pattern')">
+          please enter valid 10-digit mobile Number
+        </mat-error>
+        <mat-error *ngIf="addForm?.get('mobileNo')?.hasError('required')">
+          please enter valid 10-digit mobile Number
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <div class="example-container">
+          <h2>Available Roles</h2>
+          <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="availableRoles"
+            [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of availableRoles" cdkDrag (cdkDragStarted)="test($event)"
+              (click)="onKeyDown($event, item, availableRoles)"
+              [ngClass]="{'selected':item.selected,'disabled':isView}">
+              {{item.name}}
+            </div>
+          </div>
+          <p class="note-txt">
+            &nbsp;* Drag and drop the roles to assign or remove the roles</p>
+          <p class="note-txt">
+            &nbsp;* Use ctrl key to select multiple roles</p>
+        </div>
+        <div class="example-container">
+          <h2>Assigned Roles</h2>
+          <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignedRoles"
+            [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of assignedRoles" cdkDrag
+              (click)="onKeyDown($event, item, assignedRoles)" [ngClass]="{'selected':item.selected,'disabled':isView}">
+              {{item.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <mat-checkbox formControlName="active">Status</mat-checkbox>
+    </form>
+    <br>
+    <div>
+      <button mat-raised-button class="form-btn" (click)="onSubmit()" *ngIf="!isView">Submit</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="!isView">Cancel</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="isView">Back</button>
+    </div>
+  </mat-card>
+</div>

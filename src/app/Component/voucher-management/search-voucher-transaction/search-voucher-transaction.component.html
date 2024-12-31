@@ -1,0 +1,46 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Search Voucher Transaction
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Voucher Code</mat-label>
+                <input matInput autocomplete="off" OnlyNumber formControlName="voucherCode">
+                <mat-error *ngIf="searchForm.controls['voucherCode'].hasError('required')">
+                    Voucher Code is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="startdatepicker" [max]="maxDate" readonly="true"
+                    formControlName="fromDate" autocomplete="off" name="startDate" (dateChange)="dateChange($event)" />
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startdatepicker></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <input matInput [matDatepicker]="enddatepicker" readonly="true" formControlName="toDate"
+                    autocomplete="off" name="endDate" [min]="minDate" [max]="maxDate" [disabled]="isDisabled">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #enddatepicker></mat-datepicker>
+            </mat-form-field><br>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <div class="gridxBox">
+        <app-table *ngIf="showData" [dataSource]="txnData" [tableType]="'search-txn'" [pdf]="true" [excel]="true"
+            [csv]="true" (itemPdfEvent)="downloadAsPDF()" (itemExcelEvent)="exportAsXLSX()"
+            (itemCsvEvent)="downloadAsCSV()" [displayedColumns]="Columns" [searchGrid]="true"
+            (itemTranactionIDEvent)="openDialog($event)" filterLabel="Filter transactions" matSort
+            defaultSort="date"></app-table>
+
+    </div>
+</div>

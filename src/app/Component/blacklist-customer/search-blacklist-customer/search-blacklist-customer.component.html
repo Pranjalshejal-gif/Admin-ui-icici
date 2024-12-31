@@ -1,0 +1,34 @@
+<div class="grid-container">
+    <mat-expansion-panel [expanded]="panelOpen">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <h2>Search Blacklist Customers</h2>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div style="text-align:right;width:100%">
+            <button type="bulkUpload" class="form-btn" mat-raised-button (click)="openDialogAddCustomer($event)"
+                *checkRole="'manage-mobile-blacklist,checker-mobile-blacklist'">Add</button>
+            <button type="bulkUpload" class="form-btn" mat-raised-button (click)="bulkUpload()"
+                *checkRole="'manage-mobile-blacklist-bulk-file-upload'">Bulk Upload</button>
+        </div>
+        <form name="form" [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <input type="text" pattern="^[6|7|8|9][0-9]{9}$" matInput required autocomplete="off" OnlyNumber
+                    formControlName="blockValue" name="blockValue" minlength="10" maxlength="10">
+                <mat-error *ngIf="searchForm?.get('blockValue')?.hasError('pattern')">
+                    Please enter valid Mobile Number
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-expansion-panel>
+    <div class="grid-container">
+        <app-table *ngIf="showData" [dataSource]="dataSourceCustomer" [displayedColumns]="Columns" [searchGrid]="true"
+            filterLabel="Filter transactions">
+        </app-table>
+    </div>
+</div>

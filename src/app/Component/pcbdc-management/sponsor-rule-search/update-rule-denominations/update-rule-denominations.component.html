@@ -1,0 +1,256 @@
+<div class="outer-layout" #top>
+    <mat-card>
+        <div>
+            <form [formGroup]="updateForm">
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Top-Up Denomination :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Rule ID</mat-label>
+                        <input matInput formControlName="ruleId" [disabled]="true" class="disabled"
+                            [matTooltip]="updateForm.get('ruleId')?.value" matTooltipPosition="above" readonly />
+                    </mat-form-field>
+                    <div class="gridBox">
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue0_5')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor0_5" placeholder="0" autocomplete="off"
+                                        name="countfor0_5" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount0_5"
+                                        name="totalQuantityAmount0_5" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue1')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor1" placeholder="0" autocomplete="off"
+                                        name="countfor1" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount1"
+                                        name="totalQuantityAmount1" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue2')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor2" placeholder="0" autocomplete="off"
+                                        name="countfor2" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount2"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue5')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor5" placeholder="0" autocomplete="off"
+                                        name="countfor5" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount5"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue10')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor10" placeholder="0" autocomplete="off"
+                                        name="countfor10" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount10"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue20')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor20" placeholder="0" autocomplete="off"
+                                        name="countfor20" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount20"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue50')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor50" placeholder="0" autocomplete="off"
+                                        name="countfor50" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount50"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue100')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor100" placeholder="0" autocomplete="off"
+                                        name="countfor100" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount100"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue200')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor200" placeholder="0" autocomplete="off"
+                                        name="countfor200" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount200"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{updateForm.get('fixedValue500')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor500" placeholder="0" autocomplete="off"
+                                        name="countfor500" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount500"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading" style="font-size: larger;">
+                            <label>Total Amount:</label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Total Amount</mat-label>
+                                <input matInput autocomplete="off" formControlName="totalAmount" name="totalAmount"
+                                    readonly />
+                                <span matPrefix>e₹&nbsp;&nbsp;</span>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="btn-group">
+                    <button mat-raised-button type="submit" class="form-btn" (click)="submit()">Submit</button>
+                    <button type="reset" mat-raised-button class="btn-cancel" (click)="back()">Back</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

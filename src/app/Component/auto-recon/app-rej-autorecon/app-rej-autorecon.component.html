@@ -1,0 +1,50 @@
+<div class="outer-layout">
+    <mat-card>
+
+        <form [formGroup]="searchTxntypeForm">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Transaction Type </mat-label>
+                    <mat-select formControlName="txnType">
+                        <mat-option value="LOAD-UPI">LOAD-UPI</mat-option>
+                        <mat-option value="LOAD-CBS">LOAD-CBS</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="searchTxntypeForm.controls['txnType'].hasError('required')">
+                        Transaction Type is required.
+                    </mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline" *ngIf="searchTxntypeForm.get('txnType')?.value === 'LOAD-UPI'">
+                    <mat-label>Sub Transaction Type </mat-label>
+                    <mat-select formControlName="subTxnType">
+                        <mat-option value="UPI-PAY">LOAD-UPI-DEBIT</mat-option>
+                        <mat-option value="UPI-REV">LOAD-UPI-REVERSAL</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="searchTxntypeForm.controls['subTxnType'].hasError('required')">
+                        Sub Transaction Type is required.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" *ngIf="searchTxntypeForm.get('txnType')?.value === 'LOAD-CBS'">
+                    <mat-label>Sub Transaction Type </mat-label>
+                    <mat-select formControlName="subTxnType">
+                        <mat-option value="CBS-PAY">LOAD-CBS-DEBIT</mat-option>
+                        <mat-option value="CBS-REV">LOAD-CBS-REVERSAL</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="searchTxntypeForm.controls['subTxnType'].hasError('required')">
+                        Transaction Type is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="btn-group">
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+            </div>
+        </form>
+    </mat-card>
+
+    <!-- App/Rej AutoRcon table -->
+    <app-table *ngIf="showData" [dataSource]="txnData" [displayedColumns]="columns" [searchGrid]="true" [isCheck]="true"
+        [approveRecon]="true" [tableType]="'upi-txn'" [rejectRecon]="true" filterLabel="Filter Transaction Data"
+        defaultSort="created" matSort></app-table>
+
+</div>

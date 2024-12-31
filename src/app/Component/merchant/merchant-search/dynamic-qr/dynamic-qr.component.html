@@ -1,0 +1,47 @@
+<div>
+  <h1 class="noPrint" mat-dialog-title class="font-style">Generate Dynamic QR</h1>
+  <div mat-dialog-content class="noPrint">
+    <form [formGroup]="dynamicQRForm">
+      <mat-form-field appearance="outline" >
+        <mat-label>Amount</mat-label>
+        <input matInput type="text" class="example-right-align" placeholder="0" Amount autocomplete="off" name="amount"
+          formControlName="amount" required>
+        <span matPrefix>₹&nbsp;&nbsp;</span>
+      </mat-form-field>
+      <mat-form-field appearance="outline" >
+        <mat-label>Transaction Reference</mat-label>
+        <input matInput class="example-right-align" RestrictSpecialCharacters autocomplete="off" name="tr"
+          formControlName="tr">
+      </mat-form-field>
+      <div class="form-btn-group">
+        <button mat-raised-button class="form-btn" (click)="generate()">Generate Dynamic QR</button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="showData" class="center">
+    <div>
+      <div id="my-node-dynamic">
+        <img src="data:image/jpeg;base64,{{qrData?.data}}" alt="" width="300px" style="background:white">
+        <h2 class="heading">{{walletData?.customerDetails?.name}}</h2>
+      </div>
+
+      <p class="link noPrint"> <button (click)="copyToClipboard(qrURL)" title="Copy content in this box"
+          class="material-icons copy-button no-print ng-star-inserted" aria-label="">
+          <span class="copy-span" aria-hidden="true">content_copy</span>
+        </button>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5">{{qrURL}}</textarea>
+      </p>
+    </div>
+    <div class="btn-group" class="noPrint">
+      <button type="button" class="form-btn" style="min-width:unset !important" (click)="downloadQR()">
+        <mat-icon>get_app</mat-icon>
+      </button>
+      <button type="button" class="form-btn" style="min-width:unset !important" (click)="printQR()">
+        <mat-icon>print</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-dialog-actions align="end" class="noPrint">
+    <button mat-raised-button class="btn-cancel" mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</div>

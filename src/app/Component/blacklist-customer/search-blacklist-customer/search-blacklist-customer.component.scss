@@ -1,0 +1,22 @@
+.grid-container .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-form-field {
+    margin-right: 8px;
+}
+
+.gridxBox {
+    margin-top: 15px;
+}
+
+:host ::ng-deep th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    min-width: 135px;
+}
+
+mat-hint {
+    margin-top: 5px;
+}

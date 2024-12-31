@@ -1,0 +1,49 @@
+<div class="outer-layout">
+    <div class="relative">
+        <button mat-icon-button class="close-button noPrint" [mat-dialog-close]="true">
+            <mat-icon class="close-icon">close</mat-icon>
+        </button>
+        <mat-card-header align="center">
+            <span style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit">
+                    <h2>PCBDC Bulk Upload Details</h2>
+                </mat-card-title>
+            </span>
+        </mat-card-header>
+    </div>
+    <form>
+        <div align="center" *ngIf="this.successfullCount !== 0">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Count</th>
+                </tr>
+                <tr *ngFor=" let item of dataStatusList">
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                </tr>
+            </table>
+            <br><br>
+            <div style="text-align:right"
+                *ngIf="this.bulkFileStatus !== 'APPROVED' && this.bulkFileStatus !== 'REJECTED' && this.dataValid == true">
+                <button mat-raised-button class="form-btn" style="background-color:green;color:white" mat-raised-button
+                    (click)="ApproveSelectedFile()">Approve</button>
+                <button mat-raised-button class="form-btn" style="background-color:red;color:white" mat-raised-button
+                    (click)="RejectSelectedFile()">Reject</button>
+            </div>
+        </div>
+        <div align="center" *ngIf="this.successfullCount === 0">
+            <mat-card-header align="center">
+                <span style="display:flex;width:100%;">
+                    <mat-card-title style="width:inherit">
+                        <h3>File {{this.bulkFileName}} has all invalid data, you can REJECT the file.</h3>
+                    </mat-card-title>
+                </span>
+            </mat-card-header>
+            <div *ngIf="this.bulkFileStatus !== 'REJECTED'">
+                <button mat-raised-button class="form-btn" style="background-color:red;color:white" mat-raised-button
+                    (click)="RejectSelectedFile()">Reject</button>
+            </div>
+        </div>
+    </form>
+</div>

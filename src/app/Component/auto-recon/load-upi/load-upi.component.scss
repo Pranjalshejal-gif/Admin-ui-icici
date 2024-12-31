@@ -1,0 +1,20 @@
+.mat-form-field {
+    margin-right: 25px;
+    margin-bottom: 8px;
+}
+
+
+.mat-tooltip.mat-tooltip-show {
+    font-size: 14px;
+    /* Adjust the font size according to your preference */
+}
+
+
+::ng-deep.mat-tooltip{
+    font-size: 16px !important;
+    max-width: 400px!important;
+}
+
+.multiline-tooltip {
+    white-space: pre-line;
+}

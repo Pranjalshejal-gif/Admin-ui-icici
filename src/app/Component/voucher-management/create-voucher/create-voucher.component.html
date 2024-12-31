@@ -1,0 +1,25 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Create Voucher
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="createVoucherForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Voucher Count</mat-label>
+                <input matInput autocomplete="off" minlength="1" maxlength="4" OnlyNumber formControlName="count">
+                <mat-error *ngIf="createVoucherForm.controls['count'].hasError('required')">
+                    Voucher Count is required.
+                </mat-error>
+                <mat-error *ngIf="createVoucherForm.controls['count'].hasError('pattern')">
+                    Voucher Count must be below or equal to 1000.
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="onSubmit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

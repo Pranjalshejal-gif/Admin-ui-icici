@@ -1,0 +1,199 @@
+<div class="box">
+    <h3>Customer Details</h3>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading"> Name</span>:
+            <span class="data-value"> {{customerDetails.name}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading"> Email</span>:
+            <span class="data-value"> {{customerDetails.email}}</span>
+        </div>
+    </div>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading"> Mobile</span>:
+            <span class="data-value"> {{customerDetails.mobile}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">PAN</span>:
+            <span class="data-value"> {{customerDetails.pan}}</span>
+        </div>
+
+    </div>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading">KYC Status</span>:
+            <span class="data-value"> {{customerDetails.kycStatus}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Customer VPA</span>:
+            <span class="data-value"> {{customerDetails.vpa}}</span>
+        </div>
+    </div>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading"> Wallet Address</span>:
+            <span class="data-value"> {{customerDetails.walletAddress}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Customer PAN</span>:
+            <span class="data-value"> {{customerDetails.pan}}</span>
+        </div>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="box" *ngIf="tranlogDetails">
+    <h3>Transaction Log</h3>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading"> Reference No</span>:
+            <span class="data-value"> {{tranlogDetails.custRefNo}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading"> Txn Id</span>:
+            <span class="data-value"> {{tranlogDetails.txnId}}</span>
+        </div>
+
+    </div>
+    <div class="flexBox">
+        <div class="flex">
+            <span class="data-heading"> Payer Name</span>:
+            <span class="data-value"> {{tranlogDetails.payerName}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Payer VPA</span>:
+            <span class="data-value"> {{tranlogDetails.payerVPA}}</span>
+        </div>
+    </div>
+    <div class="flexBox">
+
+        <div class="flex">
+            <span class="data-heading">Amount</span>:
+            <span class="data-value"> {{tranlogDetails.amount}}</span>
+        </div>
+        <div class="flex"></div>
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="box">
+    <h3>Other Details</h3>
+    <div class="flexBox">
+        <div class="flex" style="display: flex;align-items: center;">
+            <span class="data-heading"> Remark</span>:
+            <span class="data-value" *ngIf="!isUpdate">
+                {{details.remark}}
+            </span>
+            <span class="data-value" *ngIf="isUpdate">
+                <mat-form-field appearance="outline" class="font-style">
+                    <textarea matInput placeholder="Enter Remarks" [(ngModel)]="details.remark" cdkAutosizeMinRows="2"
+                        cdkAutosizeMaxRows="5" matTextareaAutosize>
+                     {{details.remark}}
+                    </textarea>
+                </mat-form-field>
+            </span>
+        </div>
+        <div class="flex">
+            <span class="data-heading"> Resolution</span>:
+            <span class="data-value" *ngIf="!isUpdate">
+                <!-- Completed -->
+                {{details.resolution}}
+            </span>
+            <span class="data-value" *ngIf="isUpdate">
+                <!-- {{details.resolution}} -->
+                <mat-form-field appearance="outline">
+                    <mat-select required [(ngModel)]="details.resolution" class="font-style">
+                        <mat-option class="font-style" class="font-style" value="ONUS_Load_INR_Reverse_ by_Ops">ONUS
+                            Load - INR Reversed by Ops</mat-option>
+                        <mat-option class="font-style" class="font-style" value="ONUS_Load_INR_Reversed_by_Auto">ONUS
+                            Load - INR Reversed by Auto</mat-option>
+                        <mat-option class="font-style" class="font-style" value="ONUS_Load_eINR_credited">ONUS Load -
+                            eINR credited</mat-option>
+                        <mat-option class="font-style" value="ONUS_Load_INR_txn_not_found">ONUS Load - INR txn not found
+                        </mat-option>
+                        <mat-option class="font-style" value="ONUS_Load_INR_debited">ONUS Load - INR debited
+                        </mat-option>
+                        <mat-option class="font-style" value="ONUS_Unload_INR_reversed_by_Ops">ONUS Unload - INR
+                            reversed by Ops
+                        </mat-option>
+                        <mat-option class="font-style" value="ONUS_Unload_Token_unlocked">ONUS Unload - Token unlocked
+                        </mat-option>
+                        <mat-option class="font-style" value="ONUS_Unload_INR_debited">ONUS Unload - INR debited
+                        </mat-option>
+                        <mat-option class="font-style" value="ONUS_Unload_INR_reversed_by_Ops">ONUS Unload - INR
+                            reversed by Ops
+                        </mat-option>
+                        <mat-option class="font-style" value="OFFUS_Load_INR_Reversed_by_Ops">OFFUS Load - INR Reversed
+                            by Ops</mat-option>
+                        <mat-option class="font-style" value="OFFUS_Load_INR_Reversed_by_Auto">OFFUS Load - INR Reversed
+                            by Auto
+                        </mat-option>
+                        <mat-option class="font-style" value="OFFUS_Load_INR _Reversal_initiated">OFFUS Load - INR
+                            Reversal initiated
+                        </mat-option>
+                        <mat-option class="font-style" value="OFFUS_load_eINR_already_credited">OFFUS load - eINR
+                            already credited
+                        </mat-option>
+                        <mat-option class="font-style" value="OFFUS_load_INR_Txn_not_found">OFFUS load - INR Txn not
+                            found</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payer_eINR_transfer_successful">
+                            Inter-transfer by payer -
+                            eINR transfer successful</mat-option>
+                        <mat-option class="font-style" value="PenInter_transfer_by_payer_eINR_reversalding">
+                            Inter-transfer by payer - eINR
+                            reversal</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payer_eINR_Auto_reversal">Inter-transfer
+                            by payer - eINR
+                            Auto reversal</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payer_Txn_not_found">Inter-transfer by
+                            payer - Txn not
+                            found</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payee_eINR_transfer_successful">
+                            Inter-transfer by payee -
+                            eINR transfer successful</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payee_eINR_transfer_successful_Unlock">
+                            Inter-transfer by
+                            payee - eINR transfer successful - Unlock</mat-option>
+                        <mat-option class="font-style" value="Inter_transfer_by_payee_eINR_txn_not_found">Inter-transfer
+                            by payee - eINR
+                            txn not found</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payer_eINR_transfer_successful">
+                            Intra-transfer by payer -
+                            eINR transfer successful</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payer_eINR_reversal">Intra-transfer by
+                            payer - eINR
+                            reversal</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payer_eINR_Auto_reversal">Intra-transfer
+                            by payer - eINR
+                            Auto reversal</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payer_Txn_not_found">Intra-transfer by
+                            payer - Txn not
+                            found</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payee_eINR_transfer_successful">
+                            Intra-transfer by payee -
+                            eINR transfer successful</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payee_eINR_reversal">Intra-transfer by
+                            payee - eINR
+                            reversal</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payee_eINR_Auto_reversal">Intra-transfer
+                            by payee - eINR
+                            Auto reversal</mat-option>
+                        <mat-option class="font-style" value="Intra_transfer_by_payee_Txn_not_found">Intra-transfer by
+                            payee - Txn not
+                            found</mat-option>
+                        <mat-option class="font-style" value="Complaint_Resolved">Complaint Resolved</mat-option>
+                        <mat-option class="font-style" value="Complaint_Registered">Complaint Registered</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </span>
+        </div>
+    </div>
+
+</div>
+<mat-dialog-actions align="end" class="noPrint">
+    <span *ngIf="!isUpdate"><button mat-raised-button class="form-btn" (click)="update()"
+            *checkRole="'manage-dispute'">Edit</button></span>
+    <span *ngIf="isUpdate"><button mat-raised-button class="form-btn" (click)="submit()"
+            *checkRole="'manage-dispute'">Submit</button></span>
+    <button mat-raised-button mat-dialog-close class="btn-cancel">Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,358 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+
+            <mat-card-title>
+                Add Disbursement
+            </mat-card-title>
+        </mat-card-header>
+        <div *checkRole="'manage-pcbdc-bulk-file-upload'">
+            <span class="bulk-upload-alignment" style="display:flex;width:100%;">
+                <div class="text-alignment" style="text-align:right;width:100%">
+                    <button (click)="getPcbdcBulkUpload()" class="form-btn" mat-raised-button>Download
+                        Sample Template</button>
+                </div>
+            </span>
+        </div>
+        <div>
+            <form [formGroup]="addForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Sponsor Name</mat-label>
+                    <input type="text" matInput formControlName="sponsorName" #sponsorInput
+                        [matAutocomplete]="sponsorDetail" (input)="onSponsorType()">
+                    <mat-autocomplete #sponsorDetail="matAutocomplete" (optionSelected)="selectedSponsor($event)">
+                        <mat-option class="option-css" *ngFor="let sponsor of filteredSponsorList"
+                            value="{{sponsor.name}}" (onSelectionChange)="showData(sponsor.id)">
+                            {{ sponsor.id }} - {{ sponsor.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="addForm.controls['sponsorName'].hasError('required')">
+                        Please select sponsor name.
+                    </mat-error>
+                </mat-form-field>
+                <span *ngIf="isDataAvailable" style="padding-left:10px ;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sponsor ID</mat-label>
+                        <input matInput formControlName="sponsorId" readonly />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Rule ID</mat-label>
+                        <mat-select formControlName="ruleId" placeholder="Select Rule Id ">
+                            <mat-option *ngFor=" let rule of ruleIdList" value="{{rule.ruleId}}"
+                                (click)="showProgramToken(rule)">
+                                {{ rule.ruleId }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addForm?.get('ruleId')?.hasError('required')">
+                            Please select rule ID.
+                        </mat-error>
+                    </mat-form-field>
+                </span>
+                <span *ngIf="isProgramTokenAvailable" style="padding-left:10px ;">
+                    <mat-card>
+                        <div class="gridBox">
+                            <div class="row" style="display: flex;">
+                                <span><b>MCC </b></span> :
+                                <span class="data-value">{{ruleMcc}}</span>
+                            </div>
+                            <div>
+                                <span><b>UPI VPA / CBDC VPA </b></span> :
+                                <span class="data-value">{{ruleVpa}}</span>
+                            </div>
+                            <div>
+                                <span><b>CBDC WALLET </b></span> :
+                                <span class="data-value">{{ruleWallet}}</span>
+                            </div>
+                            <div><span><b>Auth By </b></span> :
+                                <span class="data-value">{{ruleAuthBy}}</span>
+                            </div>
+                            <div><span><b>Expiry Date </b></span> :
+                                <span class="data-value">{{ruleTimeStamp}}</span>
+                            </div>
+                            <div>
+                                <span><b>Location </b></span> :
+                                <div *ngFor="let location of locationUIArray">
+                                    <span class="data-value">
+                                        <li>
+                                            State : {{ location.stateName }} , City : {{ location.cityName }} ,
+                                            Radius : {{ location.bufferZone }} (in kms)
+                                        </li>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <br />
+                    <mat-card>
+                        <div class="row" style="text-align:center;">
+                            <div class="section">
+                                <div class="center panel">
+                                    <div class="leftPanel">
+                                        <div class="row" style="text-align: right;">
+                                            <span class="data-headingg">
+                                                <label>Total Available Balance</label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="rightPanel">
+                                        <div class="row" style="text-align: left;">
+                                            <mat-form-field appearance="outline">
+                                                <input matInput autocomplete="off" style="padding-top:7% ;"
+                                                    formControlName="totalAmount" name="totalAmount" readonly />
+                                                <span matPrefix>₹&nbsp;&nbsp;</span>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <hr>
+                        <br />
+                        <div class="section">
+                            <div class="center panel">
+                                <div class="leftPanel">
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue0}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor0" readonly>
+                                                            {{programTokenList["50"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue1}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor0" readonly>
+                                                            {{programTokenList["100"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue2}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor2" readonly>
+                                                            {{programTokenList["200"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue5}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor5" readonly>
+                                                            {{programTokenList["500"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue10}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor10" readonly>
+                                                            {{programTokenList["1000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rightPanel">
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue20}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor20" readonly>
+                                                            {{programTokenList["2000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue50}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor50" readonly>
+                                                            {{programTokenList["5000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue100}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor100" readonly>
+                                                            {{programTokenList["10000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue200}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor200"
+                                                                readonly>{{programTokenList["20000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="section">
+                                        <div class="center panel">
+                                            <div class="leftPanel">
+                                                <div class="row">
+                                                    <span class="data-headingg">
+                                                        <label>Denomination: e₹</label>
+                                                        <mat-label>{{this.fixedValue500}}</mat-label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="rightPanel">
+                                                <div class="row">
+                                                    <span class="data-valuee">
+                                                        <mat-form-field appearance="outline">
+                                                            <input matInput formControlName="countfor0" readonly>
+                                                            {{programTokenList["50000"] | json}}
+                                                        </mat-form-field>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card>
+                    <br />
+                    <div *checkRole="'manage-pcbdc-bulk-file-upload'">
+                        <div style="text-align:center;width:100%">
+                            <h2>Upload Beneficiary Details</h2>
+                        </div>
+                        <br />
+                        <div style="text-align:center;width:100%">
+                            <input type="file" class="input-size" required autocomplete="off" name="fileName"
+                                (change)=readFile($event) accept=".xlsx" />
+                            <button type="button" mat-raised-button class="form-btn" [disabled]="file==null"
+                                (click)="upload()">Upload</button>
+                        </div>
+                    </div>
+                </span>
+            </form>
+        </div>
+    </mat-card>
+</div>

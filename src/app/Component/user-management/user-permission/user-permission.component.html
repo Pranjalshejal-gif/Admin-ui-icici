@@ -1,0 +1,7 @@
+<div class="grid-container">
+    <app-table *ngIf="showResult" [dataSource]="dataSource" [tableType]="'permission'"
+        [displayedColumns]="displayedColumns" [searchGrid]="true" [deletable]="false" [editable]="true" [view]="true"
+        (itemEditEvent)="edit($event)" (itemViewEvent)="view($event)" filterLabel="Filter Permissions in Table"
+        ascendingSort="value" matSort>
+        </app-table>
+</div>

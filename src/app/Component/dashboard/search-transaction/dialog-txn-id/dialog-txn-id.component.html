@@ -1,0 +1,113 @@
+<div class="box">
+    <h3>Transaction Details</h3>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Transaction ID</span>:
+            <span class="data-value"> {{tranctionDetails.refId}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading"> RRN</span>:
+            <span class="data-value"> {{tranctionDetails.rrn}}</span>
+        </div>
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Created Date</span>:
+            <span class="data-value"> {{tranctionDetails.createDate | date :'MMM d, y, HH:mm:ss'}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Type</span>:
+            <span class="data-value"> {{tranctionDetails.type}}</span>
+        </div>
+
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading">Amount</span>:
+            <span class="data-value"> {{tranctionDetails.amount}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Payment Mode</span>:
+            <span class="data-value"> {{tranctionDetails.paymentMode}}</span>
+        </div>
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Status</span>:
+            <span class="data-value"> {{tranctionDetails.status}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Display Message</span>:
+            <span class="data-value"> {{tranctionDetails.displayMessage}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">RC</span>:
+            <span class="data-value"> {{tranctionDetails.rc}}</span>
+        </div>
+        <!-- <div class="flex">
+            <span class="data-heading">Biller</span>:
+            <span class="data-value"> {{tranctionDetails.billerId}}</span>
+        </div> -->
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="box">
+    <h3>Biller Information</h3>
+
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Biller Id</span>:
+            <span class="data-value"> {{tranctionDetails.billerId}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Biller Transaction Id</span>:
+            <span class="data-value"> {{tranctionDetails.billerTxn}}</span>
+        </div>
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading">Biller Response Bill Date</span>:
+            <span class="data-value"> {{tranctionDetails.blrRespBillDate | date :'MMM d, y, HH:mm:ss'}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Biller Response Due Date</span>:
+            <span class="data-value"> {{tranctionDetails.blrRespDueDate | date :'MMM d, y, HH:mm:ss'}}</span>
+        </div>
+
+        
+        
+    </div>
+</div>
+<mat-divider></mat-divider>
+<div class="box">
+    <h3>Customer Information</h3>
+
+    <div class="">
+        <div class="flex">
+            <span class="data-heading">Initiator Mobile</span>:
+            <span class="data-value"> {{tranctionDetails.initiatorMobile}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Initiator Email</span>:
+            <span class="data-value"> {{tranctionDetails.initiatorEmail}}</span>
+        </div>
+    </div>
+    <div class="">
+
+        <div class="flex">
+            <span class="data-heading">Intitiator Aadhaar</span>:
+            <span class="data-value"> {{tranctionDetails.initiatorAadhaar}}</span>
+        </div>
+
+        <div class="flex">
+            <span class="data-heading">Intitiator Pan</span>:
+            <span class="data-value"> {{tranctionDetails.initiatorPan}}</span>
+        </div>
+
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button *ngIf="isReqUptToken" mat-raised-button mat-dialog-close class="form-btn" (click)="reqUpdateToken()">Req
+        Update Token</button>
+    <button mat-raised-button mat-dialog-close class="btn-cancel">Cancel</button>
+</mat-dialog-actions>

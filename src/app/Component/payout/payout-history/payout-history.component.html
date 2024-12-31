@@ -1,0 +1,140 @@
+<!-- merchant search form  start-->
+
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Merchant Search
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchMerchantForm">
+            <mat-form-field appearance="outline">
+                <mat-label>MID</mat-label>
+                <input matInput formControlName="mid" autocomplete="off" name="mid">
+                <mat-error *ngIf="searchMerchantForm?.get('mid')?.hasError('pattern')">
+                    Please enter valid MID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Name</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50">
+                   
+                <mat-error *ngIf="searchMerchantForm?.get('merchantName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Legal Name</mat-label>
+                <input matInput formControlName="legalName" autocomplete="off" name="legalName" maxlength="50">
+                <mat-error *ngIf="searchMerchantForm?.get('legalName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button class="form-btn" (click)="merchantSearch()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+
+            </div>
+        </form>
+    </mat-card>
+    <div>
+        <app-table *ngIf="showData" [dataSource]="dataSourceMerchant" [displayedColumns]="Columns"
+            [searchGrid]="true" (itemAnchorEvent)="addDatainViewProfile($event)" filterLabel="Filter Merchant"
+            [deletable]="false"></app-table>
+    </div>
+</div>
+<!-- merchant search form  end -->
+
+<!-- Disbursement History  form start-->
+
+<div class="outer-layout" *ngIf="disbursmentData" #target>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Disbursement History
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchDisbursementForm">
+
+            <div class="row">
+                <span class="data-heading"> Merchant Name</span> : <span
+                    class="data-value">{{customer.customerDetails.name}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading"> Mobile No.</span> : <span
+                    class="data-value">{{customer.customerDetails.mobile |slice:
+                    1}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading">MID </span> : <span class="data-value">{{customer.mid}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading">Wallet Address </span> : <span
+                    class="data-value">{{customer.customerDetails.walletAddress}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading"> Balance </span> : <span
+                    class="data-value">{{customer.customerDetails.balance}}</span>
+            </div><br>
+            <mat-form-field appearance="outline">
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="startdatepicker" (dateChange)="dateChange($event)"
+                    formControlName="fromDate" autocomplete="off" name="startDate" [max]="today" [readonly]="true">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startdatepicker></mat-datepicker>
+                <mat-error *ngIf="searchDisbursementForm.controls['fromDate'].hasError('required')">
+                    Start Date is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <input matInput [matDatepicker]="enddatepicker" formControlName="toDate" autocomplete="off"
+                    name="endDate" [readonly]="true" [min]="minDate" [max]="today">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #enddatepicker></mat-datepicker>
+                <mat-error *ngIf="searchDisbursementForm.controls['toDate'].hasError('required')">
+                    End Date is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Transaction Type </mat-label>
+                <mat-select formControlName="txnType">
+                    <mat-option value="PAYOUT">PAYOUT</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Payee Mobile</mat-label>
+                <input matInput name="payeeMobile" autocomplete="off" OnlyNumber formControlName="payeeMobile"
+                    pattern="^[6|7|8|9][0-9]{9}$" maxlength="10">
+                <mat-error *ngIf="searchDisbursementForm?.get('payeeMobile')?.hasError('pattern')">
+                    Please enter valid Mobile Number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Payee AccNo</mat-label>
+                <input matInput formControlName="payeeAccNo" autocomplete="off" name="payeeAccNo" minlength="1"
+                    maxlength="17" pattern="^\d{1,17}$">
+                <mat-error *ngIf="searchDisbursementForm?.get('payeeAccNo')?.hasError('pattern')">
+                    Please enter a valid account number (1 to 17 digits).
+                </mat-error>
+            </mat-form-field>
+
+
+            <div class="btn-group">
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
+<!-- Disbursement History  form end-->
+
+<!-- Disbursement History Table start-->
+<div class="outer-layout" *ngIf="disbursmentHistory">
+    <app-table *ngIf="showData" [dataSource]="txnData" [displayedColumns]="txnColumns" [searchGrid]="true"
+        filterLabel="Filter Transaction Data" defaultSort="created" matSort></app-table>
+</div>
+<!-- Disbursement History Table End-->

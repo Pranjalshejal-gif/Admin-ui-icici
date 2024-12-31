@@ -1,0 +1,202 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit" class="font-style">Merchant Details</mat-card-title>
+            </span>
+        </mat-card-header>
+        <form [formGroup]="editForm">
+            <mat-form-field appearance="outline">
+                <mat-label>MID</mat-label>
+                <input matInput formControlName="mid" autocomplete="off" name="mid">
+                <mat-error *ngIf="editForm?.get('mid')?.hasError('pattern')">
+                    Please enter valid MID
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Number</mat-label>
+                <input matInput type="text" OnlyNumber autocomplete="off" name="ContactNumber" required
+                    formControlName="number">
+                <mat-error *ngIf="editForm?.get('number')?.hasError('pattern')">
+                    Please enter valid Contact Number
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>External MID</mat-label>
+                <input matInput formControlName="externalMid" autocomplete="off" name="externalMid">
+                <mat-error *ngIf="editForm?.get('externalMid')?.hasError('pattern')">
+                    Please enter valid External MID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>External TID</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid">
+                <mat-error *ngIf="editForm?.get('externalTid')?.hasError('pattern')">
+                    Please enter valid External TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Name</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" required
+                    maxlength="50">
+                <mat-error *ngIf="editForm?.get('merchantName')?.hasError('pattern')">
+                    Please enter valid Merchant Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Legal Name</mat-label>
+                <input matInput formControlName="legalName" autocomplete="off" name="legalName" required maxlength="50">
+                <mat-error *ngIf="editForm?.get('legalName')?.hasError('pattern')">
+                    Please enter valid Legal Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="pan" autocomplete="off" required name="pan">
+                <mat-error *ngIf="editForm?.get('pan')?.hasError('pattern')">
+                    Please enter a valid PAN Card
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Registered Address</mat-label>
+                <textarea matInput formControlName="address" placeholder="Registered Address" matInput
+                    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matTextareaAutosize></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Registered Contact Number</mat-label>
+                <input matInput type="text" autocomplete="off" OnlyNumber name="registeredContactNumber" required
+                    minlength="10" maxlength="10" formControlName="registeredNumber">
+                <mat-error *ngIf="editForm?.get('registeredNumber')?.hasError('pattern')">
+                    Please enter valid 10-digit Contact Number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="editForm?.get('email')?.hasError('required')">
+                    Please enter Merchant Email
+                </mat-error>
+                <mat-error *ngIf="editForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>MCC</mat-label>
+                <input matInput name="mcc" type="text" autocomplete="off" OnlyNumber minlength="1" maxlength="4"
+                    formControlName="mcc" required>
+                <mat-error *ngIf="editForm?.get('mcc')?.hasError('pattern')">
+                    Please enter a valid 4 digit MCC
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Preferred Wallet Name</mat-label>
+                <input matInput name="preferredWalletName" autocomplete="off" formControlName="preferredWalletName">
+                <mat-error *ngIf="editForm?.get('preferredWalletName')?.hasError('pattern') ">
+                    Please enter valid Preferred Wallet Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bank Account</mat-label>
+                <input matInput name="account" type="text" RestrictSpecialCharacters autocomplete="off"
+                    formControlName="account" maxlength="30">
+                <mat-error *ngIf="editForm?.get('account')?.hasError('pattern')">
+                    Please enter a valid Bank Account Number
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Boarding Type </mat-label>
+                <mat-select formControlName="boarding-type" class="font-style">
+                    <mat-option class="font-style" value="AGGREGATOR">AGGREGATOR</mat-option>
+                    <mat-option class="font-style" value="BANK">BANK</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="editForm.get('boarding-type')?.value === 'AGGREGATOR'" appearance="outline">
+                <mat-label>Aggregator Email</mat-label>
+                <input matInput formControlName="aggregatorEmail">
+                <mat-error *ngIf="editForm?.get('aggregatorEmail')?.hasError('required')">
+                    Please enter Aggregator Email
+                </mat-error>
+                <mat-error *ngIf="editForm?.get('aggregatorEmail')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Ownership Type </mat-label>
+                <mat-select formControlName="ownership-type" class="font-style">
+                    <mat-option class="font-style" value="PUBLIC">PUBLIC</mat-option>
+                    <mat-option class="font-style" value="PRIVATE">PRIVATE</mat-option>
+                    <mat-option class="font-style" value="PARTNERSHIP">PARTNERSHIP</mat-option>
+                    <mat-option class="font-style" value="PROPRIETARY">PROPRIETARY</mat-option>
+                    <mat-option class="font-style" value="OTHERS">OTHERS</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Inward Fund Allowed </mat-label>
+                <mat-select formControlName="allowInwardTxn" class="font-style">
+                    <mat-option class="font-style" [value]="false">No</mat-option>
+                    <mat-option class="font-style" [value]="true">Yes</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Refund Allowed </mat-label>
+                <mat-select formControlName="allowRefund" [disabled]="true" class="font-style">
+                    <mat-option class="font-style" [value]="false">No</mat-option>
+                    <mat-option class="font-style" [value]="true">Yes</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>IFSC</mat-label>
+                <input matInput type="text" autocomplete="off" name="ifsc" required minlength="11" maxlength="11"
+                    formControlName="ifsc">
+                <mat-error *ngIf="editForm?.get('ifsc')?.hasError('pattern')">
+                    Please enter a valid IFSC Code
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Auto Sweep </mat-label>
+                <mat-select formControlName="sweepBalanceDayEnd" required>
+                    <mat-option [value]="false"> No</mat-option>
+                    <mat-option [value]="true">Yes</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Genere</mat-label>
+                <mat-select formControlName="genere">
+                    <mat-option value="ONLINE">ONLINE</mat-option>
+                    <mat-option value="OFFLINE">OFFLINE</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <span>
+                <mat-checkbox formControlName="notifySms" class="font-style" style="padding-right: 20px;">SMS
+                    Notification</mat-checkbox>
+                <mat-checkbox formControlName="notifyCallback" class="font-style" style="padding-right: 20px;">Call Back
+                    Notification</mat-checkbox>
+                <mat-checkbox formControlName="sendMisToMid" class="font-style" style="padding-right: 20px;">Send MIS to
+                    MID</mat-checkbox>
+                <mat-checkbox formControlName="sendMisToAggregator" class="font-style"
+                    *ngIf="editForm.get('boarding-type')?.value === 'AGGREGATOR'">Send MIS to
+                    Aggregator</mat-checkbox>
+                <mat-checkbox formControlName="payoutAllowed" style="padding-right: 20px;"> Payout
+                </mat-checkbox>
+                <mat-checkbox formControlName="allowOutwardTxn" style="padding-right: 20px;">Outward Transaction
+                </mat-checkbox>
+                <mat-checkbox formControlName="enableOffUsPay" style="padding-right: 20px;"> Off-Us
+                </mat-checkbox>
+            </span><br><br>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button mat-button class="btn-cancel" (click)="onCancel()">Cancel</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,43 @@
+h2 {
+    margin-top: 15px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    font-size: 22px;
+    display: inline-block;
+    font-family: "Mulish";
+}
+
+h5 {
+    margin-bottom: 20px;
+    font-family: "Mulish";
+}
+
+.overlay-panel {
+    width: 100%;
+    margin: 15px auto;
+}
+
+.disabled {
+    pointer-events: none;
+    color: grey;
+    font-family: "Mulish";
+}
+
+.active {
+    cursor: pointer;
+    color: #00e;
+}
+
+.anchor {
+    color: #00e;
+    line-height: 1;
+    padding: 0;
+    min-width: 0;
+    background-color: transparent;
+    font-family: 'Mulish';
+
+    ::ng-deep .mat-button-focus-overlay {
+        opacity: 1;
+        background: transparent;
+    }
+}

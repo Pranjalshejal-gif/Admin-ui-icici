@@ -1,0 +1,52 @@
+<div class="container" id="container">
+    <mat-toolbar class="secondry">
+        <div class="center">
+            <img [src]="configData.logoImg" width="140">
+        </div>
+    </mat-toolbar>
+    <mat-toolbar class="primary">
+    </mat-toolbar>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right center">
+                <h2 class="heading-text">{{welcomeMsg}}</h2>
+                <form class="example-form" [formGroup]="loginRequiredForm" (ngSubmit)="login()">
+                    <div>
+                        <mat-form-field class="font-style" [appearance]="configData.loginInputBox">
+                            <mat-label>
+                                <mat-icon *ngIf="configData.loginInputBox == 'legacy'">person</mat-icon>User ID
+                            </mat-label>
+                            <input matInput name="userName" autocomplete="off" formControlName="userName"
+                                onkeypress="return event.charCode != 32">
+                            <mat-error *ngIf="loginRequiredForm.controls['userName'].hasError('required')">
+                                User ID is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="font-style" [appearance]="configData.loginInputBox">
+                            <mat-label>
+                                <mat-icon *ngIf="configData.loginInputBox == 'legacy'"> vpn_key</mat-icon>Password
+                            </mat-label>
+                            <input matInput formControlName="password" [ngClass]="hide ? 'mask' : ''" autocomplete="off"
+                                name="password">
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="loginRequiredForm.controls['password'].hasError('required')">
+                                Password is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <ngx-captcha *ngIf="showCaptcha" #captcha [config]="captchaConfig"></ngx-captcha>
+                    <div>
+                        <button mat-raised-button class="btn-primary" type="submit">
+                            <i class="fa-solid fa-user"></i>{{configData.loginBtnTxt}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="version"> UI : {{uiVersion}} | Backend : {{this.version}}</div>

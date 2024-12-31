@@ -1,0 +1,26 @@
+<h1 mat-dialog-title class="font-style">File Upload Status</h1>
+<div mat-dialog-content>
+    <div>
+        <h3>
+            <mat-icon style="color: green;">description</mat-icon>
+            <span style="vertical-align:super;color:grey">&nbsp;{{fileDetails.file}}</span>
+        </h3>
+    </div>
+    <div style="padding-left: 24px;" class="font-style">
+        <div *ngIf="inProgress">
+            <h3 class="font-style">File Put In Processing Queue.</h3>
+        </div>
+        <span *ngIf="completed">
+            <div>
+                <h3 class="font-style">File Processing Completed</h3>
+            </div>
+            <div>Total Records : {{status?.status?.total}}</div>
+            <div>Processed Records : {{status?.status?.successfulCount}}</div>
+            <div>Failed Records: {{status?.status?.errorCount}}</div>
+        </span>
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-button *ngIf="completed" class="dialog-btn-confirm" (click)="download()">Download Report</button>
+    <button mat-button class="dialog-btn-cancel" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

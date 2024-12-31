@@ -1,0 +1,50 @@
+.data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.data mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 19%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+    font-family: "Mulish" !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.fixed-input {
+    position: fixed;
+    z-index: 999;
+}
+
+.mat-form-field {
+    margin-right: 8px;
+    font-family: 'Mulish' !important;
+}
+
+
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff;
+}

@@ -1,0 +1,42 @@
+.heading-text {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.sub-text {
+    margin-top: -15px;
+    position: absolute;
+    color: #9e9e9e;
+    font-size: smaller;
+    padding: 0px 25px;
+}
+
+.sub-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mask {
+    -webkit-text-security: disc;
+    font-family: text-security-disc;
+}
+
+mat-form-field {
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.mat-icon {
+    padding: 0 5px;
+}
+
+.version {
+    text-align: end;
+    color: black;
+    font-size: xx-small;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+}

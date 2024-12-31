@@ -1,0 +1,96 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="font-style">
+                Biller Search
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>  Type </mat-label>
+                <mat-select  formControlName="boardingType" required
+                    class="font-style">
+                    <mat-option value="AGGREGATOR" class="font-style">BBPS</mat-option>
+                    <mat-option value="BANK" class="font-style">Non BBPS</mat-option>
+                </mat-select>
+                <mat-error *ngIf="">
+                    Please select Boarding Type
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Aggregator Name</mat-label>
+                <input matInput formControlName="mid" autocomplete="off" name="mid" pattern="^[a-zA-Z0-9]+$">
+                <mat-error *ngIf="searchForm?.get('mid')?.hasError('pattern')">
+                    Please enter valid MID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Aggregator ID</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50"
+                    pattern="^[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="searchForm?.get('merchantName')?.hasError('pattern')">
+                    Please enter valid Merchant Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="">
+                    Please enter Biller Email
+                </mat-error>
+                
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Legal Name</mat-label>
+                <input matInput formControlName="legalName" autocomplete="off" name="legalName" maxlength="50"
+                    pattern="^[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="searchForm?.get('legalName')?.hasError('pattern')">
+                    Please enter valid Legal Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Person Name</mat-label>
+                <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
+                    pattern="^(()|0)?[0-9]{10}$">
+                <mat-error *ngIf="searchForm?.get('mobile')?.hasError('pattern')">
+                    Please Enter valid Mobile Number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact</mat-label>
+                <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
+                    pattern="^(()|0)?[0-9]{10}$">
+                <mat-error *ngIf="searchForm?.get('mobile')?.hasError('pattern')">
+                    Please Enter valid Mobile Number
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50"
+                    pattern="^[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="searchForm?.get('merchantName')?.hasError('pattern')">
+                    Please enter <Address></Address>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End Point URL</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50"
+                    pattern="^[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="searchForm?.get('merchantName')?.hasError('pattern')">
+                    Please enter <Address></Address>
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="search()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <div>
+        <app-expandable-table *ngIf="showData" [dataSource]="dataSourceMerchant" [displayedColumns]="Columns"
+            [searchGrid]="true" (itemEditEvent)="edit($event)" (itemDeleteEvent)="delete($event)"
+            (itemAnchorEvent)="openDialog($event)" filterLabel="Filter Merchant" [deletable]="false" [editable]="true"
+            (itemEnableDisableEvent)="enableDisableLink($event)" (itemDisableEvent)="disable($event)"
+            [disableLink]="true" [isEnable]="true"></app-expandable-table>
+    </div>
+</div>

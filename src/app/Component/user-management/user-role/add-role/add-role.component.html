@@ -1,0 +1,49 @@
+<div class="grid-container">
+  <mat-panel-title>
+    <h2>Role Information</h2>
+  </mat-panel-title>
+  <form [formGroup]='pickListForm'>
+    <mat-form-field appearance="outline" style="font-family: Mulish;">
+      <mat-label>Name</mat-label>
+      <input matInput autocomplete="off" formControlName="name" required maxlength="50" pattern="^[A-Za-z0-9\s]{3,50}$">
+      <mat-error *ngIf="pickListForm?.get('name')?.hasError('pattern')">
+        Please enter valid Role Name
+      </mat-error>
+      <mat-error *ngIf="pickListForm?.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <div class="example-container">
+      <h2>Available Permissions</h2>
+      <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="availablePermissions"
+        [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of availablePermissions" cdkDrag (cdkDragStarted)="test($event)"
+          (click)="onKeyDown($event, item, availablePermissions)"
+          [ngClass]="{'selected':item.selected,'disabled':isView}">
+          {{item.value}}
+        </div>
+      </div>
+      <p class="note-txt">
+        &nbsp;* Drag and drop the permissions to assign or remove the roles</p>
+      <p class="note-txt">
+        &nbsp;* Use ctrl key to select multiple permissions</p>
+    </div>
+    <div class="example-container">
+      <h2>Assigned Permissions</h2>
+      <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="assignedPermissions"
+        [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of assignedPermissions" cdkDrag
+          (click)="onKeyDown($event, item, assignedPermissions)"
+          [ngClass]="{'selected':item.selected,'disabled':isView}">
+          {{item.value}}
+        </div>
+      </div>
+    </div>
+    <br>
+    <div>
+      <button mat-raised-button class="form-btn" (click)="onSubmit()" *ngIf="!isView">Submit</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="!isView">Cancel</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="isView">Back</button>
+    </div>
+  </form>
+</div>

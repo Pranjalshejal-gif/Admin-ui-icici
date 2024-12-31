@@ -1,0 +1,25 @@
+:host ::ng-deep th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    min-width: 135px;
+}
+
+mat-card-content {
+    padding: 8px;
+}
+
+@media screen and (max-width: 800px) {
+    .input-size {
+        width: 200px;
+        font-family: 'Mulish';
+    }
+
+    .bulk-upload-alignment {
+        display: block !important;
+        font-family: 'Mulish';
+    }
+
+    .text-alignment {
+        text-align: left !important;
+    }
+}

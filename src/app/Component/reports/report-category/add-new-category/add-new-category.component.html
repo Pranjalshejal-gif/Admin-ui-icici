@@ -1,0 +1,20 @@
+<div class="grid-container">
+  <mat-panel-title>
+    <h2 class="font-style">Report Category Information</h2>
+  </mat-panel-title>
+  <form [formGroup]="addForm">
+    <mat-form-field appearance="outline" class="font-style">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required >
+      <mat-error *ngIf="addForm?.get('title')?.hasError('pattern')">
+        Please enter a valid Title
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <br>
+  <div>
+    <button mat-button class="form-btn" (click)="onSubmit()" *ngIf="!isView">Submit</button>
+    <button mat-button class="btn-cancel" (click)="onClose()" *ngIf="!isView">Cancel</button>
+    <button mat-button class="form-btn" (click)="onClose()" *ngIf="isView">Back</button>
+  </div>
+</div>

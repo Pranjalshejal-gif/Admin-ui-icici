@@ -1,0 +1,35 @@
+<div class="outer-layout">
+    <div class="relative">
+        <button mat-icon-button class="close-button noPrint" [mat-dialog-close]="true">
+            <mat-icon class="close-icon">close</mat-icon>
+        </button>
+    </div>
+    <mat-card-header>
+        <span style="display:flex;width:100%;">
+            <mat-card-title style="width:inherit" class="font-style">Add RC</mat-card-title>
+        </span>
+    </mat-card-header>
+    <form [formGroup]="addForm">
+        <mat-form-field appearance="outline">
+            <mat-label>RC</mat-label>
+            <input matInput formControlName="mnemonic" autocomplete="off" name="rc">
+            <mat-error *ngIf="addForm.controls['mnemonic'].hasError('required')">
+                RC is required.
+            </mat-error>
+            <mat-error *ngIf="addForm?.get('mnemonic')?.hasError('pattern')">
+                Please enter valid RC
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description" autocomplete="off" name="description">
+            <mat-error *ngIf="addForm.controls['description'].hasError('required')">
+                Please enter Description
+            </mat-error>
+        </mat-form-field>
+        <div *checkRole="'manage-rc'">
+            <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+            <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+        </div>
+    </form>
+</div>

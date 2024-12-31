@@ -1,0 +1,34 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                PCBDC Rule Search
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Sponsor ID / Name</mat-label>
+                <input type="text" matInput formControlName="sponsorId" #sponsorInput [matAutocomplete]="sponsorDetail"
+                    (input)="onSponsorType()">
+                <mat-autocomplete #sponsorDetail="matAutocomplete" (optionSelected)="selectedSponsor($event)">
+                    <mat-option class="option-css" *ngFor="let sponsor of filteredSponsorList" value="{{sponsor.id}}">
+                        {{ sponsor.id }} - {{ sponsor.name }}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="searchForm.controls['sponsorId'].hasError('required')">
+                    Please select sponsor id.
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="cancel()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <div *checkRole="'manage-pcbdc,checker-pcbdc,manage-pcbdc-bulk-file-upload'">
+        <app-table *ngIf="showData" [dataSource]="dataSourceSponsor" [displayedColumns]="Columns" [editable]="true"
+            [topUp]="true" (itemTopUpEvent)="topUp($event)" (itemEditEvent)="enhance($event)"
+            filterLabel="Filter PCBDC Data" [searchGrid]="true" defaultSort="created" matSort>
+        </app-table>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+.data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.data mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-value {
+    display: inline-block;
+    width: 20%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: small;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 17%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.fixed-input {
+    position: fixed;
+    z-index: 999;
+}
+
+.mat-form-field {
+    margin-right: 25px;
+    margin-bottom: 8px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff;
+}
+
+/* Add these styles to your component's CSS or a global stylesheet */
+.mat-elevation-z8 {
+    overflow-x: auto;
+    /* Enable horizontal scrolling on small screens */
+}
+
+/* Adjust cell padding for smaller screens */
+.mat-cell,
+.mat-header-cell {
+    padding: 8px;
+}
+
+/* Make the table layout responsive */
+@media screen and (max-width: 600px) {
+    .mat-elevation-z8 {
+        overflow-x: auto;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+        padding: 4px;
+    }
+
+    /* Hide some columns on small screens if necessary */
+    .mat-header-row .mat-header-cell:nth-child(2),
+    .mat-row .mat-cell:nth-child(2) {
+        display: none;
+    }
+
+    .mat-header-row .mat-header-cell:nth-child(3),
+    .mat-row .mat-cell:nth-child(3) {
+        display: none;
+    }
+
+    /* Add more nth-child rules for other columns as needed */
+}
+
+/* Add these styles to your component's CSS or a global stylesheet */
+
+/* Adjust styles for smaller screens */
+@media screen and (max-width: 600px) {
+    .gridBox {
+        grid-template-columns: 1fr;
+    }
+}
+
+::ng-deep .mat-select-panel {
+    max-width: 500px !important;
+}
+.option-css {
+    max-width: 200%;
+    width: 200%;
+}

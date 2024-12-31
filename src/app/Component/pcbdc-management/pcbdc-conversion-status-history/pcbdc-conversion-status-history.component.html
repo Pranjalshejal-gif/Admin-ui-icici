@@ -1,0 +1,5 @@
+<div class="grid-container">
+    <app-table [dataSource]="dataSourcePcbdc" [displayedColumns]="Columns" (itemCheckStatusEvent)="openDialog($event)"
+        filterLabel="Filter Check Status Data" [searchGrid]="true" defaultSort="created" matSort>
+    </app-table>
+</div>

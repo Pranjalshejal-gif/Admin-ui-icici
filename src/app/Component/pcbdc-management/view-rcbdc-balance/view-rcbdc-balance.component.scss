@@ -1,0 +1,156 @@
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.mat-form-field {
+    margin-right: 25px;
+    margin-bottom: -12px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0.2em 0 0.8em 0;
+    height: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-btn-bulk {
+    width: 20%;
+}
+
+mat-form-field {
+    margin-right: 8px;
+}
+
+h1 {
+    margin: 0;
+}
+
+.center {
+    text-align: left;
+}
+
+mat-dialog-actions {
+    float: right;
+    min-height: 25px;
+}
+
+.onlyPrint {
+    display: none;
+}
+
+.heading {
+    color: #0d65a5;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.link {
+    display: flex;
+    font-size: 12px;
+}
+
+.panel {
+    display: flex;
+
+    .leftPanel {
+        flex: 1;
+    }
+
+    .rightPanel {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .section {
+        position: relative;
+    }
+
+    .panel {
+        display: block;
+    }
+
+    .close-button {
+        right: -14px;
+        top: -14px;
+    }
+}
+
+.mat-divider.mat-divider-vertical {
+    border-top: 0;
+    border-right-width: 5px;
+    border-right-style: solid;
+    border-right-style: dashed;
+}
+
+.data-heading {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    padding-left: 10%;
+    text-align: left;
+}
+
+.data-value {
+    padding-right: 11%;
+}
+
+.data-headingg {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    padding-right: 10%;
+    text-align: left;
+    padding-top: 4%;
+    font-size: medium;
+}
+
+.data-valuee {
+    padding-right: 17%;
+}
+
+.data-head {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    // padding-right: 50%;
+    text-align: left;
+    // padding-top: 7%;
+}
+
+.data-val {
+    padding-left: 5%;
+}
+
+
+.all {
+    text-align: left;
+    display: flex;
+
+    .leftPanel {
+        flex: 1;
+    }
+
+    .rightPanel {
+        flex: 1;
+    }
+}

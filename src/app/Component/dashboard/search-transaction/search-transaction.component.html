@@ -1,0 +1,187 @@
+<div class="grid-container ">
+  <mat-expansion-panel [expanded]="panelOpen">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="font-style">
+        <h2>Search Transactions</h2>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="searchForm">
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="startdatepicker" [max]="today" readonly="true" formControlName="fromDate"
+          autocomplete="off" name="fromDate" (dateChange)="dateChange($event)">
+        <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startdatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="enddatepicker" readonly="true" formControlName="toDate" autocomplete="off"
+          name="toDate" [min]="minDate" [max]="today" [disabled]="isDisabled">
+        <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #enddatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Created Date</mat-label>
+        <input matInput [matDatepicker]="enddatepicker" readonly="true" formControlName="createDate" autocomplete="off"
+          name="createDate" [min]="minDate" [max]="today" [disabled]="isDisabled">
+        <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #enddatepicker></mat-datepicker>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Transaction ID</mat-label>
+        <input matInput formControlName="refId" autocomplete="off" RestrictSpecialCharacters name="transactionID">
+      </mat-form-field>
+
+
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payment Ref Id</mat-label>
+        <input matInput formControlName="paymentRefId" autocomplete="off" RestrictSpecialCharacters name="paymentRefId">
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" autocomplete="off" RestrictSpecialCharacters name="id">
+      </mat-form-field> -->
+
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>RRN</mat-label>
+        <input matInput formControlName="rrn" autocomplete="off" RestrictSpecialCharacters name="rrn">
+      </mat-form-field> -->
+
+
+
+
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>CBS Reference Id</mat-label>
+        <input matInput formControlName="rrn" autocomplete="off" RestrictSpecialCharacters name="rrn">
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Amount</mat-label>
+        <input matInput type="text" class="example-right-align" placeholder="0" autocomplete="off" name="amount"
+          formControlName="amount" Amount>
+        <span matPrefix>₹&nbsp;&nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type" autocomplete="off" RestrictSpecialCharacters name="type">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Status</mat-label>
+        <input matInput formControlName="status" autocomplete="off" RestrictSpecialCharacters name="status">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payment Mode</mat-label>
+        <input matInput formControlName="paymentMode" autocomplete="off" RestrictSpecialCharacters name="paymentMode">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>RC</mat-label>
+        <input matInput formControlName="rc" autocomplete="off" RestrictSpecialCharacters name="rc">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Biller Id</mat-label>
+        <input matInput formControlName="billerId" autocomplete="off" RestrictSpecialCharacters name="billerId">
+      </mat-form-field> -->
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payer VPA</mat-label>
+        <input matInput name="payerVPA" autocomplete="off" pattern="^[\w.-]+@[\w.-]+$" formControlName="payerVPA">
+        <mat-error *ngIf="searchForm?.get('payerVPA')?.hasError('pattern')">
+          Please enter valid Payer VPA
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payee VPA</mat-label>
+        <input matInput name="payeeVPA" autocomplete="off" pattern="^[\w.-]+@[\w.-]+$" formControlName="payeeVPA">
+        <mat-error *ngIf="searchForm?.get('payeeVPA')?.hasError('pattern')">
+          Please enter valid Payee VPA
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payer Mobile</mat-label>
+        <input matInput name="payerMobile" autocomplete="off" OnlyNumber pattern="^[0-9]{12}$"
+          formControlName="payerMobile">
+        <mat-error *ngIf="searchForm?.get('payerMobile')?.hasError('pattern')">
+          Please enter valid Contact Number
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payee Mobile</mat-label>
+        <input matInput name="payeeMobile" autocomplete="off" OnlyNumber formControlName="payeeMobile"
+          pattern="^[0-9]{12}$">
+        <mat-error *ngIf="searchForm?.get('payeeMobile')?.hasError('pattern')">
+          Please enter valid Contact Number
+        </mat-error>
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payer Wallet Address</mat-label>
+        <input matInput name="payerWallet" autocomplete="off" formControlName="payerWallet">
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payee Wallet Address</mat-label>
+        <input matInput name="payeeWallet" autocomplete="off" formControlName="payeeWallet">
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payer Name</mat-label>
+        <input matInput formControlName="payerName" autocomplete="off" RestrictSpecialCharacters name="payerName">
+      </mat-form-field> -->
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Payee Name</mat-label>
+        <input matInput formControlName="payeeName" autocomplete="off" RestrictSpecialCharacters name="payeeName">
+      </mat-form-field> -->
+      <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Transaction Status</mat-label>
+        <mat-select formControlName="transactionStatus">
+          <mat-option value='N'>NEW</mat-option>
+          <mat-option value='V'>VOID</mat-option>
+          <mat-option value='P'>PENDING</mat-option>
+          <mat-option value='R'>REVERSED</mat-option>
+          <mat-option value='C'>COMPLETED</mat-option>
+          <mat-option value='A'>ACKNOWLEDGED</mat-option>
+          <mat-option value='T'>TIMEOUT</mat-option>
+          <mat-option value='S'>SUSPECT</mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Search Type</mat-label>
+        <mat-select (selectionChange)="onDropdownSelectionChange($event)" formControlName="searchType">
+          <mat-option *ngFor="let option of dropdownOptions" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      <ng-container *ngIf="showInput">
+        <mat-form-field appearance="outline" class="font-style">
+          <input matInput formControlName="searchValue" placeholder="Input Textbox" [(ngModel)]="inputValue">
+        </mat-form-field>
+      </ng-container>
+      <div>
+        <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+        <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <div class="gridxBox">
+    <app-expandable-table *ngIf="showData" [dataSource]="txnData" [displayedColumns]="columns" [searchGrid]="true"
+      [pdf]="true" [excel]="true" [csv]="true" (itemPdfEvent)="downloadAsPDF()" (itemExcelEvent)="exportAsXLSX()"
+      (itemCsvEvent)="downloadAsCSV()" (itemTranactionIDEvent)="openDialog($event)" [disableLink]="true"
+      [isEnable]="true"></app-expandable-table>
+  </div>
+</div>

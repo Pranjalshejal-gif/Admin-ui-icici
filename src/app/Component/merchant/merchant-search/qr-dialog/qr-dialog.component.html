@@ -1,0 +1,119 @@
+<div class="relative">
+    <button mat-icon-button class="close-button noPrint" [mat-dialog-close]="true">
+        <mat-icon class="close-icon" >close</mat-icon>
+    </button>
+    <div style="display:flex;overflow: auto;"> 
+        <div class="noPrint" style="width: 60%;min-width: 300px;">
+            <h2 style="text-decoration: underline;">{{walletData?.customerDetails?.name}}</h2>
+            <form [formGroup]='WalletForm'>
+            <div class="row">
+                <span class="data-heading" style="width:21.5%">Wallet ID</span> : <span class="data-value">{{walletData?.customerDetails?.walletAddress}}</span>
+            </div>
+            <div class="gridBox">
+                <div class="row">
+                    <span class="data-heading">MID</span> : <span class="data-value">{{walletData.mid}}</span>
+                </div>
+                <div class="row">
+                    <span class="data-heading">TID</span> : <span class="data-value">{{walletData.tid}}</span>
+                </div>
+                <div class="row">
+                    <span class="data-heading">External MID</span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.externalMid}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >                   
+                        <input matInput formControlName="externalMid" autocomplete="off" [(ngModel)]="walletData.externalMid">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">External TID </span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.externalTid}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >                   
+                        <input matInput autocomplete="off" formControlName="externalTid" [(ngModel)]="walletData.externalTid">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Linked Bank Accounts </span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.account}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >                   
+                        <input matInput autocomplete="off" formControlName="linkedbank" [(ngModel)]="walletData.account">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Merchant Auto Sweep </span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.sweepBalanceDayEnd === true ? 'Yes':'No'}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >
+                        <mat-select formControlName="sweepBalance" [(ngModel)]="walletData.sweepBalanceDayEnd">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Inward collect Allowed</span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.allowInwardTxn === true ? 'Yes':'No'}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >
+                        <mat-select  formControlName="inwardAllowed" [(ngModel)]="walletData.allowInwardTxn">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Outward transaction Allowed</span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.allowOutwardTxn === true ? 'Yes':'No'}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >
+                        <mat-select  formControlName="outwardAllowed" [(ngModel)]="walletData.allowOutwardTxn">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Refund allowed</span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.allowRefund === true ? 'Yes':'No'}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >
+                        <mat-select  formControlName="refundAllowed" [(ngModel)]="walletData.allowRefund">
+                            <mat-option [value]="true">Yes</mat-option>
+                            <mat-option [value]="false">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Mobile numbers linked</span> : <span class="data-value">{{walletData?.customerDetails?.mobile | slice: 1}}</span>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Wallet Balance</span> : <span class="data-value">{{walletData?.customerDetails?.balance}}</span>
+                </div>
+                <div class="row" >
+                    <span class="data-heading">SMS Notification</span> : <span class="data-value">{{walletData.notifySms === true ? 'Yes':'No'}}</span>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Call Back Notification</span> : <span class="data-value">{{walletData.notifyCallback === true ? 'Yes':'No'}}</span>
+                </div>                  
+                <!-- <div class="row">
+                    <span class="data-heading">Holding limit</span> : <span class="data-value" *ngIf="!isUpdate">{{walletData.holdingLimit}}</span>
+                    <mat-form-field class="data-value update-data" appearance="standard" *ngIf="isUpdate" >                   
+                        <input matInput autocomplete="off"  formControlName="holdingLimit" [(ngModel)]="walletData.holdingLimit">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <span class="data-heading">Access Management</span> : <span class="data-value">{{walletData.accessManagement}}</span></div>-->
+            </div> 
+            </form>
+        </div>
+        <div class ="rightPanel">
+            <div id="my-node">
+                <img src="data:image/jpeg;base64,{{qrData?.data}}" alt="" width="300px" style="background:white">
+                <h2 class=" heading">{{walletData?.customerDetails?.name}}</h2>
+            </div>
+            <p class="link noPrint"> 
+                <button (click)="copyToClipboard(qrURL)" title="{{qrURL}}" class="material-icons copy-button no-print ng-star-inserted" aria-label="">
+                <span class="copy-span" aria-hidden="true">content_copy</span></button>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="4">
+                    {{qrURL}}
+                </textarea>
+            </p>
+            <div class="btn-group" class="noPrint">
+                <button type="button" mat-raised-button class="form-btn" style="min-width:unset !important" (click)="downloadQR()"><mat-icon>get_app</mat-icon></button>
+                <button type="button" mat-raised-button class="form-btn" style="min-width:unset !important" (click)="printQR()"><mat-icon>print</mat-icon></button>
+                <!-- <button type="button" mat-raised-button class="form-btn"  style="min-width:unset !important" (click)="share()"><mat-icon>share</mat-icon></button> -->
+                <button type="button" mat-raised-button class="form-btn " (click)="dynamicQr($event)">Generate Dynamic QR</button>
+            </div>
+        </div>      
+    </div> 
+    <!-- <div class="noPrint">
+        <button mat-raised-button class="btn-cancel" mat-dialog-close>Cancel</button>
+    </div> -->
+</div>

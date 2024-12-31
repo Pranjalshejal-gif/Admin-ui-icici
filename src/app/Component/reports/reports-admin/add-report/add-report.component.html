@@ -1,0 +1,150 @@
+<div class="outer-layout">
+  <div class="box">
+    <mat-stepper [linear]="true" #stepper class="font-style">
+      <mat-step [stepControl]="firstFormGroup" [editable]="true">
+        <form [formGroup]="firstFormGroup" autocomplete="off">
+          <ng-template matStepLabel class="font-style">Report Details</ng-template>
+          <div class="gridBox">
+            <mat-form-field appearance="outline" *ngIf="UserAdmin.id">
+              <mat-label>Report ID</mat-label>
+              <input matInput autocomplete="off" formControlName="id" readonly>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>Report Category</mat-label>
+              <mat-select formControlName="selectedReport" class="font-style" [(value)]="selectedCat" required>
+                <mat-option class="font-style" *ngFor="let cat of reportCategory" [value]="cat.id">{{ cat.title }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="firstFormGroup?.get('selectedReport')?.hasError('required')">
+                Report Category is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>Report Database </mat-label>
+              <mat-select formControlName="targetDb" class="font-style" [(value)]="selectedDB">
+                <mat-option class="font-style" *ngFor="let rdb of reportDB" [value]="rdb.id">{{ rdb.value }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" placeholder="Enter Name" required maxlength="50" minlength="3"
+                pattern="[A-Za-z0-9\-_.'\s]{3,50}$">
+              <mat-error *ngIf="firstFormGroup?.get('name')?.hasError('pattern')">
+                Please enter valid Name(Allowed special characters are .,-_)
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup?.get('name')?.hasError('required')">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" placeholder="Enter Title" required maxlength="50" minlength="3"
+                pattern="[A-Za-z0-9\-_.'\s]{3,50}$">
+              <mat-error *ngIf="firstFormGroup?.get('title')?.hasError('pattern')">
+                Please enter valid Title(Allowed special characters are .,-_)
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup?.get('title')?.hasError('required')">
+                Title is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Sub Title Template</mat-label>
+              <input matInput formControlName="subTitleTemplate" placeholder="Enter Sub Title" maxlength="50"
+                minlength="3" pattern="[A-Za-z0-9\-_.'\s]{3,50}$">
+              <mat-error *ngIf="firstFormGroup?.get('subTitleTemplate')?.hasError('pattern')">
+                Please enter valid Sub Title Template(Allowed special characters are .,-_)
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup?.get('subTitleTemplate')?.hasError('required')">
+                Sub Title Template is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>File Name Template</mat-label>
+              <input matInput formControlName="fileNameQuery" placeholder="Enter File Name Query" maxlength="50"
+                minlength="3" pattern="[A-Za-z0-9\-_.'\s]{3,50}$">
+              <mat-error *ngIf="firstFormGroup?.get('fileNameQuery')?.hasError('pattern')">
+                Please enter valid File Name Template(Allowed special characters are .,-_)
+              </mat-error>
+              <mat-error *ngIf="firstFormGroup?.get('fileNameQuery')?.hasError('required')">
+                File Name Template is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="font-style">
+              <mat-label>Query</mat-label>
+              <textarea matInput formControlName="query" placeholder="Enter Query" matInput cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5" matTextareaAutosize></textarea>
+              <mat-error *ngIf="firstFormGroup?.get('query')?.hasError('required')">
+                Query is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="justify-content-end">
+            <button class="form-btn" id="onSubmitFirstForm" mat-button (click)="onSave()">Next</button>
+            <button class="btn-cancel" mat-button matStepperNext (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup" [editable]="true">
+        <form [formGroup]="secondFormGroup" autocomplete="off">
+          <ng-template matStepLabel class="font-style">Report Input Field</ng-template>
+        </form>
+        <div class="gridBox" *ngIf="inputField?.length > 0" style="overflow: auto;">
+          <app-table [dataSource]="dataSource" [displayedColumns]="displayedColumns" [searchGrid]="true"
+            (itemRemoveEvent)="remove($event)" [removable]="true">
+          </app-table>
+        </div>
+
+        <div class="justify-content-end">
+          <button class="form-btn" mat-button matStepperPrevious>Back</button>
+          <button class="form-btn" mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel class="font-style">Fetch Report</ng-template>
+        <form>
+          <mat-form-field appearance="outline" *ngFor="let field of inputField">
+            <mat-label>{{field.name}} </mat-label>
+            <input matInput *ngIf="field.type === 'Date' && field.type !== 'String'" [matDatepicker]="datepicker"
+              [max]="today" readonly="true" name="{{field.name}}" [(ngModel)]="teller[field.name]"
+              placeholder="Enter {{field.name}}" required [ngModelOptions]="{standalone: true}">
+            <mat-datepicker-toggle *ngIf="field.type === 'Date'" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker></mat-datepicker>
+            <input matInput *ngIf="field.type === 'String' && field.type !== 'Date' " name="{{field.name}}"
+              [(ngModel)]="teller[field.name]" placeholder="Enter {{field.name}}" required type="text"
+              [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </form>
+
+        <div class="gridBox" *ngIf="fetchReportList.length > 0" style="overflow: auto;">
+          <app-table [dataSource]="fetchReportdataSource" [displayedColumns]="fetchReportDisplayedColumns"
+            [searchGrid]="true" (itemColUpEvent)="colUp($event)" (itemColDownEvent)="colDown($event)" [positions]="true"
+            [pagination]="true">
+          </app-table>
+        </div>
+        <div *ngIf="fetchReportList.length > 0">
+          <h2 style="margin-bottom: 0px;margin-top: 10px;" class="font-style">Detail Report:</h2>
+        </div>
+
+        <div class="gridBox" *ngIf="fetchReportList.length > 0" style="overflow: auto;">
+          <app-table [dataSource]="fetchReportData" [tableName]="'report'" [displayedColumns]="fetchReportDataColumns"
+            [searchGrid]="true" [pagination]="true">
+          </app-table>
+        </div>
+
+        <div class="justify-content-end">
+          <button class="form-btn" mat-button matStepperPrevious>Back</button>
+          <button class="form-btn" mat-button (click)="fetchReport()">Fetch Report</button>
+          <button *ngIf="isFetchSuccess" class="form-btn" mat-button (click)="saveReport()">Submit</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

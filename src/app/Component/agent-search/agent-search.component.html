@@ -1,0 +1,210 @@
+<div class="grid-container ">
+    <mat-expansion-panel [expanded]="panelOpen">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="font-style">
+          <h2>Agent Search</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <br>
+      <form [formGroup]="searchForm">
+   
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Agent Id</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+          <mat-label>Agent Mobile</mat-label>
+          <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
+            pattern="^[6|7|8|9][0-9]{9}$" maxlength="10">
+          <mat-error *ngIf="searchForm?.get('mobile')?.hasError('pattern')">
+            Please enter valid Mobile Number
+          </mat-error>
+        </mat-form-field>
+        
+
+        <mat-form-field appearance="outline">
+          <mat-label>Agent Name</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Agent Registered AddressLine </mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Agent Registered City</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Agent Registered Pin Code</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Registered State</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Registered Country</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Business Type</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Payement Mode</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field> -->
+
+          <!-- <mat-form-field appearance="outline">
+            <mat-label>Agent Refference Id</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Payment Channels</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+
+
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Payement Mode</mat-label>
+            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          </mat-form-field>
+ -->
+
+
+
+
+
+
+
+
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Agent Effective To</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Agent Effective From</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+         FETCH_REQUIREMENT -->
+
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Fetch Requirement</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Created Date</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Updated Date</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Billder Address</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field> --> 
+
+<!-- 
+        <mat-form-field appearance="outline">
+          <mat-label>Billder Register State</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Billder Register City</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Billder Register Pin Code</mat-label>
+          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+        </mat-form-field> -->
+
+
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        
+          <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+         -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <mat-form-field appearance="outline" class="font-style">
+          <mat-label>From Date</mat-label>
+          <input matInput [matDatepicker]="startdatepicker" [max]="today" readonly="true" formControlName="fromDate"
+            autocomplete="off" name="fromDate" (dateChange)="dateChange($event)">
+          <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #startdatepicker></mat-datepicker>
+        </mat-form-field> -->
+
+
+
+
+
+
+        
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Customer VPA</mat-label>
+          <input matInput formControlName="vpa" autocomplete="off" name="vpa">
+        </mat-form-field> -->
+        <div>
+          <button mat-raised-button class="form-btn" (click)="searchCustomer()">Search</button>
+          <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+        </div>
+      </form>
+    </mat-expansion-panel>
+    <br>
+    <div>
+      <app-table *ngIf="showData" [dataSource]="dataSourceCustomer" [displayedColumns]="Columns" [searchGrid]="true">
+      </app-table>
+    </div>
+  
+  </div>

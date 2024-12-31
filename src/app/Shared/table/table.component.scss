@@ -1,0 +1,227 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  font-family: 'Mulish';
+}
+
+.table-container {
+  width: 100%;
+  height: calc(59vh - 23px);
+  overflow: auto;
+
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  width: 150px;
+}
+
+.table-icon-inline-2 {
+  display: inline-flex;
+}
+
+::ng-deep .mat-paginator-page-size-select .mat-form-field-wrapper {
+  width: unset;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+::ng-deep .mat-sort-header-content {
+  text-transform: capitalize;
+}
+
+.add-btn {
+  float: right;
+  margin-right: 0 !important;
+  margin-left: 10px;
+  width: unset;
+  margin-top: 1.25em;
+}
+
+.active {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+
+.inactive {
+  background: red;
+  padding: 5px 8px;
+  border-radius: 15px;
+  color: white;
+}
+
+.locked {
+  background: grey;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding-right: 0px;
+  width: 140px;
+}
+
+.mat-column-action {
+  padding-left: 0px !important;
+}
+
+@media screen and (max-width: 800px) {
+  .filter ::ng-deep .mat-form-field-wrapper {
+    width: 130px;
+  }
+
+  .exportIcons {
+    padding-right: 2px !important;
+  }
+
+  .table-size {
+    width: 107%;
+  }
+
+  ::ng-deep .mat-paginator-container {
+    padding: 0px 0px !important;
+    font-family: 'Mulish';
+  }
+}
+
+::ng-deep .mat-paginator-page-size .mat-select-trigger {
+  font-family: 'Mulish';
+}
+
+::ng-deep .mat-option-text {
+  font-family: 'Mulish';
+}
+
+.C {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+
+.P {
+  background: rgb(230, 233, 43);
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: black;
+}
+
+.R {
+  background: grey;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+
+.I {
+  background: rgb(53, 200, 219);
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+
+.Y {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+
+.X {
+  background: red;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+
+.srNo {
+  width: 50px;
+}
+
+.A {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+
+.PURGED {
+  background: rgb(53, 200, 219);
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+
+.REDEEMED {
+  background: grey;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+
+.btn-primary {
+  margin: 0 !important;
+  width: 100%;
+  border-radius: 25px !important;
+}
+
+.A {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+ 
+.SETTLED {
+  background: green;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 4px;
+  color: white;
+}
+ 
+.PURGED {
+  background: rgb(53, 200, 219);
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+ 
+.REDEEMED {
+  background: grey;
+  padding: 5px 8px;
+  border-radius: 15px;
+  margin-left: 3px;
+  color: white;
+}
+ 
+.btn-primary {
+  margin: 0 !important;
+  width: 100%;
+  border-radius: 25px !important;
+}

@@ -1,0 +1,22 @@
+<div class="outer-layout">
+    <mat-card-header>
+        <h3>Please add remarks</h3>
+    </mat-card-header>
+    <form [formGroup]="settleForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Remark</mat-label>
+            <textarea matInput name="remarks" placeholder="Enter Remarks" [(ngModel)]="remarks"
+                formControlName="remarks" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5" matTextareaAutosize
+                required>{{remarks}}</textarea>
+            <mat-error *ngIf="settleForm?.get('remarks')?.hasError('pattern')">
+                Please enter valid remark.
+            </mat-error>
+            <mat-error *ngIf="settleForm?.get('remarks')?.hasError('required')">
+                Remark is required.
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<mat-dialog-actions align="end" class="noPrint">
+    <span><button mat-raised-button class="form-btn" (click)="submit()">Submit</button></span>
+</mat-dialog-actions>

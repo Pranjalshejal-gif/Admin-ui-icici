@@ -1,0 +1,29 @@
+<div class="container">
+    <button class="anchor" mat-button mat-dialog-close cdkFocusInitial>
+        <mat-icon >keyboard_backspace</mat-icon>
+        Back
+    </button>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right center">
+                <h2 class="heading-text">Welcome
+                    <b>{{userSer.userSessionData?.data?.user.name}}</b>
+                </h2>
+                <h5 class="font-style">Enter the One Time Password sent to your {{otpDeliveryMethod}}</h5>
+                <form class="otp-form" [formGroup]="otpVerifiedForm">
+                    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"
+                        [config]="{length:6,allowNumbersOnly:true}"></ng-otp-input>
+                    <mat-error *ngIf="otpInvalid">
+                        Please enter a valid OTP
+                    </mat-error>
+                    <div>
+                        <a (click)="resend()" style="display:inline-block;width:250px;text-align:right"
+                            class="font-style" [ngClass]="!isTimerEnds? 'disabled': 'active'"><span
+                                class="font-style">Resend code </span><span *ngIf="!isTimerEnds" class="font-style"> in
+                                {{secsTimeCounter}} secs</span></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<mat-toolbar>
+    <h5>Institute Configuration</h5>
+</mat-toolbar><br>
+
+<!-- This is the dailog popup form for config Add -->
+
+<form [formGroup]="productForm">
+    <mat-form-field class="example-full-width" *ngIf="datag">
+        <mat-label>Id </mat-label>
+        <input formControlName="id" matInput placeholder="" value="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input formControlName="key" matInput required placeholder="name" value=""
+            pattern="^(?!.*\.{2})[A-Za-z0-9_. ]{2,50}$">
+        <mat-error *ngIf="productForm?.get('key')?.hasError('pattern')">
+            Please Enter Valid Name
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Value</mat-label>
+        <input formControlName="value" matInput required placeholder="value" value=""
+            pattern="^[A-Za-z0-9 .,]+$">
+        <mat-error *ngIf="productForm?.get('value')?.hasError('pattern')">
+            Please Enter Valid Value
+        </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-action [align]="'end'">
+        <button style="margin-left:8px;" mat-raised-button class="form-btn add-btn" (click)="onSubmit()"
+            *ngIf="!isView">Submit</button>
+        <button mat-raised-button class="form-btn add-btn" color="warn" mat-dialog-close>Close</button>
+    </div>
+</form>

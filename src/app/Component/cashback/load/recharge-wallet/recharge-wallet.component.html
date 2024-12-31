@@ -1,0 +1,161 @@
+<div class="outer-layout">
+    <mat-card>
+        <div>
+            <h2>Profile</h2>
+            <form [formGroup]="loadCashbackForm">
+                <div class="gridBox">
+                    <div class="row">
+                        <span class="data-heading"> Merchant Name</span> : <span
+                            class="data-value">{{customer.merchantDetails['merchant-name']}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading"> Mobile NO.</span> : <span
+                            class="data-value">{{customer.merchantDetails.registerMob}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">MID </span> : <span
+                            class="data-value">{{customer.merchantDetails.mid}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">walletAddress </span> : <span
+                            class="data-value">{{customer.walletAddress}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading"> Balance </span> : <span
+                            class="data-value">{{customer.balance}}</span>
+                    </div>
+
+                </div>
+
+                <div class="gridBox">
+                    <div class="example-container">
+                        <h4>Denomination And Count</h4>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue1')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor1" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue2')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor2" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue5')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor5" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue10')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor10" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue20')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor20" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination: e₹</label>
+                                <span>{{loadCashbackForm.get('fixedValue50')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Count </mat-label>
+                                    <input matInput formControlName="countfor50" placeholder="0" autocomplete="off"
+                                        name="count" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label><b>Total Amount</b></mat-label>
+                                    <input matInput formControlName="amount" autocomplete="off" name="amount">
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Remarks</mat-label>
+                                    <input matInput formControlName="remarks" name="remarks" autocomplete="off">
+                                    <mat-error *ngIf="loadCashbackForm?.get('remarks')?.hasError('minlength')">Min 2
+                                        words required.</mat-error>
+                                    <mat-error *ngIf="loadCashbackForm?.get('remarks')?.hasError('maxlength')">Max 50
+                                        words allowed.</mat-error>
+                                </mat-form-field>
+                            </span>
+
+                        </div>
+                        <div class="btn-group">
+                            <button mat-raised-button class="form-btn" (click)="load()">Submit</button>
+                            <button class="btn-cancel" mat-raised-button mat-dialog-close
+                                (click)="cancel()">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+    </mat-card>
+</div>
+<div class="grid-container">
+    <h4>Load History</h4>
+    <app-table *ngIf="loadshowData" [dataSource]="dataSourceCashback" [displayedColumns]="Columns" [searchGrid]="true"
+        matSortActive="created" matSort filterLabel="Search Records"></app-table>
+</div>

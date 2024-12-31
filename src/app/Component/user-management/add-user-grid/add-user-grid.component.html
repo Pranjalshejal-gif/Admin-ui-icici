@@ -1,0 +1,29 @@
+<div class="grid-container">
+    <mat-expansion-panel [expanded]="expanded" (opened)="expanded = true">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="font-style">
+                Search LDAP User
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group [(ngModel)]="userType">
+            <mat-radio-button class="font" value="ldap">LDAP User</mat-radio-button>
+        </mat-radio-group>
+        <form [formGroup]="searchForm" (ngSubmit)="search()">
+            <div *ngIf="userType == 'ldap';">
+                <mat-form-field appearance="outline" class="font-style">
+                    <mat-label>User Name</mat-label>
+                    <input autocomplete="off" matInput formControlName="userId" required pattern="^[a-zA-Z0-9]+$">
+                    <mat-error *ngIf="searchForm?.get('userId')?.hasError('pattern') ">
+                        Please enter valid User Name
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button type="submit" mat-raised-button class="form-btn">Search</button>
+                    <button mat-raised-button class="btn-cancel" (click)="back()">Back</button>
+                </div>
+            </div>
+        </form>
+    </mat-expansion-panel>
+    <app-table *ngIf="showResult" [dataSource]="dataSource" [displayedColumns]="displayedColumns" [selectGrid]="true"
+        (itemSelectEvent)="onSelect($event)" filterLabel="Filter Users in Table"></app-table>
+</div>

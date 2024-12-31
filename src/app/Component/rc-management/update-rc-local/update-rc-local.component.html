@@ -1,0 +1,39 @@
+<div class="outer-layout">
+    <mat-card-header>
+        <mat-card-title class="font-style">
+            Update RC Local
+        </mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="updateForm">
+       <mat-form-field appearance="outline" class="font-style">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" autocomplete="off" name="rc">
+        </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+            <mat-label>Destination</mat-label>
+            <input matInput formControlName="local" autocomplete="off" name="rc">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="font-style">
+            <mat-label>RC</mat-label>
+            <input matInput formControlName="resultCode" autocomplete="off" name="rc"
+                pattern="^(?!.*\.{2})[ A-Za-z0-9_.]*$">
+            <mat-error *ngIf="updateForm.controls['resultCode'].hasError('required')">
+                RC is required
+            </mat-error>
+            <mat-error *ngIf="updateForm?.get('resultCode')?.hasError('pattern')">
+                Please enter valid RC
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="font-style">
+            <mat-label>RC Message</mat-label>
+            <input matInput formControlName="resultInfo" autocomplete="off" name="rcmessage">
+            <mat-error *ngIf="updateForm.controls['resultInfo'].hasError('required')">
+                RC Message is required
+            </mat-error>
+        </mat-form-field>
+        <div *checkRole="'manage-rc'">
+            <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+            <button mat-button class="btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

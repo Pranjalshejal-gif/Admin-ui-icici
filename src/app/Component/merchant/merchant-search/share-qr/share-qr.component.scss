@@ -1,0 +1,19 @@
+mat-form-field {
+    width: 100%;
+    display: block;
+    font-family: 'Mulish';
+    ::ng-deep .mat-form-field-wrapper {
+        width: 100%;
+    }
+}
+
+.qr {
+    padding: 10px;
+    border: 1px solid;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.d-none {
+    display: none;
+}

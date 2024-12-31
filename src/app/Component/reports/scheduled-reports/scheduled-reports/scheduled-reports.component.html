@@ -1,0 +1,70 @@
+<div class="grid-container">
+    <mat-card>
+
+        <mat-card-header>
+            <mat-card-title>
+                Reports History
+            </mat-card-title>
+        </mat-card-header>
+
+        <form [formGroup]="reportSearchForm">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Category List</mat-label>
+                <mat-select matNativeControl formControlName="reportCategoryId"
+                    (selectionChange)="onCategorySelected($event)">
+                    <mat-option [value]=undefined> ---- </mat-option>
+                    <mat-option *ngFor="let category of reportCategories" [value]="category.id">{{category.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Report Name List</mat-label>
+                <mat-select matNativeControl formControlName="reportName"
+                    *ngFor="let rep of reportList | reportFilter: selectedCategory">
+                    <mat-option [value]=undefined> ---- </mat-option>
+                    <mat-option *ngFor="let r of rep.report" [value]="r">{{r}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="startdatepicker" (dateChange)="dateChange($event)"
+                    formControlName="fromDate" autocomplete="off" name="startDate" [max]="today" [readonly]="true">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startdatepicker></mat-datepicker>
+                <mat-error *ngIf="reportSearchForm.controls['fromDate'].hasError('required')">
+                    Start Date is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <input matInput [matDatepicker]="enddatepicker" formControlName="toDate" autocomplete="off"
+                    name="endDate" [readonly]="true" [min]="minDate" [max]="today">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #enddatepicker></mat-datepicker>
+                <mat-error *ngIf="reportSearchForm.controls['toDate'].hasError('required')">
+                    End Date is required.
+                </mat-error>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button class="form-btn" (click)="reportSearch()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
+
+<div class="grid-container">
+    <div class="outer-layout" *ngIf="showReportsTable">
+        <app-table [dataSource]="reportsData" [displayedColumns]="reportsColumns" [searchGrid]="true"
+            (itemDownloadEvent)="scheduleReportDownload($event)" filterLabel="Filter Reports Data"
+            defaultSort="createdDate" matSort>
+        </app-table>
+    </div>
+</div>

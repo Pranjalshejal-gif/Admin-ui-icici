@@ -1,0 +1,334 @@
+<div class="outer-layout" #top>
+    <mat-card>
+        <div *ngIf="showEditForm">
+            <form [formGroup]="editForm">
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Primary Details :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Rule ID</mat-label>
+                        <input matInput formControlName="ruleId" [disabled]="true" class="disabled"
+                            [matTooltip]="editForm.get('ruleId')?.value" matTooltipPosition="above" readonly>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sponsor Name</mat-label>
+                        <input matInput formControlName="sponsorName" [disabled]="true" class="disabled"
+                            [matTooltip]="editForm.get('sponsorName')?.value" matTooltipPosition="above" readonly />
+                        <mat-error *ngIf="editForm.controls['sponsorName'].hasError('required')">
+                            Please select sponsor name.
+                        </mat-error>
+                    </mat-form-field>
+                    <span>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sponsor ID</mat-label>
+                            <input matInput formControlName="sponsorId" [disabled]="true" class="disabled"
+                                [matTooltip]="editForm.get('sponsorId')?.value" matTooltipPosition="above" readonly />
+                        </mat-form-field>
+                    </span>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Expiry Date</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="expiry" [min]="today"
+                            [max]="minDate" autocomplete="off">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker></mat-datepicker>
+                        <mat-error *ngIf="editForm.controls['expiry'].hasError('required')">
+                            Date is required.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Auth Type</mat-label>
+                        <mat-select formControlName="authType">
+                            <mat-option value="UID">UID</mat-option>
+                            <mat-option value="DEBIT_CARD">DEBIT_CARD</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="editForm.controls['authType'].hasError('required')">
+                            Please select authentication type.
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                </div>
+                <hr>
+                <div>
+                    <form [formGroup]="mccForm">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <br>
+                                Add MCC :
+                            </mat-card-title>
+                        </mat-card-header>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Select MCC : </label>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline" class="mcc-chip-list">
+                                    <mat-label>Select MCC</mat-label>
+                                    <mat-chip-list #mccChipList>
+                                        <mat-chip *ngFor="let mcc of selectedMCCList" (removed)="removeMcc(mcc)">
+                                            {{ mcc }}
+                                            <button matChipRemove>
+                                                <mat-icon>cancel</mat-icon>
+                                            </button>
+                                        </mat-chip>
+                                        <input type="text" placeholder="Select MCC" matInput #mccInput
+                                            formControlName="mccListDetails" (input)="onSelectMCC()"
+                                            [matAutocomplete]="auto" [matChipInputFor]="mccChipList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                                    </mat-chip-list>
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedMcc($event)">
+                                        <mat-option class="option-css" *ngFor="let mcc of filteredMCCList"
+                                            [value]="mcc.nameDescription">
+                                            {{ mcc.nameDescription }} - {{mcc.mccCategory}} - {{mcc.mccLlCategory}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <hr class="dashedhr">
+                        <br>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Bulk MCC's : </label>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Bulk MCC's</mat-label>
+                                    <textarea matInput formControlName="mccTextDetails" placeholder="Bulk MCC's"
+                                        matInput cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"
+                                        cdkTextareaAutosize></textarea>
+                                    <mat-hint>MCC's must be comma separated.</mat-hint>
+                                    <mat-error *ngIf="mccForm?.get('mccTextCode')?.hasError('pattern')">
+                                        Please enter valid Mcc.
+                                    </mat-error>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <br>
+                <form [formGroup]="acceptanceForm">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Add Acceptance :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div class="row">
+                        <span class="data-heading">
+                            <label>UPI VPA / CBDC VPA : </label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>UPI VPA / CBDC VPA</mat-label>
+                                <input matInput formControlName="VPA" autocomplete="off">
+                                <mat-error *ngIf="acceptanceForm?.get('VPA')?.hasError('pattern')">
+                                    Please enter valid VPA.
+                                </mat-error>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">
+                            <label>CBDC WALLET : </label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>CBDC WALLET</mat-label>
+                                <input matInput formControlName="WALLET" autocomplete="off">
+                                <mat-error *ngIf="acceptanceForm?.get('WALLET')?.hasError('pattern')">
+                                    Please enter valid CBDC WALLET.
+                                </mat-error>
+                                <mat-error *ngIf="acceptanceForm?.get('WALLET')?.hasError('minlength')">
+                                    Please enter a valid CBDC WALLET min length.
+                                </mat-error>
+                                <mat-error *ngIf="acceptanceForm?.get('WALLET')?.hasError('maxlength')">
+                                    Please enter a valid CBDC WALLET max length.
+                                </mat-error>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                </form>
+                <hr>
+                <br>
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Add Location :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div mat-dialog-action [align]="'right'">
+                        <button mat-raised-button type="button" class="form-btn add-btn" type="button"
+                            *ngIf="grpCounter < 5" (click)="addLocation()">Add Row</button>
+                        <button mat-raised-button class="form-btn add-btn" type="button" *ngIf="grpCounter >1"
+                            (click)="removeLocation()">Remove Row</button>
+                    </div>
+                    <h3>Added Location Row {{grpCounter}} of 5 </h3>
+                    <form [formGroup]="locationForm1">
+                        <div *ngIf="grpCounter >0">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state1"
+                                    (input)="onStateType1()" (click)="reset1()">
+                                <mat-autocomplete #state1="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates1" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city1"
+                                    (input)="onCityType1()" (click)="onStateSelected1()">
+                                <mat-autocomplete #city1="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities1" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm1?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm2">
+                        <div *ngIf="grpCounter >1">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state2"
+                                    (input)="onStateType2()" (click)="reset2()">
+                                <mat-autocomplete #state2="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates2" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city2"
+                                    (input)="onCityType2()" (click)="onStateSelected2()">
+                                <mat-autocomplete #city2="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities2" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput type="text" formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm2?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm3">
+                        <div *ngIf="grpCounter >2">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state3"
+                                    (input)="onStateType3()" (click)="reset3()">
+                                <mat-autocomplete #state3="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates3" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city3"
+                                    (input)="onCityType3()" (click)="onStateSelected3()">
+                                <mat-autocomplete #city3="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities3" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm3?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm4">
+                        <div *ngIf="grpCounter >3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state4"
+                                    (input)="onStateType4()" (click)="reset4()">
+                                <mat-autocomplete #state4="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates4" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city4"
+                                    (input)="onCityType4()" (click)="onStateSelected4()">
+                                <mat-autocomplete #city4="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities4" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm4?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm5">
+                        <div *ngIf="grpCounter >4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state5"
+                                    (input)="onStateType5()" (click)="reset5()">
+                                <mat-autocomplete #state5="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates5" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city5"
+                                    (input)="onCityType5()" (click)="onStateSelected5()">
+                                <mat-autocomplete #city5="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities5" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm5?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+                <br>
+                <div class="btn-group">
+                    <button mat-raised-button type="button" class="form-btn" (click)="submit()">Submit</button>
+                    <button type="reset" mat-raised-button class="btn-cancel" (click)="back()">Back</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

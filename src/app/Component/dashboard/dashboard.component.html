@@ -1,0 +1,24 @@
+<div class="grid-container">
+  <mat-card>
+    <h3 class="font-style">Welcome <b>{{userSer.userSessionData?.data?.user.name}}</b></h3>
+  </mat-card>
+</div>
+<div *checkRole="'sys-mon'">
+  <div style="text-align:right;margin-top: 10px;padding-right:10px;">
+    <button type="submit" mat-raised-button class="form-btn" *ngIf="showRefresh()"
+      (click)="reloadPage()">refresh</button>
+  </div>
+  <div style="text-align:right;margin-top: 10px;padding-right:10px;">
+    <input type="number" [(ngModel)]="autoRefreshInterval" (keyup)="onKeyPress($event)"
+      matTooltip="Enter the auto refresh interval in seconds"
+      style="padding: 10px; border: 1px solid #ccc; width: 90px; border-radius: 5px; margin-left: 10px;">
+  </div>
+
+</div>
+<div class="sql-left-margin">
+  <mat-tab-group (selectedTabChange)="selectedTabValue($event)">
+    <mat-tab *ngFor="let item of tabConfigData" label="{{item.name}}">
+      <pre>{{output}}</pre>
+    </mat-tab>
+  </mat-tab-group>
+</div>

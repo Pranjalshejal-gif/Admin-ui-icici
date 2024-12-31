@@ -1,0 +1,799 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title class="font-style" style="width:inherit">Biller OnBoarding</mat-card-title>
+                <div style="text-align:right;width:100%">
+                    <button type="bulkUpload" class="form-btn" mat-raised-button (click)="bulkUpload()">Bulk
+                        Upload</button>
+                </div>
+            </span>
+        </mat-card-header>
+        <form [formGroup]="onboardingForm">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Registration Address</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter Biller Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Biller Name</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter Biller Name
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter valid Biller Name
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Biller Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter Biller Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput name="mcc" type="text" autocomplete="off" minlength="4" maxlength="4"
+                    formControlName="mcc" required pattern="^\d{6}$">
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('required')">
+                    Please enter Pincode
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('pattern')">
+                    Please enter pincode
+                </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Bank Account</mat-label>
+                <input matInput type="text" autocomplete="off" name="bankAccount" maxlength="30" required
+                    formControlName="bankAccount" pattern="^\d{6,30}$">
+                <mat-error *ngIf="onboardingForm?.get('bankAccount')?.hasError('required')">
+                    Please enter Bank Account
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('bankAccount')?.hasError('pattern')">
+                    Please enter a valid Bank Account Number
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>IFSC</mat-label>
+                <input matInput type="text" autocomplete="off" name="ifsc" pattern="^[A-Z]{4}0[A-Z0-9]{6}$" required
+                    minlength="11" maxlength="11" formControlName="ifsc">
+                <mat-error *ngIf="onboardingForm?.get('ifsc')?.hasError('required')">
+                    Please enter IFSC code
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('ifsc')?.hasError('pattern')">
+                    Please enter a valid IFSC Code
+                </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="pan" pattern="[aA-zZ]{5}[0-9]{4}[aA-zZ]{1}" autocomplete="off" required
+                    minlength="10" maxlength="10" name="pan">
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('required')">
+                    Please enter PAN Card Details
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('pattern')">
+                    Please enter a valid 10-digit PAN Card
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Preferred Wallet Name</mat-label>
+                <input matInput name="preferredWalletName" autocomplete="off" formControlName="preferredWalletName"
+                    pattern="^[a-zA-Z\s]+$">
+                <mat-error *ngIf="onboardingForm?.get('preferredWalletName')?.hasError('pattern') ">
+                    Please enter valid Preferred Wallet Name
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Boarding Type </mat-label>
+                <mat-select (selectionChange)="onBoardingTypeChange($event)" formControlName="boardingType" required
+                    class="font-style">
+                    <mat-option value="AGGREGATOR" class="font-style">AGGREGATOR</mat-option>
+                    <mat-option value="BANK" class="font-style">BANK</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('boardingType')?.hasError('required')">
+                    Please select Boarding Type
+                </mat-error>
+            </mat-form-field> -->
+            
+
+            <!-- <mat-form-field *ngIf="showAggregatorEmail" appearance="outline">
+                <mat-label>Aggregator Email </mat-label>
+                <input matInput formControlName="aggregatorEmail" formControlName="aggregatorEmail">
+                <mat-error *ngIf="onboardingForm?.get('aggregatorEmail')?.hasError('required')">
+                    Please enter Aggregator Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('aggregatorEmail')?.hasError('pattern')">
+                    Please enter a valid Aggregator email address
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Ownership Type </mat-label>
+                <mat-select formControlName="ownershipType" required class="font-style">
+                    <mat-option class="font-style" value="PUBLIC">PUBLIC</mat-option>
+                    <mat-option class="font-style" value="PRIVATE">PRIVATE</mat-option>
+                    <mat-option class="font-style" class="font-style" value="PARTNERSHIP">PARTNERSHIP</mat-option>
+                    <mat-option class="font-style" value="PROPRIETARY">PROPRIETARY</mat-option>
+                    <mat-option class="font-style" value="OTHERS">OTHERS</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('ownershipType')?.hasError('required')">
+                    Please select Ownership Type
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Registered Address</mat-label>
+                <textarea matInput formControlName="registeredAddress" placeholder="Registered Address" matInput
+                    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" matTextareaAutosize></textarea>
+                <mat-error *ngIf="onboardingForm?.get('registeredAddress')?.hasError('required')">
+                    Please enter Registered Address
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Inward Fund Allowed </mat-label>
+                <mat-select formControlName="inwardCollect" required class="font-style">
+                    <mat-option class="font-style" [value]="false">No</mat-option>
+                    <mat-option class="font-style" [value]="true">Yes</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('inwardCollect')?.hasError('required')">
+                    Please select Inward Fund Allowed
+                </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Refund Allowed </mat-label>
+                <mat-select formControlName="RefundAllowed" [disabled]="true" class="font-style">
+                    <mat-option class="font-style" [value]="false">No</mat-option>
+                    <mat-option class="font-style" [value]="true">Yes</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Biller Auto Sweep </mat-label>
+                <mat-select formControlName="sweepBalance" required class="font-style">
+                    <mat-option class="font-style" [value]="false"> No</mat-option>
+                    <mat-option class="font-style" [value]="true">Yes</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('genere')?.hasError('required')">
+                    Please select Biller Auto Sweep
+                </mat-error>
+            </mat-form-field> -->
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Genere </mat-label>
+                <mat-select formControlName="genere" required>
+                    <mat-option value="ONLINE">ONLINE</mat-option>
+                    <mat-option value="OFFLINE">OFFLINE</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('genere')?.hasError('required')">
+                    Please select Genere
+                </mat-error>
+            </mat-form-field> -->
+            <br>
+            <!-- <span>
+                <mat-checkbox formControlName="notifySms" class="font-style" style="padding-right: 20px;">SMS
+                    Notification</mat-checkbox>
+                <mat-checkbox formControlName="notifyCallback" class="font-style" style="padding-right: 20px;">Call Back
+                    Notification</mat-checkbox>
+                <mat-checkbox formControlName="sendMisToMid" class="font-style" style="padding-right: 20px;">Send MIS to
+                    MID</mat-checkbox>
+                <mat-checkbox formControlName="sendMisToAggregator" class="font-style" *ngIf="showAggregatorEmail">Send
+                    MIS to Aggregator</mat-checkbox>
+                <mat-checkbox formControlName="payoutAllowed" style="padding-right: 20px;"> Payout
+                </mat-checkbox>
+                <mat-checkbox formControlName="allowOutwardTxn" style="padding-right: 20px;">Outward Transaction
+                </mat-checkbox>
+                <mat-checkbox formControlName="enableOffUsPay" style="padding-right: 20px;"> Off-Us
+                </mat-checkbox>
+            </span> -->
+            <!-- <br> -->
+            <!-- <br> -->
+            <div *checkRole="'manage-Biller'">
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title class="font-style" style="width:inherit">OU / Aggregrator Selection</mat-card-title>
+                <div style="text-align:right;width:100%">
+                    <button type="bulkUpload" class="form-btn" mat-raised-button (click)="bulkUpload()">Bulk
+                        Upload</button>
+                </div>
+            </span>
+        </mat-card-header>
+        <form [formGroup]="onboardingForm">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label> Address</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Additional Info</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter additional info
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter Biller Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter contact Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid contact email
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Person</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>UIN</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter UIN
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label> Biller Address</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter biller Address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Biller Name</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter Biller Name
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter valid Biller Name
+                </mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput name="mcc" type="text" autocomplete="off" minlength="4" maxlength="4"
+                    formControlName="mcc" required pattern="^\d{6}$">
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('required')">
+                    Please enter Pincode
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('pattern')">
+                    Please enter pincode
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="pan" pattern="[aA-zZ]{5}[0-9]{4}[aA-zZ]{1}" autocomplete="off" required
+                    minlength="10" maxlength="10" name="pan">
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('required')">
+                    Please enter PAN Card Details
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('pattern')">
+                    Please enter a valid 10-digit PAN Card
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+
+            <div *checkRole="'manage-Biller'">
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <mat-card class="effective">
+        <mat-label>Effective</mat-label>
+        <mat-form-field appearance="outline" class="font-style">
+            <mat-label>Biller Effective From</mat-label>
+            <input matInput [matDatepicker]="enddatepicker" readonly="true" formControlName="toDate" autocomplete="off"
+                name="toDate" [min]="10" [max]="12" [disabled]="false">
+            <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="font-style">
+            <mat-label>biller Effective To</mat-label>
+            <input matInput [matDatepicker]="enddatepicker" readonly="true" formControlName="toDate" autocomplete="off"
+                name="toDate" [min]="10" [max]="12" [disabled]="false">
+            <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+        </mat-form-field>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title class="font-style" style="width:inherit">Technical</mat-card-title>
+
+            </span>
+        </mat-card-header>
+        <form [formGroup]="onboardingForm">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label> Address</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Additional Info</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter additional info
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter Biller Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter contact Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid contact email
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Person</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>UIN</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter UIN
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label> Biller Address</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^[a-zA-Z0-9]+$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter biller Address
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Biller Name</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter Biller Name
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter valid Biller Name
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Biller Email</mat-label>
+                <input matInput name="email" type="email" autocomplete="off" formControlName="email" required>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('required')">
+                    Please enter Biller Email
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('email')?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput name="mcc" type="text" autocomplete="off" minlength="4" maxlength="4"
+                    formControlName="mcc" required pattern="^\d{6}$">
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('required')">
+                    Please enter Pincode
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('pattern')">
+                    Please enter pincode
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="pan" pattern="[aA-zZ]{5}[0-9]{4}[aA-zZ]{1}" autocomplete="off" required
+                    minlength="10" maxlength="10" name="pan">
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('required')">
+                    Please enter PAN Card Details
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('pattern')">
+                    Please enter a valid 10-digit PAN Card
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Ownership Type </mat-label>
+                <mat-select formControlName="ownershipType" required class="font-style">
+                    <mat-option class="font-style" value="PUBLIC">PUBLIC</mat-option>
+                    <mat-option class="font-style" value="PRIVATE">PRIVATE</mat-option>
+                    <mat-option class="font-style" class="font-style" value="PARTNERSHIP">PARTNERSHIP</mat-option>
+                    <mat-option class="font-style" value="PROPRIETARY">PROPRIETARY</mat-option>
+                    <mat-option class="font-style" value="OTHERS">OTHERS</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('ownershipType')?.hasError('required')">
+                    Please select Ownership Type
+                </mat-error>
+            </mat-form-field> -->
+
+
+
+
+
+            <br>
+
+
+            <div *checkRole="'manage-Biller'">
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title class="font-style" style="width:inherit">Validation</mat-card-title>
+
+            </span>
+        </mat-card-header>
+        <form [formGroup]="onboardingForm">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Payment Amount</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Support Bill Validation</mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+
+
+         
+
+
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Ownership Type </mat-label>
+                <mat-select formControlName="ownershipType" required class="font-style">
+                    <mat-option class="font-style" value="PUBLIC">PUBLIC</mat-option>
+                    <mat-option class="font-style" value="PRIVATE">PRIVATE</mat-option>
+                    <mat-option class="font-style" class="font-style" value="PARTNERSHIP">PARTNERSHIP</mat-option>
+                    <mat-option class="font-style" value="PROPRIETARY">PROPRIETARY</mat-option>
+                    <mat-option class="font-style" value="OTHERS">OTHERS</mat-option>
+                </mat-select>
+                <mat-error *ngIf="onboardingForm?.get('ownershipType')?.hasError('required')">
+                    Please select Ownership Type
+                </mat-error>
+            </mat-form-field> -->
+
+
+
+
+
+            <br>
+
+
+            <div *checkRole="'manage-Biller'">
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <mat-card>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  >
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+              </tr>
+              <tr  >
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+                <td>Hello</td>
+              </tr>
+            </tbody>
+          </table>
+          
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title class="font-style" style="width:inherit">Fee Configuration</mat-card-title>
+
+            </span>
+        </mat-card-header>
+        <form [formGroup]="onboardingForm">
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Additional Charges </mat-label>
+                <input matInput formControlName="externalTid" autocomplete="off" name="externalTid"
+                    pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$" required>
+                <mat-error *ngIf="onboardingForm?.get('externalTid')?.hasError('pattern') ">
+                    Please enter valid Extranal TID
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Pincode</mat-label>
+                <input matInput name="mcc" type="text" autocomplete="off" minlength="4" maxlength="4"
+                    formControlName="mcc" required pattern="^\d{6}$">
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('required')">
+                    Please enter Pincode
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('mcc')?.hasError('pattern')">
+                    Please enter pincode
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>PAN</mat-label>
+                <input matInput formControlName="pan" pattern="[aA-zZ]{5}[0-9]{4}[aA-zZ]{1}" autocomplete="off" required
+                    minlength="10" maxlength="10" name="pan">
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('required')">
+                    Please enter PAN Card Details
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('pan')?.hasError('pattern')">
+                    Please enter a valid 10-digit PAN Card
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="BillerName" autocomplete="off" name="BillerName" required
+                    maxlength="50" pattern="^(M\/s |M\/S )?[A-Za-z\s]{3,50}$">
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('required')">
+                    Please enter State
+                </mat-error>
+                <mat-error *ngIf="onboardingForm?.get('BillerName')?.hasError('pattern')">
+                    Please enter State
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <div>
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div>
+
+            <!-- <div *checkRole="'manage-Biller'">
+                <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+            </div> -->
+        </form>
+    </mat-card>
+
+</div>

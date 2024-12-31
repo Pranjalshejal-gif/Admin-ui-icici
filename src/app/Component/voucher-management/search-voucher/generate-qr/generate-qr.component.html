@@ -1,0 +1,40 @@
+<div class="box">
+    <div align="end" class="noPrint">
+        <button type="button" mat-dialog-close class="form-btn" style="min-width:unset !important">
+            <mat-icon class="close-icon">close</mat-icon>
+        </button>
+    </div>
+    <br>
+    <div class="node">
+        <div class="panel">
+            <div class="center leftPanel">
+                <div class="flex">
+                    <div class="leftLogo">
+                        <img src="./assets/imgs/icici-bank-logo.png">
+                    </div>
+                </div>
+                <br><br><br>
+                <div>
+                    <!-- <img src="./assets/imgs/gff-logo.png" alt="" class="logo"> -->
+                    <img src="data:image/jpeg;base64,{{qrData?.data}}" alt="" class="qr">
+                </div>
+                <h2 class="poweredBy">Powered By ICICI Bank</h2>
+                <div>
+                    <span class="data-value">Voucher Code : {{this.voucherCode}}</span>
+                </div>
+                <div>
+                    <span class="data-value">Expiration Date : {{this.expirationDate}}</span>
+                </div>
+                <div>
+                    <span class="data-value">Voucher Status : {{this.status}}</span>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div align="end" class="noPrint">
+        <button type="button" mat-raised-button class="form-btn" style="min-width:unset !important" (click)="printQR()">
+            <mat-icon>print</mat-icon>
+        </button>
+    </div>
+</div>

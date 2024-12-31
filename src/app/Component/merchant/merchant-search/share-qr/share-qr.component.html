@@ -1,0 +1,40 @@
+<h1 mat-dialog-title class="font-style">Share QR</h1>
+<div mat-dialog-content>
+  <!-- <qrcode class="d-none" [elementType]="'img'" [cssClass]="'qrShareClass'" id="printableArea" [qrdata]="qrURL" (qrCodeURL)="onChangeURL($event)"  [width]="0" [errorCorrectionLevel]="'M'"></qrcode> -->
+  <a download="qr.jpeg" href="data:image/jpeg;base64,{{qrData?.data}}"><span class="qr">qrcode.jpg</span></a>
+  <form [formGroup]="shareQRForm">
+      <mat-form-field appearance="outline" >
+      <mat-label>To</mat-label>
+      <input matInput type="email" placeholder="To" formControlName="to" autocomplete="off" name="to" required>
+      <mat-error *ngIf="shareQRForm?.get('to')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <mat-label>From</mat-label>
+      <input matInput type="email" placeholder="From" autocomplete="off" name="from" formControlName="from" required>
+      <mat-error *ngIf="shareQRForm?.get('from')?.hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <mat-label>Subject</mat-label>
+      <input matInput type="text" placeholder="Subject" autocomplete="off" name="subject" formControlName="subject"
+        required>
+    </mat-form-field>
+      <mat-form-field appearance="outline" >
+      <mat-label>Message</mat-label>
+      <textarea matInput cdkTextareaAutosize name="message" formControlName="message" #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="10" cdkAutosizeMaxRows="25"></textarea>
+    </mat-form-field>
+    <!-- <span>
+          <input type="file" required autocomplete="off" name="fileName" (change) = readFile($event) 
+          accept=".jpeg" />
+          <button type="button" mat-raised-button class="form-btn" [disabled]="file==null" (click)="send()">Upload</button>
+        </span> -->
+    <div class="form-btn-group">
+      <button mat-raised-button class="form-btn" (click)="send()">Send</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </form>
+</div>

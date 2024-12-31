@@ -1,0 +1,33 @@
+<div class="grid-container ">
+    <mat-card>
+        <mat-card-title class="font-style">
+            RC Search
+        </mat-card-title>
+        <mat-card-header>
+            <div style="text-align:right;width:100%">
+                <button class="hyperlink" class="form-btn" mat-raised-button (click)="openDialogAddRc($event)">Add New
+                    RC</button>
+            </div>
+        </mat-card-header><br>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline" class="font-style">
+                <mat-label>RC</mat-label>
+                <input matInput formControlName="mnemonic" autocomplete="off" name="mnemonic">
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+            </div>
+        </form>
+    </mat-card>
+    <div class="gridxBox" *checkRole="'manage-rc'">
+        <app-table *ngIf="showData" [dataSource]="dataSourceRc" [displayedColumns]="ColumnsRc" [searchGrid]="true"
+            [editable]="true" [tableType]="'rc'" (itemRcIDEvent)="openDialogDiaplayLocalRC($event)"
+            filterLabel="Filter RC">
+        </app-table>
+    </div>
+    <div class="gridxBox" *checkRole="'manage-rc'">
+        <app-table *ngIf="showLocalRc" [dataSource]="dataSourceLocalRc" [displayedColumns]="ColumnsRcLocal"
+            [searchGrid]="true" filterLabel="Filter Local RC">
+        </app-table>
+    </div>
+</div>

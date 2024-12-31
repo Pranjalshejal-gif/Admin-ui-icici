@@ -1,0 +1,42 @@
+.mat-form-field {
+    margin-right: 25px;
+}
+
+ .mat-paginator-page-size-select {
+    width: 40px !important;
+}
+
+ .mat-paginator-range-label {
+    margin: 0 5px 0 12px !important;
+
+
+}
+.mat-pagination .mat-form-field-wrapper {
+    max-width: 160px !important;
+}
+
+.btn-group {
+    margin: 15px 0;
+}
+
+.mat-hint {
+    margin-top: 5px;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 19%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+
+}
+
+.data .mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}

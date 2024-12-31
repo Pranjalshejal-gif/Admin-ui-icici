@@ -1,0 +1,7 @@
+<mat-spinner class="spinner" *ngIf="userService.spinnerVisibility | async" appNoRightClick></mat-spinner>
+<ng-container [ngSwitch]="layout">
+    <app-login *ngSwitchCase="Layouts.DEFAULT" appNoRightClick></app-login>
+    <app-dialog-change-password *ngSwitchCase="Layouts.CHANGEPASSWORD" appNoRightClick></app-dialog-change-password>
+    <app-reset-password *ngSwitchCase="Layouts.FORGOTPASSWORD" appNoRightClick></app-reset-password>
+    <app-navigation *ngSwitchCase="Layouts.SIDENAV" appNoRightClick></app-navigation>
+</ng-container>

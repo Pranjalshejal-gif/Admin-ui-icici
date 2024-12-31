@@ -1,0 +1,27 @@
+$primary: var(--primary-color);
+.mat-progress-spinner{
+    margin: 0px auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: fixed;
+    background: #00000038;
+    z-index: 1001;
+}
+
+ ::ng-deep .mat-progress-spinner  {
+     & circle {
+         stroke: $primary;
+     }
+}
+.spinner{
+    background-color: rgb(76,76,76,0.3);
+}
+::ng-deep .mat-progress-spinner svg{
+    width: 8% !important;
+    height: 8% !important;
+    left: 46% !important;
+    top: 42% !important;
+}
+::ng-deep .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] circle {
+    stroke-width: 7% !important;
+}

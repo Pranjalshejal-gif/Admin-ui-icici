@@ -1,0 +1,29 @@
+mat-form-field {
+    margin-right: 25px;
+}
+
+:host ::ng-deep th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    min-width: 135px;
+}
+
+.gridBox {
+    display: grid;
+    grid-template-columns: 0.8fr 0.8fr;
+}
+
+.heading {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 0px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-family: 'Mulish';
+}
+
+@media screen and (max-width: 800px) {
+    .btn-alignment {
+        display: flex;
+    }
+}

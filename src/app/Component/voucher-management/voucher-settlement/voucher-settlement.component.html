@@ -1,0 +1,29 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Voucher Settlement
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Vouch Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value='P'>Pending</mat-option>
+                    <mat-option value='S'>Settled</mat-option>
+                    <mat-option value='ALL'>All</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="btn-group">
+                <button mat-flat-button class="form-btn" (click)="search()">Search</button>
+                <button mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <div *ngIf="showData">
+        <app-table [dataSource]="dataSource" [tableType]="'permission'" [displayedColumns]="Columns" [searchGrid]="true"
+            (itemSettlementEvent)="openDialog($event)" [voucherSettlement]="true" filterLabel="Filter vouchers"
+            defaultSort="created" matSort>
+        </app-table>
+    </div>
+</div>

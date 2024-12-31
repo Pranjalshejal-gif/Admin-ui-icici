@@ -1,0 +1,7 @@
+<div class="grid-container">
+<!-- <button mat-button class="form-btn" (click)="onAdd()">Add New</button>               -->
+    <app-table *ngIf="showResult" [dataSource]="dataSource" [tableType]="'report'" [displayedColumns]="displayedColumns" [searchGrid]="true" 
+    (itemEditEvent)="edit($event)" (itemDeleteEvent)="delete($event)" [deletable]="true" 
+    (itemAddEvent)="add()" [addNew]="true" [editable]="true" filterLabel="Filter Report">
+    </app-table>
+</div>

@@ -1,0 +1,26 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span class="bulk-upload-alignment" style="display:flex;width:324%;margin-right:left;">
+                <mat-card-title style="width:inherit" class="font-style">Cashback Bulk Upload</mat-card-title>
+                <div class="text-alignment" style="text-align:left;width:100%">
+                    <a href="assets/files/Rewards_Bulk_Upload.xlsx" class="hyperlink" class="form-btn"
+                        mat-raised-button>Download Sample Template</a>
+                </div>
+            </span>
+        </mat-card-header>
+        <mat-card-content style="display: flex;justify-content: space-between;">
+            <span>
+                <input class="font-style" type="file" class="font-style" required autocomplete="off" name="fileName"
+                    (change)=readFile($event) accept=".xlsx" />
+                <button type="button" mat-raised-button class="form-btn" [disabled]="file==null"
+                    (click)="upload()">Upload</button>
+            </span>
+        </mat-card-content>
+    </mat-card>
+    <br />
+</div>
+<div class="grid-container">
+    <app-table *ngIf="showData" [dataSource]="dataSourceCashback" [displayedColumns]="Columns"
+        [searchGrid]="true"></app-table>
+</div>

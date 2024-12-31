@@ -1,0 +1,46 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span class="bulk-upload-alignment" style="display:flex;width:324%;margin-right:left;">
+                <mat-card-title style="width:inherit" class="font-style">Disbursement Bulk Upload</mat-card-title>
+                <div class="text-alignment" style="text-align:right;width:100%">
+                    <a href="assets/files/Disbursement_Bulk_Upload_Template.xlsx" class="hyperlink" class="form-btn"
+                        mat-raised-button>Download Sample Template</a>
+                </div>
+            </span>
+        </mat-card-header>
+        <div>
+            <div class="row">
+                <span class="data-heading"> Merchant Name</span> : <span
+                    class="data-value">{{customer.customerDetails.name}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading">MID </span> : <span class="data-value">{{customer.mid}}</span>
+            </div>
+
+            <div class="row">
+                <span class="data-heading">Wallet Address </span> : <span
+                    class="data-value">{{customer.customerDetails.walletAddress}}</span>
+            </div>
+            <div class="row">
+                <span class="data-heading"> Balance </span> : <span
+                    class="data-value">{{customer.customerDetails.balance}}</span>
+            </div><br>
+        </div>
+
+        <mat-card-content style="display: flex;justify-content: space-between;">
+            <span>
+                <input class="font-style" type="file" class="font-style" required autocomplete="off" name="fileName"
+                    (change)=readFile($event) accept=".xlsx" />
+                <button type="button" mat-raised-button class="form-btn" [disabled]="file==null"
+                    (click)="upload()">Upload</button>
+            </span>
+        </mat-card-content>
+    </mat-card>
+    <br />
+</div>
+<div class="grid-container">
+    <app-table *ngIf="showData" [dataSource]="dataSourceDisbursment" [displayedColumns]="Columns" [searchGrid]="true"
+        defaultSort="created" matSort>
+    </app-table>
+</div>

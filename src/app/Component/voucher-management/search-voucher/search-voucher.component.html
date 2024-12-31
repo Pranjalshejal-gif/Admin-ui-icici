@@ -1,0 +1,30 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Search Voucher
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Vouch Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value='ALL'>ALL</mat-option>
+                    <mat-option value='A'>Active</mat-option>
+                    <mat-option value='U'>Used</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="btn-group">
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+                <button mat-raised-button class="btn-cancel" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </mat-card>
+    <div>
+        <app-table *ngIf="showData" [dataSource]="dataSource" [tableType]="'permission'" [displayedColumns]="Columns"
+            [searchGrid]="true" [editable]="true" [topUp]="true" (itemEditEvent)="edit($event)"
+            (itemTopUpEvent)="topUp($event)" [deletable]="false" [view]="true"
+            (itemVoucherCodeEvent)="openDialog($event)" filterLabel="Filter vouchers" defaultSort="created" matSort>
+        </app-table>
+    </div>
+</div>

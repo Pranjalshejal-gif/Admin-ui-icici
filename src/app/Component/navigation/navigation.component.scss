@@ -1,0 +1,137 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+
+  box-shadow: 3px 0 5px 0px rgb(0 0 0 / 22%);
+}
+
+mat-sidenav,
+mat-sidenav.mat-locked-open,
+mat-sidenav.mat-closed.mat-locked-open-add-active {
+  min-width: 250px !important;
+  width: 85vw !important;
+  max-width: 250px !important;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-list-item-content {
+  padding: 0 8px;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 14px;
+  font-family: "Mulish";
+}
+
+.breadcrumb {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  font-family: "Mulish";
+
+  li {
+    list-style-type: disclosure-closed;
+    margin-left: 30px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  li:first-child {
+    list-style-type: none;
+    margin-left: 0px;
+  }
+}
+
+.mat-expanded.active {
+  border-top-right-radius: 34px !important;
+  border-bottom-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.mat-expansion-panel {
+  box-shadow: none;
+}
+
+.mat-expansion-panel {
+  border-bottom-right-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.mat-expanded.active {
+  border-top-right-radius: 24px !important;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+  height: 48px;
+}
+
+.icon-at-start {
+  margin-right: 5px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 16px;
+  font-family: "Mulish", sans-serif;
+}
+
+.side-nav-item {
+  display: inline-flex;
+  align-items: end;
+}
+
+.anchor {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.noti_icon {
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%),
+    0px 1px 10px 0px rgb(0 0 0 / 12%);
+  padding-right: 3px;
+  vertical-align: text-bottom;
+  display: inline-block;
+}
+
+.toolbar-btn {
+  margin: 0;
+  cursor: pointer;
+  height: inherit;
+  display: inline-block;
+  padding: 0 10px;
+  width: initial;
+}
+
+.btn-icon {
+  font-size: 28px;
+  vertical-align: text-bottom;
+}
+
+.breadcrumb-item {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.breadcrumb-item-last {
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+}

@@ -1,0 +1,7 @@
+<div class="grid-container">
+    <app-table *ngIf="showResult" [dataSource]="dataSource" [tableType]="'institute-app-config'"
+        [displayedColumns]="Columns" [searchGrid]="true" (itemAddEvent)="openDialog()"
+        (itemDeleteEvent)="delete($event)" [addg]="true" [deletable]="true" (itemViewEvent)="view($event)"
+        (itemEditEvent)="edit($event)" [editable]="true" [view]="true" filterLabel="Search Record">
+    </app-table>
+</div>

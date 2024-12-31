@@ -1,0 +1,43 @@
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.mat-form-field {
+  margin-right: 25px;
+  margin-bottom: 8px;
+  font-family: 'Mulish';
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.mat-card{
+  margin-bottom: 1rem;
+}
+table{
+  border: 1px solid black;
+  width: 100%;
+}
+th,td{
+  border: 1px solid black;
+}
+td{
+  padding: 1rem; 
+
+}
+.effective-card{
+  display: flex;
+  align-items: center;
+}

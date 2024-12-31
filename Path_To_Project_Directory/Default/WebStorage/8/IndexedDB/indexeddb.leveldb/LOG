@@ -1,0 +1,6 @@
+2024/12/09-18:22:10.631 c252 Creating DB /home/sarvatra.in/pranjal.shejal/Downloads/rtsp-dashboard-feat-rtsp-dev-icici/Path_To_Project_Directory/Default/WebStorage/8/IndexedDB/indexeddb.leveldb since it was missing.
+2024/12/09-18:22:10.873 c252 Reusing MANIFEST /home/sarvatra.in/pranjal.shejal/Downloads/rtsp-dashboard-feat-rtsp-dev-icici/Path_To_Project_Directory/Default/WebStorage/8/IndexedDB/indexeddb.leveldb/MANIFEST-000001
+2024/12/09-18:22:23.753 c252 Level-0 table #5: started
+2024/12/09-18:22:23.779 c252 Level-0 table #5: 1162 bytes OK
+2024/12/09-18:22:23.780 c252 Delete type=0 #3
+2024/12/09-18:22:23.781 c252 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

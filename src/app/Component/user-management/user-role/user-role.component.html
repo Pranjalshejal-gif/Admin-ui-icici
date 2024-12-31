@@ -1,0 +1,5 @@
+<div class="grid-container">
+    <app-table *ngIf="showResult" [dataSource]="dataSource" [tableType]="'role'" [displayedColumns]="displayedColumns" 
+        [searchGrid]="true" (itemAddEvent)="add()" (itemEditEvent)="edit($event)" (itemViewEvent)="view($event)" (itemDeleteEvent)="delete($event)"
+        [deletable]="true" [addNew]="true" [editable]="true" [view]="true" filterLabel="Filter Roles in Table"></app-table>
+</div>

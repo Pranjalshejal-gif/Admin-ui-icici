@@ -1,0 +1,18 @@
+<div class="grid-container">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let category of reportCategories" (opened)="panelOpen(category)">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="font-style">{{category.title}}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="gridBox" *ngFor="let rep of reportList | reportFilter: category.id">
+        {{rep.length}}
+        <div class="color-grey" *ngIf="rep== -1;else result">Record Not Found</div>
+        <ng-template #result>
+          <div *ngFor="let r of rep.report" style="padding: 0px 0px 5px 0;font-weight: 500;">
+            <a class="hyperlink" (click)="showReport(r, category)">{{r}}</a>
+          </div>
+        </ng-template>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

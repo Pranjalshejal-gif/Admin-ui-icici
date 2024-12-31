@@ -1,0 +1,45 @@
+<div class="grid-container">
+  <mat-card>
+
+    <div> <span class="heading">{{name}}</span></div>
+    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+      <span>
+        <mat-form-field appearance="outline" *ngFor="let field of inputFields">
+          <mat-label>{{field.name}} </mat-label>
+          <input matInput *ngIf="field.type === 'Date' && field.type !== 'String'" [matDatepicker]="datepicker"
+            [max]="today" readonly="true" name="{{field.name}}" [(ngModel)]="teller[field.name]"
+            placeholder="Enter {{field.name}}" required [ngModelOptions]="{standalone: true}">
+          <mat-datepicker-toggle *ngIf="field.type === 'Date'" matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+
+          <input matInput *ngIf="field.type === 'String' && field.type !== 'Date' " name="{{field.name}}"
+            [(ngModel)]="teller[field.name]" placeholder="Enter {{field.name}}" required type="text"
+            [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </span>
+      <div class="gridBox">
+        <div class="justify-content-start">
+          <button type="submit" class="form-btn" mat-raised-button (click)="fetchSampleReport()">SHOW SAMPLE DATA</button>
+          <button class="form-btn" mat-raised-button (click)="back()">BACK</button>
+          <button class="form-btn" mat-raised-button (click)="fetchReportDownload()">DOWNLOAD</button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+  <div style="text-align: right;" *ngIf="showResultDownload">
+    <button type="button" mat-button style="min-width: 0px !important; padding-right: 0;" (click)="exportAsXLSX()">
+      <mat-icon style="color: green;">description</mat-icon>Excel
+    </button>
+    <button type="button" mat-button style="min-width: 0px !important; padding-right: 0;" (click)="downloadAsPDF()">
+      <mat-icon style="color: red;">picture_as_pdf</mat-icon>Pdf
+    </button>
+
+    <button type="button" mat-button style="min-width: 0px !important; padding-right: 0;" (click)="downloadAsCSV()">
+      <mat-icon style="color: blue;">description</mat-icon>Csv
+    </button>
+  </div>
+  <div style="margin-top:15px;" *ngIf="showResult">
+    <app-table [dataSource]="dataSource" [displayedColumns]="fetchReportDataColumns" [tableType]="'report'">
+    </app-table>
+  </div>
+</div>

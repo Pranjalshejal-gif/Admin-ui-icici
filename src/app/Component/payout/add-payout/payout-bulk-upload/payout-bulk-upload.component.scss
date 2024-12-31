@@ -1,0 +1,44 @@
+:host  th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    min-width: 135px;
+}
+
+.mat-card-content {
+    padding: 8px;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 19%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+
+}
+
+.data .mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 800px) {
+    .input-size {
+        width: 200px;
+
+    }
+
+    .bulk-upload-alignment {
+        display: block !important;
+
+    }
+
+    .text-alignment {
+        text-align: left !important;
+    }
+}

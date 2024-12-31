@@ -1,0 +1,32 @@
+.grid-container .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-form-field {
+    margin-right: 8px;
+}
+
+.gridxBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
+    margin-top: 15px;
+}
+
+mat-expansion-panel {
+    margin-bottom: 10px;
+}
+
+.gridBox {
+    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: 'Mulish';
+}
+
+@media screen and (max-width: 800px) {
+    .gridBox {
+        display: block;
+    }
+}

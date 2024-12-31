@@ -1,0 +1,58 @@
+<!-- Search Merchant Screen start-->
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Merchant Search
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>MID</mat-label>
+                <input matInput formControlName="mid" autocomplete="off" name="mid" >
+                <mat-error *ngIf="searchForm?.get('mid')?.hasError('pattern')">
+                    Please enter valid MID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Name</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50">
+                <mat-error *ngIf="searchForm?.get('merchantName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Legal Name</mat-label>
+                <input matInput formControlName="legalName" autocomplete="off" name="legalName" maxlength="50">
+                <mat-error *ngIf="searchForm?.get('legalName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="Merchantsearch()">Search</button>
+            </div>
+        </form>
+    </mat-card>
+    <div>
+        <div>
+
+            <div>
+                <app-table *ngIf="showData" [dataSource]="dataSourceMerchant" [displayedColumns]="Columns"
+                    [searchGrid]="true" (itemAnchorEvent)="addDatainViewProfile($event)" filterLabel="Filter Merchant">
+                </app-table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- Search Merchant Screen End-->
+
+<!-- App/Rej table -->
+<div class="outer-layout" *ngIf="disbursmentData" #target>
+    <app-table [dataSource]="dataSource" [displayedColumns]="ColumnsApprej" [searchGrid]="true" [isCheck]="true"
+        [approveLoad]="true" [rejectLoad]="true" filterLabel="Filter Details in Table" defaultSort="created" matSort>
+    </app-table>
+</div>

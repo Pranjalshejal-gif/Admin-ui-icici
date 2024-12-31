@@ -1,0 +1,21 @@
+<div class="grid-container">
+    <mat-panel-title class="font-style">
+      <h2>Permission Information</h2>
+    </mat-panel-title>
+    <form [formGroup]='addForm'>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Id</mat-label>
+        <input matInput autocomplete="off" formControlName="id">
+      </mat-form-field>
+       <mat-form-field appearance="outline" class="font-style">
+        <mat-label>Name</mat-label>
+        <input matInput autocomplete="off" formControlName="val">
+      </mat-form-field>
+    </form>
+    <br>
+    <div>
+      <button mat-raised-button class="form-btn" (click)="onSubmit()" *ngIf="!isView">Submit</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="!isView">Cancel</button>
+      <button mat-raised-button class="btn-cancel" (click)="onClose()" *ngIf="isView">Back</button>
+    </div>
+  </div>

@@ -1,0 +1,90 @@
+$primary: var(--primary-color);
+.data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.data .mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 19%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.fixed-input {
+    position: fixed;
+    z-index: 999;
+}
+
+.mat-form-field {
+    margin-right: 25px;
+    margin-bottom: 8px;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff;
+}
+
+::ng-deep .mat-select-panel {
+    max-width: 500px !important;
+}
+
+.mat-chip.mat-standard-chip {
+    background-color: $primary ;
+    color: white
+}
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+    color: white;
+    opacity: 1.4;
+}
+
+::ng-deep .input.mat-chip-input {
+    width: 150px;
+    flex: 1 0 150px;
+}
+
+.touch {
+    display: block;
+    color: #f44336;
+    padding-left: 20px !important;
+    font-size: 75%;
+}
+
+.form-padding {
+    margin-right: 25px;
+    margin-bottom: -15px;
+}
+
+.option-css {
+    max-width: 200%;
+    width: 200%;
+}
+
+::ng-deep.mcc-chip-list.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+    height: auto !important;
+}

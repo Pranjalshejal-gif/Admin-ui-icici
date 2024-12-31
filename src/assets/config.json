@@ -1,0 +1,212 @@
+{
+    "name": "ICICI Bank",
+    "welcomeMsg": "Welcome to ICICI Bank BBPS Portal",
+    "logoImg": "assets/imgs/icici-bank-logo.png",
+    "primary_theme_color": "#9e2828",
+    "primary_button_color": "#ff8c0d",
+    "primary_button_text_color": "#fff",
+    "secondry_button_color": "#9e9e9e",
+    "secondry_button_text_color": "#fff",
+    "nav_btn_color": "#0a3c5f",
+    "nav_btn_text_color": "#fff",
+    "nav_btn_padding_color": "#eb7d1f",
+    "nav_icon_text_color": "rgba(0, 0, 0, 0.87)",
+    "nav_icon_text_color_active": "#fff",
+    "nav_bg_color": "#fff",
+    "nav_text_color": "rgba(0, 0, 0, 0.87)",
+    "nav_hover_color": "rgba(0, 0, 0, 0.04)",
+    "flagImg": "",
+    "portalImg": "",
+    "id": "iciciBank",
+    "customLoginPage": false,
+    "loginInputBox": "outline",
+    "loginBtnTxt": "Login",
+    "dateFormatForReports": "DD-MMM-yyyy",
+    "dateFormatForTxn": "DD/MM/yyyy",
+    "dayDiffForSearchCriteria": 7,
+    "uiVersion": "1.3.0",
+    "autoRefreshTime": "3",
+    "gffPreloadAmount": false,
+    "sidemenu_item": [
+        {
+            "displayName": "Dashboad",
+            "iconName": "home",
+            "route": "/dashboard",
+            "selfRoute": true
+        },
+        {
+            "displayName": "Search ",
+            "iconName": "manage_search",
+            "route": "/search-transactions",
+            "selfRoute": false,
+            "permission": "manage-tokensearch,view-tokensearch",
+            "children": [
+                {
+                    "displayName": "Transaction",
+                    "iconName": "manage_search",
+                    "route": "/search-transactions",
+                    "permission": "manage-tokensearch,view-tokensearch"
+                },
+                {
+                    "displayName": "Biller",
+                    "iconName": "manage_search",
+                    "route": "/biller-search",
+                    "permission": "manage-tokensearch,view-tokensearch"
+                },
+                {
+                    "displayName": "Agent",
+                    "iconName": "manage_search",
+                    "route": "/search-Agent",
+                    "permission": "manage-permission,view-permission"
+                },
+
+                {
+                    "displayName": "AI",
+                    "iconName": "manage_search",
+                    "route": "/Ai-search",
+                    "permission": "manage-permission,view-permission"
+                },
+
+                {
+                    "displayName":"Customer",
+                    "iconName":"person_search",
+                    "route":"/search-customers",
+                    "selfRoute":true,
+                    "permission":"manage-customersearch,view-customersearch"
+
+                }
+            ]
+        },
+       
+
+        {
+            "displayName": "User Management",
+            "iconName": "manage_accounts",
+            "route": "/user-management",
+            "selfRoute": false,
+            "permission": "manage-user,view-user,manage-role,view-role,manage-permission,view-permission",
+            "children": [
+                {
+                    "displayName": "User Search",
+                    "iconName": "person",
+                    "route": "/user-management/user",
+                    "permission": "manage-user,view-user"
+                },
+                {
+                    "displayName": "Role",
+                    "iconName": "lan",
+                    "route": "/user-management/role",
+                    "permission": "manage-role,view-role"
+                },
+                {
+                    "displayName": "Permission",
+                    "iconName": "lock",
+                    "route": "/user-management/permission",
+                    "permission": "manage-permission,view-permission"
+                }
+            ]
+        },
+        {
+            "displayName": "MDM",
+            "iconName": "articleicon",
+            "route": "/mdm",
+            "selfRoute": false,
+            "permission": "manage-user,view-user,manage-role,view-role,manage-permission,view-permission",
+            "children": [
+                {
+                    "displayName": "Biller",
+                    "iconName": "personicon",
+                    "route": "/mdm/biller",
+                    "permission": "manage-user,view-user"
+                },
+                {
+                    "displayName": "Agent",
+                    "iconName": "settingsapplicationsicon",
+                    "route": "MDM/Agent",
+                    "permission": "manage-role,view-role"
+                },
+                {
+                    "displayName": "Plan",
+                    "iconName": "editcalendaricon",
+                    "route": "/mdm/plan",
+                    "permission": "manage-permission,view-permission"
+                }
+            ]
+        },
+         
+        
+        {
+            "displayName": "Biller",
+            "iconName": "account_balance",
+            "route": "/biller",
+            "selfRoute": false,
+            "permission": "manage-merchant,view-merchant,manage-bulk-file-upload",
+            "children": [
+                {
+                    "displayName": "Biller Onboarding",
+                    "iconName": "library_add",
+                    "route": "/biller-onboarding",
+                    "permission": "manage-merchant,manage-bulk-file-upload"
+                },
+               
+                {
+                    "displayName": "Channel Onboarding",
+                    "iconName": "launch",
+                    "route": "/channel-onboarding",
+                    "permission": "view-merchant"
+                }
+            ]
+        },
+        {
+            "displayName": "Dispute Management",
+            "iconName": "people",
+            "route": "/dispute-management",
+            "selfRoute": true,
+            "permission": "manage-dispute,view-dispute"
+        },
+        {
+            "displayName": "Reports",
+            "iconName": "list_alt",
+            "route": "/reports",
+            "selfRoute": false,
+            "permission": "view-report,manage-report,view-reportcategory,manage-reportcategory,view-task,manage-task,view-scheduler,manage-scheduler",
+            "children": [
+                {
+                    "displayName": "Reports Admin",
+                    "iconName": "notes",
+                    "route": "/reports/reports-admin",
+                    "permission": "manage-report"
+                },
+                {
+                    "displayName": "View Report",
+                    "iconName": "article",
+                    "route": "/reports/view-report",
+                    "permission": "view-report,manage-report"
+                },
+                {
+                    "displayName": "Report Category",
+                    "iconName": "category",
+                    "route": "/reports/report-category",
+                    "permission": "view-reportcategory,manage-reportcategory"
+                },
+                {
+                    "displayName": "Report History",
+                    "iconName": "event_note",
+                    "route": "reports/scheduled-reports",
+                    "permission": "view-report"
+                }
+            ]
+        } 
+        ,
+        {
+            "displayName": "Institute-Config",
+            "iconName": "manage_search",
+            "route": "/meta-config",
+            "selfRoute": true,
+            "permission": "view-institute-app-config,manage-institute-app-config"
+        }
+           
+        
+      
+    ]
+}

@@ -1,0 +1,569 @@
+<div class="outer-layout" #top>
+    <mat-card>
+        <div>
+            <form [formGroup]="addForm">
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Primary Details :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Expiry Date</mat-label>
+                        <input matInput [matDatepicker]="datepicker" formControlName="expiry" [min]="today"
+                            [max]="minDate" autocomplete="off">
+                    <mat-hint>{{dateFormatHint}}</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker></mat-datepicker>
+                        <mat-error *ngIf="addForm.controls['expiry'].hasError('required')">
+                            Date is required.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Auth Type</mat-label>
+                        <mat-select formControlName="authType">
+                            <mat-option value="UID">UID</mat-option>
+                            <mat-option value="DEBIT_CARD">DEBIT_CARD</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="addForm.controls['authType'].hasError('required')">
+                            Please select authentication type.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sponsor Name</mat-label>
+                        <input type="text" matInput formControlName="sponsorName" #sponsorInput [matAutocomplete]="sponsorDetail"
+                            (input)="onSponsorType()">
+                        <mat-autocomplete #sponsorDetail="matAutocomplete" (optionSelected)="selectedSponsor($event)">
+                            <mat-option class="option-css" *ngFor="let sponsor of filteredSponsorList" value="{{sponsor.name}}"
+                                (click)="showSponsorID(sponsor.id)">
+                                {{ sponsor.name }} - {{ sponsor.wallet }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="addForm.controls['sponsorName'].hasError('required')">
+                            Please select sponsor name.
+                        </mat-error>
+                    </mat-form-field>
+                    <span *ngIf="isSponsorNameAvailable">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sponsor ID</mat-label>
+                            <input matInput formControlName="sponsorId" readonly />
+                        </mat-form-field>
+                    </span>
+                    <br>
+                </div>
+                <hr>
+                <div>
+                    <form [formGroup]="mccForm">
+                        <mat-card-header>
+                            <mat-card-title>
+                                <br>
+                                Add MCC :
+                            </mat-card-title>
+                        </mat-card-header>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Select MCC : </label>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline" class="mcc-chip-list">
+                                    <mat-label>Select MCC</mat-label>
+                                    <mat-chip-list #mccChipList>
+                                        <mat-chip *ngFor="let mcc of selectedMCCList" (removed)="removeMcc(mcc)">
+                                            {{ mcc }}
+                                            <button matChipRemove>
+                                                <mat-icon>cancel</mat-icon>
+                                            </button>
+                                        </mat-chip>
+                                        <input type="text" placeholder="Select MCC" matInput #mccInput
+                                            formControlName="mccListCode" (input)="onSelectMCC()"
+                                            [matAutocomplete]="mcc" [matChipInputFor]="mccChipList"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                                    </mat-chip-list>
+                                    <mat-autocomplete #mcc="matAutocomplete" (optionSelected)="selectedMcc($event)">
+                                        <mat-option class="option-css" *ngFor="let mcc of filteredMCCList"
+                                            [value]="mcc.nameDescription">
+                                            {{ mcc.nameDescription }} - {{mcc.mccCategory}} - {{mcc.mccLlCategory}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <hr class="dashedhr">
+                        <br>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Bulk MCC's : </label>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Bulk MCC's</mat-label>
+                                    <textarea matInput formControlName="mccTextCode" placeholder="Bulk MCC's" matInput
+                                        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10" cdkTextareaAutosize></textarea>
+                                    <mat-hint>MCC's must be comma separated.</mat-hint>
+                                    <mat-error *ngIf="mccForm?.get('mccTextCode')?.hasError('pattern')">
+                                        Please enter valid Mcc.
+                                    </mat-error>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <br>
+                <form [formGroup]="acceptanceForm">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Add Acceptance :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div class="row">
+                        <span class="data-heading">
+                            <label>UPI VPA / CBDC VPA : </label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>UPI VPA / CBDC VPA</mat-label>
+                                <input matInput formControlName="VPA" autocomplete="off">
+                                <mat-error *ngIf="acceptanceForm?.get('VPA')?.hasError('pattern')">
+                                    Please enter valid VPA
+                                </mat-error>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">
+                            <label>CBDC WALLET : </label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>CBDC WALLET</mat-label>
+                                <input matInput formControlName="WALLET" autocomplete="off">
+                                <mat-error *ngIf="acceptanceForm?.get('WALLET')?.hasError('pattern')">
+                                    Please enter valid CBDC WALLET.
+                                </mat-error>
+                                <mat-error *ngIf="acceptanceForm?.get('WALLET')?.hasError('minlength')">
+                                    Please enter a valid CBDC WALLET min length.
+                                </mat-error>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                </form>
+                <hr>
+                <br>
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Add Location :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div mat-dialog-action [align]="'right'">
+                        <button mat-raised-button type="button" class="form-btn add-btn" type="button"
+                            *ngIf="grpCounter < 5" (click)="addLocation()">Add Row</button>
+                        <button mat-raised-button class="form-btn add-btn" type="button" *ngIf="grpCounter >1"
+                            (click)="removeLocation()">Remove Row</button>
+                    </div>
+                    <h3>Added Location Row {{grpCounter}} of 5 </h3>
+                    <form [formGroup]="locationForm1">
+                        <div *ngIf="grpCounter >0">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state1"
+                                    (input)="onStateType1()" (click)="reset1()">
+                                <mat-autocomplete #state1="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates1" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city1"
+                                    (input)="onCityType1()" (click)="onStateSelected1()">
+                                <mat-autocomplete #city1="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities1" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm1?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm2">
+                        <div *ngIf="grpCounter >1">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state2"
+                                    (input)="onStateType2()" (click)="reset2()">
+                                <mat-autocomplete #state2="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates2" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city2"
+                                    (input)="onCityType2()" (click)="onStateSelected2()">
+                                <mat-autocomplete #city2="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities2" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput type="text" formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm2?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm3">
+                        <div *ngIf="grpCounter >2">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state3"
+                                    (input)="onStateType3()" (click)="reset3()">
+                                <mat-autocomplete #state3="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates3" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city3"
+                                    (input)="onCityType3()" (click)="onStateSelected3()">
+                                <mat-autocomplete #city3="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities3" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm3?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm4">
+                        <div *ngIf="grpCounter >3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state4"
+                                    (input)="onStateType4()" (click)="reset4()">
+                                <mat-autocomplete #state4="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates4" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city4"
+                                    (input)="onCityType4()" (click)="onStateSelected4()">
+                                <mat-autocomplete #city4="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities4" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm4?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <form [formGroup]="locationForm5">
+                        <div *ngIf="grpCounter >4">
+                            <mat-form-field appearance="outline">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput formControlName="state" [matAutocomplete]="state5"
+                                    (input)="onStateType5()" (click)="reset5()">
+                                <mat-autocomplete #state5="matAutocomplete">
+                                    <mat-option *ngFor="let state of filteredStates5" [value]="state.stateName">
+                                        {{ state.stateName }}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput formControlName="city" [matAutocomplete]="city5"
+                                    (input)="onCityType5()" (click)="onStateSelected5()">
+                                <mat-autocomplete #city5="matAutocomplete">
+                                    <mat-option *ngFor="let city of filteredCities5" [value]="city.cityName">
+                                        {{city.cityName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Radius</mat-label>
+                                <input matInput formControlName="bufferZone" autocomplete="off" OnlyNumber>
+                                <mat-error *ngIf="locationForm5?.get('bufferZone')?.hasError('pattern')">
+                                    Radius must be in between 50 to 100
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <br>
+                <div>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Add Denomination :
+                        </mat-card-title>
+                    </mat-card-header>
+                    <div class="gridBox">
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue0_5')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor0_5" placeholder="0" autocomplete="off"
+                                        name="countfor0_5" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount0_5"
+                                        name="totalQuantityAmount0_5" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue1')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor1" placeholder="0" autocomplete="off"
+                                        name="countfor1" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount1"
+                                        name="totalQuantityAmount1" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue2')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor2" placeholder="0" autocomplete="off"
+                                        name="countfor2" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount2"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue5')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor5" placeholder="0" autocomplete="off"
+                                        name="countfor5" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount5"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue10')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor10" placeholder="0" autocomplete="off"
+                                        name="countfor10" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount10"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue20')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor20" placeholder="0" autocomplete="off"
+                                        name="countfor20" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount20"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue50')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor50" placeholder="0" autocomplete="off"
+                                        name="countfor50" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount50"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue100')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor100" placeholder="0" autocomplete="off"
+                                        name="countfor100" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount100"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue200')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor200" placeholder="0" autocomplete="off"
+                                        name="countfor200" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount200"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="data-heading">
+                                <label>Denomination : e₹</label>
+                                <span>{{addForm.get('fixedValue500')?.value}}</span>
+                            </span>
+                            <span class="data-value">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Add Required Quantity </mat-label>
+                                    <input matInput formControlName="countfor500" placeholder="0" autocomplete="off"
+                                        name="countfor500" minlength="1" maxlength="7" OnlyNumber>
+                                </mat-form-field>
+                            </span>
+                            <span class="data-heading">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Total Quantity Amount</mat-label>
+                                    <input matInput autocomplete="off" formControlName="totalQuantityAmount500"
+                                        name="totalQuantityAmount" readonly />
+                                    <span matPrefix>e₹&nbsp;&nbsp;</span>
+                                </mat-form-field>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading" style="font-size: larger;">
+                            <label>Total Amount:</label>
+                        </span>
+                        <span class="data-value">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Total Amount</mat-label>
+                                <input matInput autocomplete="off" formControlName="totalAmount" name="totalAmount"
+                                    readonly />
+                                <span matPrefix>e₹&nbsp;&nbsp;</span>
+                            </mat-form-field>
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <button mat-raised-button type="submit" class="form-btn" (click)="save()">Create</button>
+                    <button type="button" mat-raised-button class="btn-cancel" (click)="onClose()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>

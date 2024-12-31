@@ -1,0 +1,38 @@
+.box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.mat-form-field {
+    margin-right: 20px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff;
+}
+
+/* .gridBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
+:host ::ng-deep th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+    min-width: 135px;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}
+
+
+@media screen and (max-width: 800px) {
+    .mat-stepper-alignment {
+        width: 520px !important;
+        font-family: 'Mulish';
+    }
+
+    .box {
+        overflow-x: auto !important;
+    }
+}

@@ -1,0 +1,145 @@
+mat-form-field {
+    margin-right: 8px;
+    font-family: 'Mulish';
+}
+
+h1 {
+    margin: 0;
+}
+
+.form-btn-group {
+    margin: 10px 0;
+    display: block;
+    text-align: center;
+    display: inline-block;
+
+    .form-btn {
+        padding: 0 10px;
+    }
+}
+
+.form-btn {
+    margin: 10px 0;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+mat-dialog-actions {
+    float: right;
+    min-height: 25px;
+}
+
+.onlyPrint {
+    display: none;
+}
+
+.heading {
+    color: #0d65a5;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.link {
+    display: flex;
+    font-size: 12px;
+}
+
+.panel {
+    display: flex;
+
+    .leftPanel {
+        flex: 1;
+    }
+
+    .rightPanel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .sidePanel {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+    }
+}
+
+.poweredBy {
+    text-transform: uppercase;
+    color: red;
+}
+
+.flex {
+    display: flex;
+
+    .leftLogo,
+    .rightLogo {
+        flex: 1;
+        text-align: left;
+    }
+
+    img {
+        height: 35px;
+    }
+
+    .rightLogo {
+        text-align: right;
+    }
+}
+
+.node {
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(4, 4, 118, 0.6171510840664391) 43%, rgba(25, 84, 206, 1) 100%);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+
+    h2 {
+        color: #fff;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    .scan {
+        text-transform: uppercase;
+        background-color: red;
+        border-radius: 10px;
+        padding: 4px 8px;
+        margin-bottom: 10px;
+        display: inline-block;
+        text-transform: uppercase;
+    }
+}
+
+@media print {
+    .noPrint {
+        display: none;
+    }
+
+    .printableArea {
+        display: block;
+    }
+
+    .onlyPrint {
+        display: block;
+    }
+
+    .node {
+        background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(4, 4, 118, 0.6171510840664391) 43%, rgba(25, 84, 206, 1) 100%) !important;
+        print-color-adjust: exact;
+    }
+}
+
+.mat-dialog-container {
+    padding-top: 10px;
+    padding-bottom: 15px;
+}

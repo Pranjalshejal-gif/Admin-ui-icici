@@ -1,0 +1,52 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit">Edit Voucher</mat-card-title>
+            </span>
+        </mat-card-header>
+        <form [formGroup]="updateVoucherForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Voucher Code</mat-label>
+                <input matInput formControlName="code" class="disabled" readonly>
+            </mat-form-field>
+            <span *ngIf="gffPreloadAmount">
+                <mat-form-field appearance="outline">
+                    <mat-label>Voucher Amount</mat-label>
+                    <input matInput matInput autocomplete="off" minlength="1" maxlength="10" OnlyNumber
+                        formControlName="amount">
+                    <mat-error *ngIf="updateVoucherForm.controls['amount'].hasError('required')">
+                        Voucher Amount is required.
+                    </mat-error>
+                    <mat-error *ngIf="updateVoucherForm.controls['amount'].hasError('pattern')">
+                        Voucher Amount must be non zero number.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Reference ID</mat-label>
+                    <input matInput formControlName="refId" RestrictSpecialCharacters>
+                    <mat-error *ngIf="updateVoucherForm.controls['refId'].hasError('required')">
+                        Voucher Reference ID is required.
+                    </mat-error>
+                    <mat-error *ngIf="updateVoucherForm.controls['refId'].hasError('pattern')">
+                        Please enter valid inputs.
+                    </mat-error>
+                </mat-form-field>
+            </span>
+            <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="updateVoucherForm.controls['email'].hasError('required')">
+                    Email is required.
+                </mat-error>
+                <mat-error *ngIf="updateVoucherForm.controls['email']?.hasError('pattern')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="onSubmit()">Submit</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="back()">Back</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

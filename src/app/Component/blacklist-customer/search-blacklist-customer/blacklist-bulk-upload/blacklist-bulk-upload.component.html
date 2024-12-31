@@ -1,0 +1,24 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <span class="bulk-upload-alignment" style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit">Customer Bulk Upload</mat-card-title>
+                <div class="text-alignment" style="text-align:right;width:100%">
+                    <a href="assets/files/Customer_BlacklistMobile_Template.xlsx" class="hyperlink" class="form-btn"
+                        mat-raised-button>Download Sample Template</a>
+                </div>
+            </span>
+        </mat-card-header>
+        <mat-card-content style="display: flex;justify-content: space-between;">
+            <span>
+                <input type="file" class="input-size" required autocomplete="off" name="fileName"
+                    (change)=readFile($event) accept=".xlsx" />
+                <button type="button" mat-raised-button class="form-btn" [disabled]="file==null"
+                    (click)="upload()">Upload</button>
+            </span>
+        </mat-card-content>
+    </mat-card>
+    <br />
+    <app-table *ngIf="showData" [dataSource]="fileData" [displayedColumns]="columns">
+    </app-table>
+</div>

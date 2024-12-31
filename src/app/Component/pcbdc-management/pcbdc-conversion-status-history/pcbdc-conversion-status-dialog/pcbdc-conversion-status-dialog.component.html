@@ -1,0 +1,25 @@
+<div class="box">
+    <div class="relative">
+        <button mat-icon-button class="close-button noPrint" [mat-dialog-close]="true">
+            <mat-icon class="close-icon" (click)="onClose()">close</mat-icon>
+        </button>
+        <h2>Requisition Status</h2>
+        <div *ngFor="let status of statusArray">
+            <h4>{{ status.status }} :</h4>
+            <div class="flex">
+                <span class="data-heading">Amount</span>:
+                <span class="data-value">{{ status.amount | json }}</span>
+            </div>
+            <div class="flex" *ngIf="status.reasons.length >0">
+                <span class="data-heading">Reasons</span>:
+                <span class="data-value">{{ status.reasons }}</span>
+            </div>
+            <div class="flex">
+                <span class="data-heading">Denominations</span>:
+                <span class="data-value">{{ status.denominations | json }}</span>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <br>
+</div>

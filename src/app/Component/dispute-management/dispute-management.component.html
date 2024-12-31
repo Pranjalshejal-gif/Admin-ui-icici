@@ -1,0 +1,4 @@
+<div class="outer-layout">
+    <app-table [dataSource]="dataSource" [displayedColumns]="Columns" [tableType]="'dispute'"
+    [searchGrid]="true" (itemCustomerEvent)="openDialog($event)" filterLabel="Filter Details in Table"></app-table>
+</div>

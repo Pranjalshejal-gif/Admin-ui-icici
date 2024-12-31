@@ -1,0 +1,8 @@
+<div class="grid-container">
+    <app-table *ngIf="showResult" [dataSource]="userData" [tableType]="'user'" [displayedColumns]="columns" 
+        [searchGrid]="true" (itemEditEvent)="edit($event)" (itemDeleteEvent)="delete($event)" (itemViewEvent)="view($event)"
+        (itemUnlockEvent)="unlock($event)" [deletable]="true" [editable]="true" [blockable]="true"
+        [addNew]="true" [view]="true" (itemAddEvent)="add()" filterLabel="Filter Users in Table"></app-table>
+</div>
+  
+   

@@ -1,0 +1,175 @@
+<!-- Search Merchant Screen start-->
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Merchant Search
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>MID</mat-label>
+                <input matInput formControlName="mid" autocomplete="off" name="mid">
+                <mat-error *ngIf="searchForm?.get('mid')?.hasError('pattern')">
+                    Please enter valid MID
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Merchant Name</mat-label>
+                <input matInput formControlName="merchantName" autocomplete="off" name="merchantName" maxlength="50">
+                <mat-error *ngIf="searchForm?.get('merchantName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Legal Name</mat-label>
+                <input matInput formControlName="legalName" autocomplete="off" name="legalName" maxlength="50">
+                <mat-error *ngIf="searchForm?.get('legalName')?.hasError('pattern')">
+                    Please Enter Minimum 3 Characters
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="searchmerchant()">Search</button>
+                <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+
+            </div>
+        </form>
+    </mat-card>
+    <div>
+        <div>
+
+            <div>
+                <app-table *ngIf="showData" [dataSource]="dataSourceMerchant" [displayedColumns]="Columns"
+                    [searchGrid]="true" (itemAnchorEvent)="addDatainViewProfile($event)" filterLabel="Filter Merchant">
+                </app-table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- Search Merchant Screen End-->
+
+<!--  Add Disbursment Screen Start -->
+<div class="outer-layout" *ngIf="disbursmentData" #target>
+    <mat-card>
+        <mat-card-header>
+            <span style="display:flex;width:100%;">
+                <mat-card-title style="width:inherit">Add Payout</mat-card-title>
+                <div *checkRole="'manage-disbursement-bulk-file-upload'">
+                    <div style="text-align:right;width:100%">
+                        <a (click)="bulkUpload()" class="hyperlink" class="form-btn" mat-raised-button>Bulk Upload</a>
+                    </div>
+                </div>
+            </span>
+        </mat-card-header>
+        <div class="gridBox">
+            <form [formGroup]="firstFormGroup">
+                <div>
+                    <div class="row">
+                        <span class="data-heading"> Merchant Name</span> : <span
+                            class="data-value">{{customer.customerDetails.name}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading"> Mobile No.</span> : <span
+                            class="data-value">{{customer.customerDetails.mobile |slice:
+                            1}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">MID </span> : <span class="data-value">{{customer.mid}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading">Wallet Address </span> : <span
+                            class="data-value">{{customer.customerDetails.walletAddress}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="data-heading"> Balance </span> : <span
+                            class="data-value">{{customer.customerDetails.balance}}</span>
+                    </div><br>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Transaction Type </mat-label>
+                        <mat-select formControlName="txnType">
+                            <mat-option value="PAYOUT">PAYOUT</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Display input fields conditionally for REFUND -->
+                    <div *ngIf="firstFormGroup.get('txnType')?.value === 'REFUND'">
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Payee VPA</mat-label>
+                            <input matInput formControlName="payeeVPA" />
+                            
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Refund Org TxnId</mat-label>
+                            <input matInput formControlName="refundOrgTxnId" />
+                            
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Refund Org MerchantRef</mat-label>
+                            <input matInput formControlName="refundOrgMerchantRef" />
+                           
+                        </mat-form-field>
+                    </div><br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Amount</mat-label>
+                        <input matInput autocomplete="off" min="0.5" formControlName="amount" minlength="1"
+                            maxlength="7" />
+                        <span matPrefix>e₹&nbsp;&nbsp;</span>
+                        <mat-error *ngIf="firstFormGroup?.get('amount')?.hasError('pattern')">
+                            Please enter valid Amount
+                        </mat-error>
+                        <mat-error *ngIf="firstFormGroup?.get('amount')?.hasError('required')">
+                            Amount is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Payee Mobile</mat-label>
+                        <input matInput name="payeeMobile" autocomplete="off" OnlyNumber formControlName="payeeMobile"
+                            maxlength="10">
+                        <mat-error *ngIf="firstFormGroup?.get('payeeMobile')?.hasError('pattern')">
+                            Please enter valid Mobile Number
+                        </mat-error>
+                        <mat-error *ngIf="firstFormGroup?.get('payeeMobile')?.hasError('required')">
+                            Payee Mobile is required
+                        </mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Payee Wallet Address</mat-label>
+                        <input matInput formControlName="payeeWalletAddress" autocomplete="off" name="payeeWalletAddress">
+                        <mat-error *ngIf="firstFormGroup?.get('payeeWalletAddress')?.hasError('required')">
+                            Payee Wallet Address is required
+                        </mat-error>
+
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <input matInput formControlName="remarks" autocomplete="off" name="remarks">
+                        <mat-error *ngIf="firstFormGroup?.get('remarks')?.hasError('minlength')" style="position:fixed">
+                            Min 5 words allowed.
+                        </mat-error>
+                        <mat-error *ngIf="firstFormGroup?.get('remarks')?.hasError('maxlength')" style="position:fixed">
+                            Max 50 words allowed.
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <button type="submit" mat-raised-button class="form-btn" (click)="submit()">Submit</button>
+                    <button type="reset" mat-raised-button class="btn-cancel">Reset</button>
+                </div>
+            </form>
+        </div>
+
+    </mat-card>
+</div>
+<!--  Add Disbursment Screen End -->

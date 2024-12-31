@@ -1,0 +1,51 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Cashback History
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="searchForm">
+            <mat-form-field appearance="outline">
+                <mat-label>From Date</mat-label>
+                <input matInput [matDatepicker]="startdatepicker" (dateChange)="dateChange($event)" required
+                    formControlName="fromDate" autocomplete="off" name="startDate" [max]="today" [readonly]="true">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #startdatepicker></mat-datepicker>
+                <mat-error *ngIf="searchForm.controls['fromDate'].hasError('required')">
+                    Start Date is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <input matInput [matDatepicker]="enddatepicker" formControlName="toDate" autocomplete="off" required
+                    name="endDate" [readonly]="true" [min]="minDate" [max]="today">
+                <mat-hint>{{dateFormatHint}}</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #enddatepicker></mat-datepicker>
+                <mat-error *ngIf="searchForm.controls['toDate'].hasError('required')">
+                    End Date is required.
+                </mat-error>
+            </mat-form-field>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Transaction Type </mat-label>
+                    <mat-select formControlName="txnType" required>
+                        <mat-option value="ALL">ALL</mat-option>
+                        <mat-option value="CashBack">CashBack</mat-option>
+
+                    </mat-select>
+                    <mat-error *ngIf="searchForm.controls['txnType'].hasError('required')">
+                        Transaction Type is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="btn-group">
+                <button mat-raised-button class="form-btn" (click)="search()">Search</button>
+            </div>
+        </form>
+    </mat-card>
+    <app-table *ngIf="showData" [dataSource]="txnData" [displayedColumns]="Columns" [searchGrid]="true"
+        filterLabel="Filter Transaction Data" matSortActive="createdDate" matSort></app-table>
+</div>

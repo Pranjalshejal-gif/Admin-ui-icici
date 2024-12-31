@@ -1,0 +1,242 @@
+.data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.data mat-grid-tile {
+    flex: 1;
+    max-width: 300px;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: center;
+}
+
+.data-value {
+    display: inline-block;
+    width: 88%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: small;
+    word-wrap: break-word;
+}
+
+.data-heading {
+    display: inline-block;
+    width: 17%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: larger;
+}
+
+.data-heading-total {
+    display: inline-block;
+    width: 12%;
+    padding-bottom: 3px;
+    font-weight: 500;
+    color: #000000a8;
+    font-size: 13.5px;
+
+}
+
+.readonly {
+    color: #000000a8;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.fixed-input {
+    position: fixed;
+    z-index: 999;
+}
+
+.mat-form-field {
+    margin-right: 25px;
+    margin-bottom: 8px;
+}
+
+.data-headingg {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    padding-right: 10%;
+    text-align: left;
+    padding-top: 4%;
+    font-size: medium;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #fff;
+}
+
+/* Add these styles to your component's CSS or a global stylesheet */
+
+.mat-elevation-z8 {
+    overflow-x: auto;
+    /* Enable horizontal scrolling on small screens */
+}
+
+/* Adjust cell padding for smaller screens */
+.mat-cell,
+.mat-header-cell {
+    padding: 8px;
+}
+
+/* Make the table layout responsive */
+@media screen and (max-width: 600px) {
+    .mat-elevation-z8 {
+        overflow-x: auto;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+        padding: 4px;
+    }
+
+    /* Hide some columns on small screens if necessary */
+    .mat-header-row .mat-header-cell:nth-child(2),
+    .mat-row .mat-cell:nth-child(2) {
+        display: none;
+    }
+
+    .mat-header-row .mat-header-cell:nth-child(3),
+    .mat-row .mat-cell:nth-child(3) {
+        display: none;
+    }
+
+    /* Add more nth-child rules for other columns as needed */
+}
+
+/* Add these styles to your component's CSS or a global stylesheet */
+.center {
+    text-align: left;
+}
+
+mat-dialog-actions {
+    float: right;
+    min-height: 25px;
+}
+
+.onlyPrint {
+    display: none;
+}
+
+.heading {
+    color: #0d65a5;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.link {
+    display: flex;
+    font-size: 12px;
+}
+
+.panel {
+    display: flex;
+
+    .leftPanel {
+        flex: 1;
+    }
+
+    .rightPanel {
+        flex: 1;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .section {
+        position: relative;
+    }
+
+    .panel {
+        display: block;
+    }
+
+    .close-button {
+        right: -14px;
+        top: -14px;
+    }
+}
+
+.mat-divider.mat-divider-vertical {
+    border-top: 0;
+    border-right-width: 5px;
+    border-right-style: solid;
+    border-right-style: dashed;
+}
+
+.data-heading {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    padding-left: 10%;
+    text-align: left;
+}
+
+.data-head {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    // padding-right: 50%;
+    text-align: left;
+    // padding-top: 7%;
+}
+
+.data-val {
+    padding-left: 5%;
+}
+
+
+.all {
+    text-align: left;
+    display: flex;
+
+    .leftPanel {
+        flex: 1;
+    }
+
+    .rightPanel {
+        flex: 1;
+    }
+}
+
+
+/* Adjust styles for smaller screens */
+@media screen and (max-width: 600px) {
+    .gridBox {
+        grid-template-columns: 1fr;
+    }
+}
+
+.data-headingcard[_ngcontent-emv-c334] {
+    display: inline-block;
+    font-weight: 500;
+    color: #000000DE;
+    font-size: inherit;
+    padding-left: 10%;
+    text-align: left;
+}
+
+::ng-deep .mat-select-panel {
+    width: 400px;
+}
+
+::ng-deep .mat-select-panel {
+    max-width: 500px !important;
+}

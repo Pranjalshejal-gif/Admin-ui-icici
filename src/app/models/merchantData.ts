@@ -1,0 +1,21 @@
+export interface MerchantData {
+    externalMid:number,
+    externalTid:number,
+    name:string,
+    legalName: string,
+    contactNumber:number,
+    registeredContactNumber:number,
+    email:string,
+    mcc:string,
+    bankAccount:number,
+    ifsc:string,
+    pan:string,
+    walletId:string,
+    boardingType:string,
+    ownershipType:string,
+    registeredAddress:string,
+    inwardCollectionAllowed:boolean,
+    outwardTransaction:boolean,
+    refundAllowed:boolean,
+    sweepBalance:boolean
+}

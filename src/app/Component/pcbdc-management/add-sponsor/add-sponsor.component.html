@@ -1,0 +1,93 @@
+<div class="outer-layout">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Sponsor Creation
+            </mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="addForm">
+            <mat-form-field appearance="outline">
+                <mat-label>MCC</mat-label>
+                <input type="text" matInput formControlName="nameDescription" #mccInput [matAutocomplete]="mcc"
+                    (input)="onSelectMCC()">
+                <mat-autocomplete #mcc="matAutocomplete">
+                    <mat-option class="option-css" *ngFor="let mcc of filteredMCCList" value="{{mcc.nameDescription}}">
+                        {{ mcc.nameDescription }} - {{mcc.mccCategory}} - {{mcc.mccLlCategory}}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="addForm.controls['nameDescription'].hasError('required')">
+                    Please select MCC.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobile" autocomplete="off" name="mobile" minlength="10" maxlength="10"
+                    OnlyNumber>
+                <mat-error *ngIf="addForm?.get('mobile')?.hasError('pattern')">
+                    Please enter valid 10-digit mobile number.
+                </mat-error>
+                <mat-error *ngIf="addForm?.get('mobile')?.hasError('required')">
+                    Please enter mobile number.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Sponsor Name</mat-label>
+                <input matInput formControlName="sponsorsName" autocomplete="off" name="sponsorsName">
+                <mat-error *ngIf="addForm?.get('sponsorsName')?.hasError('pattern')">
+                    Special characters are not allowed and length must be in between 3-50.
+                </mat-error>
+                <mat-error *ngIf="addForm?.get('sponsorsName')?.hasError('required')">
+                    Please enter sponsor name.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Sponsor Type </mat-label>
+                <mat-select required formControlName="type">
+                    <mat-option value="PUBLIC">PUBLIC</mat-option>
+                    <mat-option value="PRIVATE">PRIVATE</mat-option>
+                    <mat-option value="OTHERS">OTHERS</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addForm?.get('type')?.hasError('required')">
+                    Please select sponsor type.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Bank Account</mat-label>
+                <input matInput formControlName="account" RestrictSpecialCharacters minlength="1" maxlength="30"
+                    autocomplete="off" name="account" OnlyNumber>
+                <mat-error *ngIf="addForm?.get('account')?.hasError('minlength')">
+                    Please enter a valid account number.
+                </mat-error>
+                <mat-error *ngIf="addForm?.get('account')?.hasError('maxlength')">
+                    Please enter a valid account number.
+                </mat-error>
+                <mat-error *ngIf="addForm?.get('account')?.hasError('required')">
+                    Please enter account number.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>IFSC</mat-label>
+                <input matInput type="text" formControlName="ifsc" autocomplete="off" name="ifsc"
+                    RestrictSpecialCharacters>
+                <mat-error *ngIf="addForm?.get('ifsc')?.hasError('pattern')">
+                    Please enter a valid 11-digit IFSC code.
+                </mat-error>
+                <mat-error *ngIf="addForm?.get('ifsc')?.hasError('required')">
+                    Please enter IFSC code.
+                </mat-error>
+            </mat-form-field>
+            <br>
+            <span>
+                <mat-checkbox formControlName="cbsCreditDebitAllowed" style="padding-right: 20px;"
+                    value="cbsCreditDebitAllowed">
+                    CBS Debit/Credit at the time of PCBDC <=> RCBDC conversion
+                </mat-checkbox>
+            </span>
+            <br><br>
+            <div>
+                <button mat-raised-button class="form-btn" (click)="save()">Create</button>
+                <button type="reset" mat-raised-button class="btn-cancel" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </mat-card>
+</div>
