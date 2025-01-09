@@ -79,26 +79,15 @@ export class SearchTransactionComponent implements OnInit {
     this.searchForm = this.fb.group({
       fromDate: [''],
       toDate: [''],
-      refId: [''],
+      txnId: [''],
       rrn: [''],
       amount: [''],
       paymentRefId:[''],
       type:[''],
-      status:[''],
       paymentMode:[''],
       rc:[''],
       createDate:[''],
-      billerId:[''],
-      displayMessage:[''],
-      billerTxn:[''],
-      blrRespBillDate:[''],
-      blrRespDueDate:[''],
-      billerMode:[''],
-      initiatorMobile:[''],
-      initiatorEmail:[''],
-      initiatorAadhaar:[''],
-      initiatorPan:[''],
-
+     
 
 
       
@@ -143,22 +132,11 @@ export class SearchTransactionComponent implements OnInit {
       isNullorUndefined(valid.get('txnId')?.value) &&
       isNullorUndefined(valid.get('amount')?.value) &&
       isNullorUndefined(valid.get('rrn')?.value) &&
-      isNullorUndefined(valid.get('status')?.value) &&
-      isNullorUndefined(valid.get('paymentMode')?.value) &&
-      isNullorUndefined(valid.get('rc')?.value) &&
-      isNullorUndefined(valid.get('createDate')?.value) &&            
-      isNullorUndefined(valid.get('type')?.value) &&
-      isNullorUndefined(valid.get('billerId')?.value) &&
-      isNullorUndefined(valid.get('displayMessage')?.value) &&
-      isNullorUndefined(valid.get('billerTxn')?.value) &&
-      isNullorUndefined(valid.get('blrRespBillDate')?.value) &&
-      isNullorUndefined(valid.get('blrRespDueDate')?.value) &&
-      isNullorUndefined(valid.get('billerMode')?.value) &&
-      isNullorUndefined(valid.get('initiatorMobile')?.value) &&
-      isNullorUndefined(valid.get('initiatorEmail')?.value) &&
-      isNullorUndefined(valid.get('initiatorAadhaar')?.value) &&
-      isNullorUndefined(valid.get('initiatorPan')?.value) &&
       isNullorUndefined(valid.get('paymentRefId')?.value) &&
+      isNullorUndefined(valid.get('transactionStatus')?.value) &&
+
+      
+     
 
 
 

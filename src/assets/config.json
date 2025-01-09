@@ -1,15 +1,15 @@
 {
-    "name": "ICICI Bank",
-    "welcomeMsg": "Welcome to ICICI Bank BBPS Portal",
-    "logoImg": "assets/imgs/icici-bank-logo.png",
-    "primary_theme_color": "#9e2828",
-    "primary_button_color": "#ff8c0d",
+    "name": "BharatPe ",
+    "welcomeMsg": "Welcome to BharatPe BBPS Portal",
+    "logoImg": "assets/imgs/BBPS-logo.png",
+    "primary_theme_color": "#2B7BFF",
+    "primary_button_color": "#2B7BFF",
     "primary_button_text_color": "#fff",
-    "secondry_button_color": "#9e9e9e",
+    "secondry_button_color": "#2B7BFF",
     "secondry_button_text_color": "#fff",
-    "nav_btn_color": "#0a3c5f",
+    "nav_btn_color": "#2B7BFF",
     "nav_btn_text_color": "#fff",
-    "nav_btn_padding_color": "#eb7d1f",
+    "nav_btn_padding_color": "#2B7BFF",
     "nav_icon_text_color": "rgba(0, 0, 0, 0.87)",
     "nav_icon_text_color_active": "#fff",
     "nav_bg_color": "#fff",
@@ -135,28 +135,7 @@
         },
          
         
-        {
-            "displayName": "Biller",
-            "iconName": "account_balance",
-            "route": "/biller",
-            "selfRoute": false,
-            "permission": "manage-merchant,view-merchant,manage-bulk-file-upload",
-            "children": [
-                {
-                    "displayName": "Biller Onboarding",
-                    "iconName": "library_add",
-                    "route": "/biller-onboarding",
-                    "permission": "manage-merchant,manage-bulk-file-upload"
-                },
-               
-                {
-                    "displayName": "Channel Onboarding",
-                    "iconName": "launch",
-                    "route": "/channel-onboarding",
-                    "permission": "view-merchant"
-                }
-            ]
-        },
+        
         {
             "displayName": "Dispute Management",
             "iconName": "people",

@@ -76,7 +76,7 @@
         !='txnId' && col.name !='wallet' && col.name !='idRc' && col.name !='rcedit' && col.name !='rcLocalAdd' &&
         col.name !='customer' && col.name !='selectAction' && col.name !='downloadbulk' && col.name !='scheduleDownload'
         && col.name !='selectActionRecon' && col.name !='custedit' && col.name !='checkStatus' && col.name !='ruleStatus'
-        && col.name !='distursementStatus' && col.name !='ruleValidity'
+        && col.name !='distursementStatus' && col.name !='ruleValidity' 
         && col.name !='downloadPcbdcBulkFile' && col.name !='ruleEnhance' && col.name !='ruleTopUp' && col.name != 'Action'
          && col.name !='voucherCodeGenerate' && col.name !='voucherEnhance' && col.name !='voucherTopUp' && col.name !='voucherSettlement'"
         [matColumnDef]=" col.name">
@@ -268,6 +268,20 @@
           (click)="onTxnIdClick(row)">{{row.txnId}}</a>
       </td>
     </ng-container>
+
+    <!-- <ng-container matColumnDef="agentId" *ngIf="tableType =='search-txn'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Agent Id</th>
+      <td mat-cell *matCellDef="let row">
+        <a class="hyperlink" (click)="onTxnIdClick(row)">{{row.agentId}}</a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="agentId" *ngIf="tableType =='dispute'">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Agent Id</th>
+      <td mat-cell *matCellDef="let row">
+        <a class="hyperlink" style="text-decoration: none; pointer-events: none; color: black;"
+          (click)="onTxnIdClick(row)">{{row.agentId}}</a>
+      </td>
+    </ng-container> -->
     <ng-container matColumnDef="idRc" *ngIf="tableType =='rc'">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
       <td mat-cell *matCellDef="let row">

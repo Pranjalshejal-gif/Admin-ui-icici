@@ -1,10 +1,14 @@
+ 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CustomerService } from 'src/app/Services/customer.service';
+import { CustomerData } from 'src/app/models/customer_data';
+ import { AgentsearchServiceService } from 'src/app/Services/agentsearch-service.service';
+import { DashboardService } from 'src/app/Services/dashboard.service';
+import { MerchantService, SearchMerchant } from 'src/app/Services/merchant.service';
 
 
 
@@ -15,63 +19,59 @@ import { CustomerService } from 'src/app/Services/customer.service';
 })
 export class AgentSearchComponent implements OnInit {
 
- 
-
-  [x: string]: any;
 
   searchForm: FormGroup;
   showData: boolean = false;
   dataSourceCustomer: MatTableDataSource<any>;
   Columns: string[];
   atLeastOneRequired: boolean = true;
-  myData: CustomerService[];
+  myData: AgentsearchServiceService[];
   panelOpen: boolean = true;
 
   constructor(private toast: ToastrService,
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private search: CustomerService,
+    private search: AgentsearchServiceService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.Columns = this.search.CustomerColumns;
 
     this.searchForm = this.fb.group({
-      mobile: [''],
+      agentId: [''],
 
-      walletAddress: [''],
+      agentName: [''],
 
-      vpa: [''],
+      agentMobileNo: [''],
 
 
     });
   }
 
 
-
-  // dateChange(e: { value: { toString: () => string; }; }) {
-  //   this['minDateToFinish'].next(e.value.toString());
-  // }
+  // { name: 'agentId', label: 'Agent Id' },
+  // { name: 'agentName', label: 'Agent Name' },
+  // { name: 'agentMobileNo', label: 'mobile ' },
 
   searchCustomer() {
     let valid = this.searchForm;
     if (this.searchForm.invalid) {
-      this.toast.error("Please Enter Valid Inputs");
+      this.toast.error("Please Enter Valid Inputs");                                                      
       return;
     }
 
-    if (isNullorUndefined(valid.get('mobile')?.value) &&
-      isNullorUndefined(valid.get('walletAddress')?.value) &&
-      isNullorUndefined(valid.get('vpa')?.value)
+    if (isNullorUndefined(valid.get('agentId')?.value) &&
+      isNullorUndefined(valid.get('agentName')?.value) &&
+      isNullorUndefined(valid.get('agentMobileNo')?.value)
 
     ) {
       this.atLeastOneRequired = false;
       this.toast.error("At least one search criteria is required");
     } else {
       let request = {
-        mobile: this.searchForm.value.mobile,
-        walletAddress: this.searchForm.value.walletAddress,
-        vpa: this.searchForm.value.vpa,
+        agentId: this.searchForm.value.agentId,
+        agentName: this.searchForm.value.agentName,
+        agentMobileNo: this.searchForm.value.agentMobileNo,
         status: this.searchForm.value.status,
       }
       this.search.customerSearch(request).subscribe(res => {
@@ -81,6 +81,7 @@ export class AgentSearchComponent implements OnInit {
           this.atLeastOneRequired = true;
           this.showData = true;
           this.panelOpen = false;
+          console.log("res" + JSON.stringify(res))
 
         }
         else {
@@ -108,8 +109,3 @@ function isNullorUndefined(val: any) {
     return true;
   return false;
 }
-
-
-
-
-

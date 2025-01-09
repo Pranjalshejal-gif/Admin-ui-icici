@@ -13,20 +13,28 @@
           <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
         </mat-form-field> -->
 
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Biller Mobile</mat-label>
           <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
             pattern="^[6|7|8|9][0-9]{9}$" maxlength="10">
           <mat-error *ngIf="searchForm?.get('mobile')?.hasError('pattern')">
             Please enter valid Mobile Number
           </mat-error>
+        </mat-form-field> -->
+
+        <!-- blrId: [''],
+  
+        blrName: [''], -->
+
+           <mat-form-field appearance="outline">
+          <mat-label>Biller Id</mat-label>
+          <input matInput formControlName="blrId" autocomplete="off" name="blrId">
         </mat-form-field>
-        
 
         
         <mat-form-field appearance="outline">
           <mat-label>Biller Name</mat-label>
-          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          <input matInput formControlName="blrName" autocomplete="off" name="blrName">
         </mat-form-field>
 
        

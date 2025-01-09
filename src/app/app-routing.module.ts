@@ -221,7 +221,7 @@ const routes: Routes = [
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "MDM", route: '/mdm/biller' },
-        { name: 'biller', route: '' }],
+        { name: 'Biller', route: '' }],
       // permissions: 'manage-user,view-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
@@ -271,7 +271,7 @@ const routes: Routes = [
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "MDM", route: '/mdm/plan' },
-      { name: 'agent', route: '' }],
+      { name: 'Plan', route: '' }],
       permissions: 'manage-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
@@ -420,7 +420,7 @@ const routes: Routes = [
     component:BillerSearchComponent,
     data: {
       layout: Layouts.SIDENAV,
-      breadcrumb: [{ name: 'Biller Search', route: '' }],
+      breadcrumb: [{ name: ' Search Biller', route: '' }],
       permissions: 'manage-merchant,manage-bulk-file-upload'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
