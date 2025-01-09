@@ -2,7 +2,7 @@
     <mat-expansion-panel [expanded]="panelOpen">
       <mat-expansion-panel-header>
         <mat-panel-title class="font-style">
-          <h2>Biller Search</h2>
+          <h2>AI Search</h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <br>
@@ -21,18 +21,34 @@
             Please enter valid Mobile Number
           </mat-error>
         </mat-form-field> -->
+
+       
         
 
         
         <mat-form-field appearance="outline">
           <mat-label>Agent Institute Id</mat-label>
-          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          <input matInput formControlName="agentInstId" autocomplete="off" name="agentInstId">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Agent Institute Name</mat-label>
-            <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+            <input matInput formControlName="agentInstName" autocomplete="off" name="agentInstName">
           </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Agent Institute Type</mat-label>
+            <mat-select formControlName="agentInstType">
+              <mat-option value='BANK'>BANK</mat-option>
+              <!-- <mat-option value='V'>VOID</mat-option> -->
+              <mat-option value='NONBANK'>NON-BANK</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+   
+        
 
 
 

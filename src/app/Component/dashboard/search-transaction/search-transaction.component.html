@@ -30,15 +30,15 @@
       </mat-form-field> -->
       <mat-form-field appearance="outline" class="font-style">
         <mat-label>Transaction ID</mat-label>
-        <input matInput formControlName="refId" autocomplete="off" RestrictSpecialCharacters name="transactionID">
+        <input matInput formControlName="txnId" autocomplete="off" RestrictSpecialCharacters name="txnId">
       </mat-form-field>
 
 
 
-      <mat-form-field appearance="outline" class="font-style">
+      <!-- <mat-form-field appearance="outline" class="font-style">
         <mat-label>Payment Ref Id</mat-label>
         <input matInput formControlName="paymentRefId" autocomplete="off" RestrictSpecialCharacters name="paymentRefId">
-      </mat-form-field>
+      </mat-form-field> -->
 
       <!-- <mat-form-field appearance="outline" class="font-style">
         <mat-label>ID</mat-label>
@@ -149,12 +149,12 @@
         <mat-label>Transaction Status</mat-label>
         <mat-select formControlName="transactionStatus">
           <mat-option value='N'>NEW</mat-option>
-          <mat-option value='V'>VOID</mat-option>
+          <!-- <mat-option value='V'>VOID</mat-option> -->
           <mat-option value='P'>PENDING</mat-option>
           <mat-option value='R'>REVERSED</mat-option>
-          <mat-option value='C'>COMPLETED</mat-option>
+          <!-- <mat-option value='C'>COMPLETED</mat-option> -->
           <mat-option value='A'>ACKNOWLEDGED</mat-option>
-          <mat-option value='T'>TIMEOUT</mat-option>
+          <!-- <mat-option value='T'>TIMEOUT</mat-option> -->
           <mat-option value='S'>SUSPECT</mat-option>
 
         </mat-select>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8081/rtsp/api/system/'
+  apiUrl: 'http://localhost:8081/bbps-admin/api/system/'
 
 };
 

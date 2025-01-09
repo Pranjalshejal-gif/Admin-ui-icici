@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class HelperService {
-  static DATE_FORMATS: any;
 
   constructor(private datePipe: DatePipe,
     private sharedService: SharedService,

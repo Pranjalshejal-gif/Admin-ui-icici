@@ -39,32 +39,32 @@
             "iconName": "manage_search",
             "route": "/search-transactions",
             "selfRoute": false,
-            "permission": "manage-tokensearch,view-tokensearch",
+            "permission": "Manage-Transaction,View-TransactionSearch,View-BillerSearch,Manage-BillerSearch,View-AgentSearch,view-AISearch",
             "children": [
                 {
                     "displayName": "Transaction",
                     "iconName": "manage_search",
                     "route": "/search-transactions",
-                    "permission": "manage-tokensearch,view-tokensearch"
+                    "permission": "Manage-Transaction,View-TransactionSearch"
                 },
                 {
                     "displayName": "Biller",
                     "iconName": "manage_search",
                     "route": "/biller-search",
-                    "permission": "manage-tokensearch,view-tokensearch"
+                    "permission": "Manage-BillerSearch,View-BillerSearch"
                 },
                 {
                     "displayName": "Agent",
                     "iconName": "manage_search",
                     "route": "/search-Agent",
-                    "permission": "manage-permission,view-permission"
+                    "permission": "Manage-AgentSearch,View-AgentSearch"
                 },
 
                 {
                     "displayName": "AI",
                     "iconName": "manage_search",
                     "route": "/Ai-search",
-                    "permission": "manage-permission,view-permission"
+                    "permission": "Manage-AISearch,view-AISearch"
                 },
 
                 {
@@ -78,8 +78,7 @@
             ]
         },
        
-
-        {
+          {
             "displayName": "User Management",
             "iconName": "manage_accounts",
             "route": "/user-management",
@@ -111,25 +110,27 @@
             "iconName": "articleicon",
             "route": "/mdm",
             "selfRoute": false,
-            "permission": "manage-user,view-user,manage-role,view-role,manage-permission,view-permission",
+            "permission": "Manage-MDM Biller,View-MDM Biller,Manage-MDM Agent,View-MDM Agent,Manage-MDM Plan,View-MDM Plan",
             "children": [
                 {
                     "displayName": "Biller",
                     "iconName": "personicon",
                     "route": "/mdm/biller",
-                    "permission": "manage-user,view-user"
+                    "permission": "Manage-MDM Biller,View-MDM Biller"
                 },
+
+               
                 {
                     "displayName": "Agent",
                     "iconName": "settingsapplicationsicon",
                     "route": "MDM/Agent",
-                    "permission": "manage-role,view-role"
+                    "permission": "Manage-MDM Agent,View-MDM Agent"
                 },
                 {
                     "displayName": "Plan",
                     "iconName": "editcalendaricon",
                     "route": "/mdm/plan",
-                    "permission": "manage-permission,view-permission"
+                    "permission": "Manage-MDM Plan,View-MDM Plan"
                 }
             ]
         },
@@ -138,8 +139,8 @@
         {
             "displayName": "Biller",
             "iconName": "account_balance",
-            "route": "/biller",
-            "selfRoute": false,
+            
+           
             "permission": "manage-merchant,view-merchant,manage-bulk-file-upload",
             "children": [
                 {

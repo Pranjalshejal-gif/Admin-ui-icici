@@ -1,4 +1,3 @@
-// import { Injectable } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -6,32 +5,26 @@ import { map } from 'rxjs';
 import { SharedService } from './shared.service';
 import { HelperService } from './helper.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class AgentService {
+export class MDMBillerService {
 
-
-  AgentColumns: any[] = [
+   roleColumns: any[] = [
     { name: 'id', label: 'Id' },
-    { name: 'agentId', label: 'ID' },
-    { name: 'agentName', label: 'Name' },
-    { name: 'agentPaymentModes', label: 'Payment Modes' },
-    {name:'agentPaymentChannels',label:'Channels'},
-    {name:'agentShopName',label:'Shop Name'},
-    {name:'agentMobileNo',label:'Mobile number'},
-    {name:'agentRegisteredAddr', label: 'Address'},
-    {name:'agentRegisteredCity',label: 'City'},
-    {name:'agentRegisteredState',label: 'State'}
+   
+    { name: 'categoryName', label: ' Category Name' },
+    { name: 'billerCount', label: 'Count' },
+   
   ];
 
 
   constructor(private httpClient: HttpClient, private sharedSer: SharedService, private helper: HelperService) { }
 
   getAllRoles() {
-    return this.httpClient.get<any>(`${environment.apiUrl}bbps-agent/get-all`)
+    return this.httpClient.get<any>(`${environment.apiUrl}bbps-biller/get-all`)
       .pipe(map(res => this.helper.handleResponse(res)));
+      console.log("data" + JSON.stringify(this.getAllRoles));
   }
 
   updateRole(request: any) {

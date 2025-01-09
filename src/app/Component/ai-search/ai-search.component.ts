@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CustomerService } from 'src/app/Services/customer.service';
+import { AisearchService } from 'src/app/Services/aisearch.service';
 
 @Component({
   selector: 'app-ai-search',
@@ -21,27 +21,25 @@ export class AISearchComponent implements OnInit {
   dataSourceCustomer: MatTableDataSource<any>;
   Columns: string[];
   atLeastOneRequired: boolean = true;
-  myData: CustomerService[];
+  myData: AisearchService[];
   panelOpen: boolean = true;
 
   constructor(private toast: ToastrService,
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private search: CustomerService,
+    private search: AisearchService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.Columns = this.search.CustomerColumns;
 
     this.searchForm = this.fb.group({
-      mobile: [''],
+      agentInstId: [''],
 
-      walletAddress: [''],
+      agentInstType: [''],
 
-      vpa: [''],
-
-
-    });
+      agentInstName: [''],
+     });
   }
 
   // dateChange(e: { value: { toString: () => string; }; }) {
@@ -55,18 +53,18 @@ export class AISearchComponent implements OnInit {
       return;
     }
 
-    if (isNullorUndefined(valid.get('mobile')?.value) &&
-      isNullorUndefined(valid.get('walletAddress')?.value) &&
-      isNullorUndefined(valid.get('vpa')?.value)
+    if (isNullorUndefined(valid.get('agentInstId')?.value) &&
+      isNullorUndefined(valid.get('agentInstType')?.value) &&
+      isNullorUndefined(valid.get('agentInstName')?.value)
 
     ) {
       this.atLeastOneRequired = false;
       this.toast.error("At least one search criteria is required");
     } else {
       let request = {
-        mobile: this.searchForm.value.mobile,
-        walletAddress: this.searchForm.value.walletAddress,
-        vpa: this.searchForm.value.vpa,
+        agentInstId: this.searchForm.value.agentInstId,
+        agentInstType: this.searchForm.value.agentInstType,
+        agentInstName: this.searchForm.value.agentInstName,
         status: this.searchForm.value.status,
       }
       this.search.customerSearch(request).subscribe(res => {
@@ -76,6 +74,7 @@ export class AISearchComponent implements OnInit {
           this.atLeastOneRequired = true;
           this.showData = true;
           this.panelOpen = false;
+          console.log("res" + JSON.stringify(res))
 
         }
         else {

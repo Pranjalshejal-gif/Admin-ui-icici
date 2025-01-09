@@ -130,6 +130,7 @@ import { BillerSearchComponent } from './Component/biller-search/biller-search.c
 import { AgentSearchComponent } from './Component/agent-search/agent-search.component';
 import { AISearchComponent } from './Component/ai-search/ai-search.component';
 import { AgentComponent } from './Component/agent/agent.component';
+import { DialogagentComponent } from './Component/agent/dialogagent/dialogagent.component';
 
 @NgModule({
   declarations: [
@@ -243,7 +244,8 @@ import { AgentComponent } from './Component/agent/agent.component';
 
     AgentSearchComponent,
     AISearchComponent,
-    AgentComponent
+    AgentComponent,
+    DialogagentComponent
   ],
   imports: [
     BrowserModule,

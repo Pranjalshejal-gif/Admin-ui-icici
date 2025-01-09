@@ -221,7 +221,7 @@ const routes: Routes = [
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "MDM", route: '/mdm/biller' },
-        { name: 'biller', route: '' }],
+        { name: 'Biller', route: '' }],
       // permissions: 'manage-user,view-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
@@ -242,7 +242,7 @@ const routes: Routes = [
   },
   {
     path: 'user-management/add-user',
-    component: AddUserGridComponent,
+    component: AddNewComponent,
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "User Management", route: 'user-management/user' },
@@ -253,12 +253,13 @@ const routes: Routes = [
   },
   {
     path: 'user-management/add',
-    component: AddNewComponent,
+    component: AddUserGridComponent,
+   
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "User Management", route: 'user-management/user' },
-      { name: 'Add User', route: '' }],
-      permissions: 'manage-user'
+      { name: 'Add', route: '' }],
+      permissions: 'manage-user, view-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
   },
@@ -271,7 +272,7 @@ const routes: Routes = [
     data: {
       layout: Layouts.SIDENAV,
       breadcrumb: [{ name: "MDM", route: '/mdm/plan' },
-      { name: 'agent', route: '' }],
+      { name: 'Plan', route: '' }],
       permissions: 'manage-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
@@ -284,6 +285,19 @@ const routes: Routes = [
       breadcrumb: [{ name: "User Management", route: 'user-management/user' },
       { name: 'View User', route: '' }],
       permissions: 'view-user'
+    },
+    canActivate: [AuthGuard, SessionTimeoutGuard]
+  },
+
+  {
+   
+    path: 'user-management/edit/:id',
+    component: AddNewComponent,
+    data: {
+      layout: Layouts.SIDENAV,
+      breadcrumb: [{ name: "User Management", route: 'user-management/user' },
+      { name: 'manage-user', route: 'user-management/user' }, { name: 'Edit', route: '' }],
+      permissions: 'manage-user'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]
   },
@@ -420,7 +434,7 @@ const routes: Routes = [
     component:BillerSearchComponent,
     data: {
       layout: Layouts.SIDENAV,
-      breadcrumb: [{ name: 'Biller Search', route: '' }],
+      breadcrumb: [{ name: ' Search Biller', route: '' }],
       permissions: 'manage-merchant,manage-bulk-file-upload'
     },
     canActivate: [AuthGuard, SessionTimeoutGuard]

@@ -1,0 +1,58 @@
+<div class="box">
+    <h3>Agent Details</h3>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Agent ID</span>:
+            <span class="data-value"> {{tranctionDetails.agentId}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Name</span>:
+            <span class="data-value"> {{tranctionDetails.agentName}}</span>
+        </div>
+    </div>
+    <div class="">
+        <!-- <div class="flex">
+            <span class="data-heading"> Created Date</span>:
+            <span class="data-value"> {{tranctionDetails.createDate | date :'MMM d, y, HH:mm:ss'}}</span>
+        </div> -->
+        <div class="flex">
+            <span class="data-heading">Payment Modes</span>:
+            <span class="data-value"> {{tranctionDetails.agentPaymentModes}}</span>
+        </div>
+
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading">Channels</span>:
+            <span class="data-value"> {{tranctionDetails.agentPaymentChannels}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Shop Name</span>:
+            <span class="data-value"> {{tranctionDetails.agentShopName}}</span>
+        </div>
+    </div>
+    <div class="">
+        <div class="flex">
+            <span class="data-heading"> Mobile number</span>:
+            <span class="data-value"> {{tranctionDetails.agentMobileNo}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">Address</span>:
+            <span class="data-value"> {{tranctionDetails.agentRegisteredAddr}}</span>
+        </div>
+        <div class="flex">
+            <span class="data-heading">City</span>:
+            <span class="data-value"> {{tranctionDetails.agentRegisteredCity}}</span>
+        </div>
+         <div class="flex">
+            <span class="data-heading">State</span>:
+            <span class="data-value"> {{tranctionDetails.agentRegisteredState}}</span>
+        </div> 
+    </div>
+</div>
+
+<mat-dialog-actions align="end">
+    <button *ngIf="isReqUptToken" mat-raised-button mat-dialog-close class="form-btn" (click)="reqUpdateToken()">Req
+        Update Token</button>
+    <button mat-raised-button mat-dialog-close class="btn-cancel">Cancel</button>
+</mat-dialog-actions>

@@ -105,6 +105,7 @@ export class ScheduledReportsComponent implements OnInit {
         arr.forEach((obj: any) => {
           obj.status = obj.status === "N" ? 'NEW' : obj.status === "C" ? 'COMPLETED' : obj.status === "I" ? 'IN PROGRESS' : obj.status === "E" ? 'ERROR' : '';
         });
+        console.log("arr" + JSON.stringify(arr));
 
         this.showReportsTable = true;
         this.reportsData = new MatTableDataSource(res.data);

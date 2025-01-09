@@ -13,21 +13,59 @@
           <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
         </mat-form-field> -->
 
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Biller Mobile</mat-label>
           <input matInput name="mobile" autocomplete="off" OnlyNumber formControlName="mobile"
             pattern="^[6|7|8|9][0-9]{9}$" maxlength="10">
           <mat-error *ngIf="searchForm?.get('mobile')?.hasError('pattern')">
             Please enter valid Mobile Number
           </mat-error>
+        </mat-form-field> -->
+
+        <!-- blrId: [''],
+  
+        blrName: [''], -->
+
+           <mat-form-field appearance="outline">
+          <mat-label>Biller Id</mat-label>
+          <input matInput formControlName="blrId" autocomplete="off" name="blrId">
         </mat-form-field>
-        
 
         
         <mat-form-field appearance="outline">
           <mat-label>Biller Name</mat-label>
-          <input matInput formControlName="walletAddress" autocomplete="off" name="walletAddress">
+          <input matInput formControlName="blrName" autocomplete="off" name="blrName">
         </mat-form-field>
+<!-- 
+        <mat-form-field appearance="outline">
+          <mat-label>Biller Category Name</mat-label>
+          <input matInput formControlName="blrCategoryName" autocomplete="off" name="blrCategoryName">
+        </mat-form-field> -->
+
+
+        <mat-form-field appearance="outline" class="font-style">
+          <mat-label>Biller Category Name</mat-label>
+          <mat-select formControlName="blrCategoryName">
+            <mat-option value='Health Insurance'>Health Insurance</mat-option>
+            <!-- <mat-option value='V'>VOID</mat-option> -->
+            <mat-option value='Cable TV'>Cable TV</mat-option>
+            <mat-option value='Rental'>Rental</mat-option>
+            <!-- <mat-option value='C'>COMPLETED</mat-option> -->
+            <mat-option value='B2B'>B2B</mat-option>
+            <!-- <mat-option value='T'>TIMEOUT</mat-option> -->
+            <mat-option value='National Pension System'>National Pension System</mat-option>
+            
+  
+          </mat-select>
+        </mat-form-field>
+
+
+       
+        
+
+
+
+        
 
        
 
